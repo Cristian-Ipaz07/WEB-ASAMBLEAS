@@ -1,16 +1,30 @@
-# React + Vite
+# 🏢 Sistema de Gestión de Asambleas - Edificio Jardín del Morasurco
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Una aplicación web robusta diseñada para la automatización y registro en tiempo real de Asambleas Generales de Copropietarios. Este proyecto optimiza la toma de decisiones, el control de quórum y la generación de actas legales.
 
-Currently, two official plugins are available:
+## 🚀 Características Principales
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Control de Quórum en Vivo**: Cálculo automático de coeficientes de copropiedad (35 unidades) con validación de mayoría deliberatoria.
+* **Gestión Integral de Orden del Día**: Seguimiento dinámico de 11 puntos clave, desde la verificación de asistencia hasta proposiciones y varios.
+* **Módulo de Elecciones**: Sistema interactivo para la postulación y elección de dignatarios, Consejo de Administración y Comité de Convivencia.
+* **Generador de Actas PDF**: Motor de impresión optimizado que consolida toda la información recopilada en las pestañas en un documento final legalmente válido.
+* **Dashboard de Gestión**: Visualización de informes de seguros, estados financieros y matriz de contratos.
 
-## React Compiler
+## 🛠️ Stack Tecnológico
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **React.js**: Biblioteca principal para la interfaz de usuario.
+* **Tailwind CSS**: Framework para diseño responsivo y utilidades de impresión integral (`print:` utilities).
+* **Lucide React**: Set de iconos vectoriales para una experiencia de usuario intuitiva.
+* **Vite**: Herramienta de construcción rápida para el desarrollo frontend.
 
-## Expanding the ESLint configuration
+## 📦 Instalación y Uso
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clonar el repositorio:
+   `git clone https://github.com/Cristian-Ipaz07/web-jardines-morasurco.git`
+2. Instalar dependencias:
+   `npm install`
+3. Iniciar entorno de desarrollo:
+   `npm run dev`
+
+---
+*Desarrollado como solución tecnológica para la Propiedad Horizontal.*
