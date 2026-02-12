@@ -853,28 +853,70 @@ export default function App() {
 
 
 
+                  {/* TARJETA 1.3 CORREGIDA E INTEGRADA */}
                   <Card title="1.3. Gestión de Seguros (Póliza Multirriesgo)" icon={Shield}>
+                    <div className="space-y-6 text-[11px] font-black text-slate-900">
+                      {/* Datos Administrativos de la Póliza */}
+                      <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 shadow-sm">
+                        <div className="flex justify-between items-start mb-3">
+                          <div>
+                            <p className="text-blue-600 font-black uppercase tracking-tighter">
+                              SEGUROS LA PREVISORA S.A.
+                            </p>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase">Póliza Todo Riesgo Daños Materiales</p>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-[9px] text-slate-400 uppercase font-black">No. de Póliza</span>
+                            <p className="text-slate-900 font-black">1000428</p>
+                          </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-blue-200/50 pt-3">
+                          <div>
+                            <span className="text-[9px] text-slate-400 uppercase font-black">Vigencia Actual</span>
+                            <p className="text-slate-800 leading-tight">
+                              DESDE EL 21 DE ABRIL DE 2025 <br />
+                              AL 21 DE ABRIL DE 2026
+                            </p>
+                          </div>
+                          <div className="text-right sm:text-left">
+                            <span className="text-[9px] text-slate-400 uppercase font-black">Prima Total (IVA Incluido)</span>
+                            <p className="text-lg text-emerald-600 font-black tracking-tighter">
+                              $5.517.759
+                            </p>
+                          </div>
+                        </div>
+                      </div>
 
-                    <div className="space-y-4 text-[11px] font-black text-slate-900">
-
-                      <p className="text-blue-600 font-black mb-2 uppercase tracking-tighter">SE ACTUALIZÓ LA PÓLIZA CON LA PREVISORA S.A. PARA PROTECCIÓN DE INFRAESTRUCTURA Y MAQUINARIA.</p>
-
-                      <ul className="space-y-2">
-
-                        <li className="flex justify-between border-b pb-1"><span>SEGURO ÁREAS COMUNES:</span> <span>COBERTURA DE INCENDIO, RAYO, EXPLOSIÓN Y DAÑOS POR AGUA.</span></li>
-
-                        <li className="flex justify-between border-b pb-1"><span>VALOR ASEGURADO EDIFICIO:</span> <span className="text-blue-600">$4.500.000.000</span></li>
-
-                        <li className="flex justify-between border-b pb-1"><span>MAQUINARIA Y EQUIPO:</span> <span className="text-blue-600">$171.031.488</span></li>
-
-                        <li className="flex justify-between"><span>EQUIPOS ELÉCTRICOS (CONTENIDOS):</span> <span className="text-blue-600">$8.000.000 (CONTRA HURTO Y DAÑOS ELÉCTRICOS).</span></li>
-
-                      </ul>
-
+                      {/* Detalle de Valores Asegurados */}
+                      <div className="space-y-3">
+                        <p className="text-[10px] text-slate-400 uppercase tracking-widest border-l-2 border-blue-600 pl-2 font-black">
+                          Coberturas y Capitales Asegurados
+                        </p>
+                        <ul className="space-y-2 uppercase">
+                          <li className="flex justify-between border-b border-slate-100 pb-1">
+                            <span className="text-slate-600">Seguro Áreas Comunes:</span> 
+                            <span className="text-right font-bold text-[9px] max-w-[200px]">INCENDIO, RAYO, EXPLOSIÓN Y DAÑOS POR AGUA.</span>
+                          </li>
+                          <li className="flex justify-between border-b border-slate-100 pb-1">
+                            <span className="text-slate-600">Valor Asegurado Edificio:</span> 
+                            <span className="text-blue-600 font-black text-sm">$4.500.000.000</span>
+                          </li>
+                          <li className="flex justify-between border-b border-slate-100 pb-1">
+                            <span className="text-slate-600">Maquinaria y Equipo:</span> 
+                            <span className="text-blue-600 font-black">$171.031.488</span>
+                          </li>
+                          <li className="flex justify-between items-center">
+                            <span className="text-slate-600 leading-tight">Equipos Eléctricos <br/><small className="text-[8px] opacity-60">(Contenidos Comunes)</small>:</span> 
+                            <span className="text-blue-600 font-black text-right">
+                              $8.000.000 <br/>
+                              <small className="text-[8px] text-slate-400 font-bold">(HURTO Y DAÑOS ELÉCTRICOS)</small>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-
                   </Card>
-
                 </div>
 
 
