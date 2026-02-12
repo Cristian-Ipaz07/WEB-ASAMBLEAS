@@ -831,13 +831,13 @@ export default function App() {
 
                           <tr><td className="p-3">Concepto Técnico Puerta Vehicular</td><td className="p-3 text-emerald-600 font-black">EJECUTADO. SE CONFIRMÓ QUE NO HAY DAÑO ESTRUCTURAL AL APTO 204. NO SE REQUIERE ASAMBLEA EXTRAORDINARIA.</td></tr>
 
-                          <tr><td className="p-3">Arreglo Puertas de Ingreso (Ruido)</td><td className="p-3 text-amber-600">EN PROCESO. SE ENVIARON COMUNICADOS, PERO EL PROBLEMA PERSISTE. SE INSISTIRÁ EN EL MANTENIMIENTO.</td></tr>
+                          <tr><td className="p-3">Ruido Puertas de Ingreso APTOS (Ruido)</td><td className="p-3 text-emerald-600">EJECUTADO. SE ENVIARON COMUNICADOS, SE INSISTIRÁ CON LOS RESIDENTES PARA EL CUMPLIMIETNO DE LA NORMA.</td></tr>
 
-                          <tr><td className="p-3">Cotización Bandas Ascensor</td><td className="p-3 text-amber-600">EN PROCESO. SE CONSIDERA PRIORITARIO POR SEGURIDAD. SE BUSCA FINANCIACIÓN CON PROVEEDOR.</td></tr>
+                          <tr><td className="p-3">Cotización Bandas Ascensor</td><td className="p-3 text-emerald-600">EJECUTADO. SE REALIZO LA INSTALACIÓN DE LAS BANDAS EN EL ASCENSOR.</td></tr>
 
                           <tr><td className="p-3">Pintura Fachada y Anti-grafitis</td><td className="p-3 text-emerald-600">EJECUTADO/GESTIONADO. SE SOLICITÓ ADELANTAR LA PINTURA CON MATERIAL ESPECIAL.</td></tr>
 
-                          <tr><td className="p-3">Señalización de Reciclaje</td><td className="p-3 text-red-600">PENDIENTE. SE PROPUSO INSTALAR LETREROS CLAROS EN LOS PUNTOS DE ACOPIO.</td></tr>
+                          <tr><td className="p-3">Señalización de Reciclaje</td><td className="p-3 text-amber-600">PARCIAL. SE ADQUIRIERON LOS LETREROS DE RECICLAJE. PENDIENTE UBICARLOS.</td></tr>
 
                           <tr><td className="p-3">Implementación SG-SST</td><td className="p-3 text-amber-600">PARCIAL. SE COMPRARON BATERÍAS, RECARGARON EXTINTORES Y UBICÓ CAMILLA, PERO FALTA RED CONTRA INCENDIOS COMPLETA.</td></tr>
 
@@ -948,9 +948,34 @@ export default function App() {
                       </div>
 
                       {/* RESUMEN FINAL DE RIESGOS */}
-                      <div className="p-3 bg-slate-100 rounded-xl text-[9px] uppercase font-bold text-slate-500 flex items-center gap-3">
-                        <Info size={14} className="text-blue-500 shrink-0" />
-                        <span>Cobertura integral que incluye: Incendio, Rayo, Explosión, Daños por Agua, Hurto y Daños Eléctricos.</span>
+                      <div className="space-y-4">
+                        {/* Bloque de Cobertura Base */}
+                        <div className="p-3 bg-slate-100 rounded-xl text-[9px] uppercase font-bold text-slate-500 flex items-center gap-3">
+                          <Info size={14} className="text-blue-500 shrink-0" />
+                          <span>COBERTURA INTEGRAL QUE INCLUYE: INCENDIO, RAYO, EXPLOSIÓN, DAÑOS POR AGUA, HURTO Y DAÑOS ELÉCTRICOS.</span>
+                        </div>
+
+                        {/* Bloque de Modificación por el Consejo */}
+                        <div className="p-4 bg-slate-900 text-white rounded-xl text-[10px] uppercase font-bold tracking-wider leading-relaxed space-y-3">
+                          <div className="flex gap-2 border-b border-slate-700 pb-2">
+                            <ShieldAlert size={18} className="text-amber-400 shrink-0" />
+                            <p>
+                              TENIENDO EN CUENTA LA SOLICITUD DEL CONSEJO DE ADMINISTRACIÓN DE INCREMENTAR EL VALOR ASEGURADO DEL EDIFICIO 
+                              Y REDISTRIBUIR LOS VALORES DE LA MAQUINARIA Y EL EQUIPO ELÉCTRICO Y ELECTRÓNICO, SE MODIFICA LA PÓLIZA.
+                            </p>
+                          </div>
+                          
+                          <div className="grid grid-cols-2 gap-4 pt-1">
+                            <div className="flex flex-col">
+                              <span className="text-slate-400 text-[8px]">VALOR PRIMA ADICIONAL</span>
+                              <span className="text-blue-300 font-black tracking-tight">$348.069</span>
+                            </div>
+                            <div className="flex flex-col text-right">
+                              <span className="text-slate-400 text-[8px]">VALOR PRIMA TOTAL FINAL</span>
+                              <span className="text-emerald-400 font-black text-xs tracking-tighter">$5.865.529</span>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </Card>
@@ -1145,19 +1170,7 @@ export default function App() {
 
                         <p className="text-[9px] uppercase font-black text-slate-500 mb-2">MANTENIMIENTO GENERAL Y CERRAJERÍA</p>
 
-                        <ul className="text-[8px] space-y-1 text-slate-700">
 
-                          <li>FEBRERO: MANTENIMIENTO ($200K+$120K+$270K)</li>
-
-                          <li>MAYO: PUERTA VEHICULAR ($90K+$420K+$250K)</li>
-
-                          <li>JUNIO: MANTENIMIENTO GENERAL ($118.451+$100K)</li>
-
-                          <li>SEPTIEMBRE: CERRAJERÍA ($80K+$70K+$60K+$90K)</li>
-
-                          <li>OCTUBRE: REPARACIÓN MENOR ($30.000)</li>
-
-                        </ul>
 
                         <p className="text-slate-900 font-black pt-2 border-t mt-2 tracking-tighter uppercase font-black">TOTAL: $1.898.451</p>
 
@@ -1169,17 +1182,9 @@ export default function App() {
 
                         <p className="text-[10px] font-black text-blue-600 mb-2 tracking-widest flex items-center gap-1 uppercase"><Construction size={14}/> OSCAR MALES</p>
 
-                        <p className="text-[9px] uppercase font-black text-slate-500 mb-2 uppercase">OBRAS CIVILES MAYORES</p>
+                        <p className="text-[9px] uppercase font-black text-slate-500 mb-2 uppercase">MANTENIMIENTO CUBIERTAS</p>
 
-                        <ul className="text-[8px] space-y-1 text-slate-700 uppercase">
 
-                          <li>ENERO: REPARACIÓN INICIAL ($140.000)</li>
-
-                          <li>JULIO: OBRA CIVIL ($168.120)</li>
-
-                          <li>SEPTIEMBRE (OBRA PRINCIPAL): $2.000.000 + $1.205.170 + $767.200</li>
-
-                        </ul>
 
                         <p className="text-slate-900 font-black pt-2 border-t mt-2 tracking-tighter uppercase font-black">TOTAL: $4.280.490</p>
 
@@ -1191,19 +1196,7 @@ export default function App() {
 
                         <p className="text-[10px] font-black text-emerald-600 mb-2 tracking-widest flex items-center gap-1 uppercase"><Droplets size={14}/> MANUEL GUSTAVO QUELAL</p>
 
-                        <p className="text-[9px] uppercase font-black text-slate-500 mb-2 uppercase">IMPERMEABILIZACIÓN Y LAVADO</p>
-
-                        <ul className="text-[8px] space-y-1 text-slate-700 uppercase">
-
-                          <li>MARZO: PINTURA ZONAS ($808.880)</li>
-
-                          <li>ABRIL: MANO OBRA IMPERM. ($280.200)</li>
-
-                          <li>AGOSTO: PUERTAS Y TÉCNICOS ($300K+$650K)</li>
-
-                          <li>NOVIEMBRE: TANQUES ($298.880)</li>
-
-                        </ul>
+                        <p className="text-[9px] uppercase font-black text-slate-500 mb-2 uppercase">MANTENIMIENTO PUERTAS</p>
 
                         <p className="text-slate-900 font-black pt-2 border-t mt-2 tracking-tighter uppercase font-black">TOTAL: $2.337.960</p>
 
