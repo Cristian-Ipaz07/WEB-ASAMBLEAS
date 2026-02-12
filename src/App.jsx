@@ -856,64 +856,101 @@ export default function App() {
                   {/* TARJETA 1.3 CORREGIDA E INTEGRADA */}
                   <Card title="1.3. Gestión de Seguros (Póliza Multirriesgo)" icon={Shield}>
                     <div className="space-y-6 text-[11px] font-black text-slate-900">
-                      {/* Datos Administrativos de la Póliza */}
+                      
+                      {/* 1. DATOS DE IDENTIFICACIÓN DE PÓLIZA */}
                       <div className="bg-blue-50 p-4 rounded-2xl border border-blue-100 shadow-sm">
                         <div className="flex justify-between items-start mb-3">
                           <div>
-                            <p className="text-blue-600 font-black uppercase tracking-tighter">
-                              SEGUROS LA PREVISORA S.A.
-                            </p>
-                            <p className="text-[10px] text-slate-500 font-bold uppercase">Póliza Todo Riesgo Daños Materiales</p>
+                            <p className="text-blue-600 font-black uppercase tracking-tighter">SEGUROS LA PREVISORA S.A.</p>
+                            <p className="text-[10px] text-slate-500 font-bold uppercase tracking-tight">1. PÓLIZA TODO RIESGO</p>
                           </div>
                           <div className="text-right">
                             <span className="text-[9px] text-slate-400 uppercase font-black">No. de Póliza</span>
-                            <p className="text-slate-900 font-black">1000428</p>
+                            <p className="text-slate-900 font-black tracking-tight">1000428</p>
                           </div>
                         </div>
                         
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-blue-200/50 pt-3">
                           <div>
                             <span className="text-[9px] text-slate-400 uppercase font-black">Vigencia Actual</span>
-                            <p className="text-slate-800 leading-tight">
-                              DESDE EL 21 DE ABRIL DE 2025 <br />
-                              AL 21 DE ABRIL DE 2026
+                            <p className="text-slate-800 leading-tight uppercase font-black">
+                              Desde el 21 de abril de 2025 al 21 de abril de 2026
                             </p>
                           </div>
                           <div className="text-right sm:text-left">
                             <span className="text-[9px] text-slate-400 uppercase font-black">Prima Total (IVA Incluido)</span>
-                            <p className="text-lg text-emerald-600 font-black tracking-tighter">
+                            <p className="text-xl text-emerald-600 font-black tracking-tighter">
                               $5.517.759
                             </p>
                           </div>
                         </div>
                       </div>
 
-                      {/* Detalle de Valores Asegurados */}
-                      <div className="space-y-3">
-                        <p className="text-[10px] text-slate-400 uppercase tracking-widest border-l-2 border-blue-600 pl-2 font-black">
-                          Coberturas y Capitales Asegurados
-                        </p>
-                        <ul className="space-y-2 uppercase">
-                          <li className="flex justify-between border-b border-slate-100 pb-1">
-                            <span className="text-slate-600">Seguro Áreas Comunes:</span> 
-                            <span className="text-right font-bold text-[9px] max-w-[200px]">INCENDIO, RAYO, EXPLOSIÓN Y DAÑOS POR AGUA.</span>
-                          </li>
-                          <li className="flex justify-between border-b border-slate-100 pb-1">
-                            <span className="text-slate-600">Valor Asegurado Edificio:</span> 
-                            <span className="text-blue-600 font-black text-sm">$4.500.000.000</span>
-                          </li>
-                          <li className="flex justify-between border-b border-slate-100 pb-1">
-                            <span className="text-slate-600">Maquinaria y Equipo:</span> 
-                            <span className="text-blue-600 font-black">$171.031.488</span>
-                          </li>
-                          <li className="flex justify-between items-center">
-                            <span className="text-slate-600 leading-tight">Equipos Eléctricos <br/><small className="text-[8px] opacity-60">(Contenidos Comunes)</small>:</span> 
-                            <span className="text-blue-600 font-black text-right">
-                              $8.000.000 <br/>
-                              <small className="text-[8px] text-slate-400 font-bold">(HURTO Y DAÑOS ELÉCTRICOS)</small>
-                            </span>
-                          </li>
-                        </ul>
+                      {/* 2. ACUERDO DE PAGO Y 3. AMPAROS / CAPITALES */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        {/* SECCIÓN ACUERDO DE PAGO */}
+                        <div className="space-y-3">
+                          <p className="text-[10px] text-slate-400 uppercase tracking-widest border-l-2 border-amber-500 pl-2 font-black">
+                            2. Acuerdo de Pago (Sin Intereses)
+                          </p>
+                          <div className="bg-slate-50 p-4 rounded-xl border border-slate-100 space-y-3">
+                            <ul className="space-y-2 uppercase text-[10px] font-black">
+                              <li className="flex justify-between items-center border-b border-white pb-1">
+                                <span className="text-slate-500">1ra Cuota (26 Mayo 2025):</span>
+                                <span className="font-bold text-slate-800 tracking-tighter">$1.839.253</span>
+                              </li>
+                              <li className="flex justify-between items-center border-b border-white pb-1">
+                                <span className="text-slate-500">2da Cuota (23 Junio 2025):</span>
+                                <span className="font-bold text-slate-800 tracking-tighter">$1.839.253</span>
+                              </li>
+                              <li className="flex justify-between items-center">
+                                <span className="text-slate-500">3ra Cuota (23 Julio 2025):</span>
+                                <span className="font-bold text-slate-800 tracking-tighter">$1.839.253</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
+
+                        {/* SECCIÓN AMPAROS Y CAPITALES ASEGURADOS */}
+                        <div className="space-y-3">
+                          <p className="text-[10px] text-slate-400 uppercase tracking-widest border-l-2 border-blue-600 pl-2 font-black">
+                            3. Coberturas y Capitales Asegurados
+                          </p>
+                          <div className="space-y-2">
+                            {/* Amparos */}
+                            <div className="flex flex-col gap-1.5 mb-4">
+                              <div className="flex items-center gap-2 text-[9px] font-bold text-slate-700 bg-white p-2 rounded border border-slate-100 shadow-sm uppercase">
+                                <ShieldCheck className="text-emerald-500" size={14} /> Todo Riesgo Daños Materiales
+                              </div>
+                              <div className="flex items-center gap-2 text-[9px] font-bold text-slate-700 bg-white p-2 rounded border border-slate-100 shadow-sm uppercase">
+                                <Scale className="text-emerald-500" size={14} /> Responsabilidad Civil Extracontractual
+                              </div>
+                            </div>
+
+                            {/* Capitales Asegurados */}
+                            <div className="bg-blue-600 text-white p-4 rounded-xl shadow-lg shadow-blue-100">
+                              <div className="flex justify-between items-center border-b border-blue-400 pb-2 mb-2">
+                                <span className="text-[9px] font-bold uppercase opacity-80 tracking-widest">Valor Asegurado Edificio</span>
+                                <span className="text-sm font-black">$4.500.000.000</span>
+                              </div>
+                              <div className="flex justify-between items-center border-b border-blue-400 pb-2 mb-2">
+                                <span className="text-[9px] font-bold uppercase opacity-80 tracking-widest">Maquinaria y Equipo</span>
+                                <span className="text-sm font-black">$171.031.488</span>
+                              </div>
+                              <div className="flex justify-between items-center">
+                                <span className="text-[9px] font-bold uppercase opacity-80 tracking-widest text-balance">Equipos Eléctricos (Contenidos)</span>
+                                <span className="text-sm font-black">$8.000.000</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* RESUMEN FINAL DE RIESGOS */}
+                      <div className="p-3 bg-slate-100 rounded-xl text-[9px] uppercase font-bold text-slate-500 flex items-center gap-3">
+                        <Info size={14} className="text-blue-500 shrink-0" />
+                        <span>Cobertura integral que incluye: Incendio, Rayo, Explosión, Daños por Agua, Hurto y Daños Eléctricos.</span>
                       </div>
                     </div>
                   </Card>
@@ -952,21 +989,44 @@ export default function App() {
 
 
                   <Card title="2.2. Recuperación de Cartera" icon={Wallet}>
-
                     <div className="space-y-4 text-xs font-black">
+                      <p className="uppercase tracking-tight">SE HA REALIZADO UNA GESTIÓN DE COBRO EFECTIVA, LOGRANDO UNA REDUCCIÓN DRÁSTICA EN LAS CUENTAS POR COBRAR.</p>
+                      
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        {/* Visualización de Reducción */}
+                        <div className="bg-emerald-50 p-4 rounded-2xl border border-emerald-100">
+                          <p className="text-[10px] text-emerald-600 uppercase mb-2 tracking-widest">Estado de Reducción</p>
+                          <div className="flex items-center justify-between">
+                            <div className="text-center">
+                              <span className="text-[9px] text-slate-400 block uppercase">Julio</span>
+                              <span className="text-slate-700 font-black">$2.960.000</span>
+                            </div>
+                            <ChevronRight className="text-emerald-300" size={20} />
+                            <div className="text-center">
+                              <span className="text-[9px] text-slate-400 block uppercase">Diciembre</span>
+                              <span className="text-emerald-600 text-xl font-black">$1.650.000</span>
+                            </div>
+                          </div>
+                          <div className="mt-3 pt-3 border-t border-emerald-200">
+                            <p className="text-[10px] text-emerald-700 uppercase">
+                              Reducción total: <span className="font-black">$1.310.000 (44%)</span>
+                            </p>
+                          </div>
+                        </div>
 
-                      <p>SE HA REALIZADO UNA GESTIÓN DE COBRO EFECTIVA, LOGRANDO UNA REDUCCIÓN DRÁSTICA EN LAS CUENTAS POR COBRAR.</p>
-
-                      <ul className="space-y-2 list-disc pl-5">
-
-                        <li><span className="font-bold">REDUCCIÓN DE CARTERA:</span> LA CARTERA BAJÓ DE $8.156.766 EN JULIO A $6.994.166 EN AGOSTO, Y FINALMENTE A <span className="text-emerald-600">~$1.300.000 (APROX.)</span> EN OCTUBRE.</li>
-
-                        <li><span className="font-bold">GESTIÓN DE COBRO:</span> SE REALIZARON COBROS PRE-JURÍDICOS EFECTIVOS Y SE RECUPERARON DINEROS ADEUDADOS POR CONCEPTO DE SERVICIO DE TELEVISIÓN Y PARQUEADEROS.</li>
-
-                      </ul>
-
+                        {/* Detalle de Gestión */}
+                        <div className="space-y-2 py-2">
+                          <ul className="space-y-3 list-disc pl-5">
+                            <li>
+                              <span className="font-bold">GESTIÓN DE COBRO:</span> SE REALIZARON COBROS PRE-JURÍDICOS EFECTIVOS.
+                            </li>
+                            <li>
+                              <span className="font-bold">RECUPERACIÓN:</span> SE RECUPERARON DINEROS ADEUDADOS POR CONCEPTO DE SERVICIO DE TELEVISIÓN Y PARQUEADEROS.
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-
                   </Card>
 
 
@@ -1005,9 +1065,9 @@ export default function App() {
 
                           <tr><td className="p-3 text-blue-600">MANTENIMIENTO</td><td className="p-3 uppercase font-bold text-blue-600">MITSUBISHI ELECTRIC</td><td className="p-3 uppercase text-blue-600">ASCENSORES (PREV. MENSUAL)</td><td className="p-3 text-right font-black text-blue-600">$847.147</td><td className="p-3 text-right font-black text-blue-600">$10.165.764</td></tr>
 
-                          <tr><td className="p-3 text-blue-600">MANTENIMIENTO</td><td className="p-3 uppercase font-bold text-blue-600">TALAMO LTDA</td><td className="p-3 uppercase text-blue-600">MONITOREO Y SEGURIDAD</td><td className="p-3 text-right font-black text-blue-600">-</td><td className="p-3 text-right font-black text-blue-600">$9.191.200</td></tr>
+                          <tr><td className="p-3 text-blue-600">MANTENIMIENTO</td><td className="p-3 uppercase font-bold text-blue-600">TALAMO LTDA</td><td className="p-3 uppercase text-blue-600">MONITOREO Y SEGURIDAD</td><td className="p-3 text-right font-black text-blue-600">$765.933</td><td className="p-3 text-right font-black text-blue-600">$9.191.200</td></tr>
 
-                          <tr><td className="p-3 text-blue-600">MANTENIMIENTO</td><td className="p-3 uppercase font-bold text-blue-600">CLARITA SOLUCIONES</td><td className="p-3 uppercase text-blue-600">ASEO Y LIMPIEZA</td><td className="p-3 text-right font-black text-blue-600">-</td><td className="p-3 text-right font-black text-blue-600">$17.826.697</td></tr>
+                          <tr><td className="p-3 text-blue-600">MANTENIMIENTO</td><td className="p-3 uppercase font-bold text-blue-600">CLARITA SOLUCIONES</td><td className="p-3 uppercase text-blue-600">ASEO Y LIMPIEZA</td><td className="p-3 text-right font-black text-blue-600">$1.485.558</td><td className="p-3 text-right font-black text-blue-600">$17.826.697</td></tr>
 
                           <tr><td className="p-3">SERVICIOS</td><td className="p-3 font-bold uppercase">CEDENAR SA ESP</td><td className="p-3 uppercase">ENERGÍA</td><td className="p-3 text-right font-black">~$427.000</td><td className="p-3 text-right font-black">$5.129.900</td></tr>
 
@@ -1043,7 +1103,7 @@ export default function App() {
 
                         <li><span className="font-bold">INSPECCIÓN TÉCNICA (MITSUBISHI):</span> SE DETECTARON RIESGOS IMPORTANTES EN LA SALA DE MÁQUINAS (ESCALERA INESTABLE, ESCOTILLA PELIGROSA, FALTA DE BARANDAS). EL CONSEJO ACORDÓ INCLUIR ESTAS ADECUACIONES PRIORITARIAS EN EL PRESUPUESTO DEL PRÓXIMO AÑO.</li>
 
-                        <li><span className="font-bold">BANDAS DE SEGURIDAD:</span> SE IDENTIFICÓ LA NECESIDAD URGENTE DE REEMPLAZAR LAS BANDAS DE SEGURIDAD DE LAS PUERTAS DEL ASCENSOR TRAS INCIDENTES CON RESIDENTES. SE ESTÁ GESTIONANDO LA COTIZACIÓN Y FINANCIACIÓN PARA REALIZARLO ANTES DE FINALIZAR EL AÑO.</li>
+                        <li><span className="font-bold">BANDAS DE SEGURIDAD:</span> SE IDENTIFICÓ LA NECESIDAD URGENTE DE REEMPLAZAR LAS BANDAS DE SEGURIDAD DE LAS PUERTAS DEL ASCENSOR TRAS INCIDENTES CON RESIDENTES. SE ESTÁ GESTIONANDO LA COTIZACIÓN Y FINANCIACIÓN PARA REALIZARLO.</li>
 
                         <li><span className="font-bold">PUERTA VEHICULAR:</span> ANTE LA QUEJA DEL PROPIETARIO DEL APTO 204 SOBRE VIBRACIONES, SE OBTUVO UN CONCEPTO TÉCNICO QUE CONFIRMÓ QUE LOS MOTORES OPERAN NORMAL Y NO GENERAN DAÑO ESTRUCTURAL, DESCARTANDO LA NECESIDAD DE CAMBIAR EL SENTIDO DE LA PUERTA.</li>
 
