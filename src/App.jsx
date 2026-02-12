@@ -570,12 +570,15 @@ export default function App() {
 
 
 
-                <Card title="Unidades Totales" className="bg-blue-600 text-white border-none shadow-blue-200 shadow-xl flex flex-col justify-center items-center text-center">
-
-                  <p className="text-4xl font-black mb-1">{asistencia.length}</p>
-
-                  <p className="text-[10px] font-black uppercase tracking-widest opacity-80">Copropietarios</p>
-
+                <Card title="Unidades Totales" className="border-l-4 border-blue-600">
+                  <div className="flex flex-col items-center justify-center py-2">
+                    <p className="text-5xl font-black text-slate-800 tracking-tighter">
+                      {asistencia.length}
+                    </p>
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+                      Copropietarios Registrados
+                    </p>
+                  </div>
                 </Card>
 
               </div>
@@ -1335,25 +1338,28 @@ export default function App() {
           {/* 7-8. FINANCIERO */}
 
           <div className={`${activeSection === 'financiero' ? 'block' : 'hidden'} print:block print:break-after-page uppercase text-center`}>
-
             <SectionHeader title="Estados Financieros y Revisoría" icon={BarChart3} agendaIndex={6} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-
             <Card>
-
               <BarChart3 size={48} className="text-blue-600 mb-6 mx-auto" />
-
               <h4 className="text-xl font-black text-slate-800 mb-6 uppercase tracking-widest">Balance y Ejecución Presupuestal 2025</h4>
-
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg mx-auto">
+                
+                {/* AJUSTE AQUÍ: Cambiamos button por etiqueta 'a' con el link de Drive */}
+                <a 
+                  href="https://drive.google.com/file/d/1avX-044Y4FD_6rHMQqTPWi4cA_JBUrF1/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-slate-900 text-white px-6 py-4 rounded-2xl font-black text-xs flex items-center justify-center gap-2 tracking-widest shadow-xl hover:bg-black transition-all"
+                >
+                  <FileText size={18}/> Estados Financieros
+                </a>
 
-                <button className="bg-slate-900 text-white px-6 py-4 rounded-2xl font-black text-xs flex items-center justify-center gap-2 tracking-widest shadow-xl"><FileText size={18}/> Estados Financieros</button>
-
-                <button className="bg-blue-600 text-white px-6 py-4 rounded-2xl font-black text-xs flex items-center justify-center gap-2 tracking-widest shadow-xl"><ShieldCheck size={18}/> Dictamen Fiscal</button>
-
+                <button className="bg-blue-600 text-white px-6 py-4 rounded-2xl font-black text-xs flex items-center justify-center gap-2 tracking-widest shadow-xl">
+                  <ShieldCheck size={18}/> Dictamen Fiscal
+                </button>
+                
               </div>
-
             </Card>
-
           </div>
 
 
