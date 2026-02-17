@@ -51,40 +51,98 @@ const Card = ({ children, title, className = "", icon: Icon, badge }) => (
   </div>
 );
 
-const InvestmentTable = ({ title, data, total, icon: Icon }) => (
-  <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-    <div className="bg-slate-50 px-6 py-4 border-b flex justify-between items-center">
-      <div className="flex items-center gap-3">
-        {Icon && <Icon className="text-[#143d1f]" size={18} />}
-        <h4 className="text-xs font-black text-slate-700 uppercase tracking-widest">{title}</h4>
+const InvestmentTable = ({ title, data, total, icon: Icon, photos = [] }) => {
+  const [showPhotos, setShowPhotos] = React.useState(false);
+
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm flex flex-col h-full">
+      <div className="bg-slate-50 px-6 py-4 border-b flex justify-between items-center">
+        <div className="flex items-center gap-3">
+          {Icon && <Icon className="text-[#143d1f]" size={18} />}
+          <h4 className="text-xs font-black text-slate-700 uppercase tracking-widest">{title}</h4>
+        </div>
+        <div className="text-right">
+          <p className="text-[9px] font-bold text-slate-400 uppercase leading-none mb-1">Inversión Total</p>
+          <p className="text-sm font-black text-[#143d1f]">{total}</p>
+        </div>
       </div>
-      <div className="text-right">
-        <p className="text-[9px] font-bold text-slate-400 uppercase leading-none mb-1">Inversión Total</p>
-        <p className="text-sm font-black text-[#143d1f]">{total}</p>
-      </div>
-    </div>
-    <div className="overflow-x-auto">
-      <table className="w-full text-left text-[11px]">
-        <thead className="bg-slate-50/50 text-slate-400 font-black uppercase tracking-tighter border-b">
-          <tr>
-            <th className="px-6 py-3">Proveedor</th>
-            <th className="px-6 py-3">Detalle</th>
-            <th className="px-6 py-3 text-right">Valor</th>
-          </tr>
-        </thead>
-        <tbody className="divide-y divide-slate-100 uppercase font-bold text-slate-600">
-          {data.map((row, idx) => (
-            <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
-              <td className="px-6 py-3 text-slate-900">{row.proveedor}</td>
-              <td className="px-6 py-3">{row.detalle}</td>
-              <td className="px-6 py-3 text-right font-black text-slate-800">{row.valor}</td>
+
+      <div className="overflow-x-auto flex-1">
+        <table className="w-full text-left text-[11px]">
+          <thead className="bg-slate-50/50 text-slate-400 font-black uppercase tracking-tighter border-b">
+            <tr>
+              <th className="px-6 py-3">Proveedor</th>
+              <th className="px-6 py-3">Detalle</th>
+              {/* Columna de Evidencia con ancho fijo para centrar mejor */}
+              <th className="px-6 py-3 text-center w-32">Evidencia</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="divide-y divide-slate-100 uppercase font-bold text-slate-600">
+            {data.map((row, idx) => (
+              <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                <td className="px-6 py-3 text-slate-900">{row.proveedor}</td>
+                <td className="px-6 py-3">{row.detalle}</td>
+                
+                {/* Lógica de celda única: Solo renderizamos el botón en la primera fila y lo centramos verticalmente si quieres, o simplemente lo dejamos en la columna */}
+                <td className="px-6 py-3 text-center">
+                  {idx === 0 && photos.length > 0 && (
+                    <button 
+                      onClick={() => setShowPhotos(true)}
+                      className="group flex flex-col items-center gap-1 mx-auto transition-all"
+                    >
+                      <div className="p-2 bg-sky-50 text-[#0ea5e9] rounded-xl group-hover:bg-[#0ea5e9] group-hover:text-white shadow-sm transition-all">
+                        <Camera size={20} />
+                      </div>
+                      <span className="text-[8px] font-black text-sky-600 group-hover:text-sky-800">VER GALERÍA</span>
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      {/* MODAL DE GALERÍA (Adaptable al tamaño de imagen) */}
+      {showPhotos && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-slate-900/95 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="bg-white w-full max-w-5xl rounded-[40px] overflow-hidden shadow-2xl">
+            <div className="p-8 border-b flex justify-between items-center bg-slate-50">
+              <div>
+                <h3 className="font-black text-xl text-slate-800 uppercase tracking-tight">Evidencias Fotográficas</h3>
+                <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{title}</p>
+              </div>
+              <button onClick={() => setShowPhotos(false)} className="p-3 bg-slate-200 hover:bg-red-100 hover:text-red-600 rounded-full transition-all">
+                <Trash2 size={20} />
+              </button>
+            </div>
+            
+            <div className="p-10 grid grid-cols-1 md:grid-cols-2 gap-8 max-h-[65vh] overflow-y-auto justify-items-center">
+              {photos.map((url, i) => (
+                <div key={i} className="bg-slate-50 p-2 rounded-3xl border border-slate-200 shadow-inner">
+                  <img 
+                    src={url} 
+                    alt={`Evidencia ${i}`} 
+                    className="max-w-full h-auto max-h-[50vh] object-contain rounded-2xl shadow-md"
+                  />
+                </div>
+              ))}
+            </div>
+
+            <div className="p-8 bg-slate-50 border-t flex justify-center">
+              <button 
+                onClick={() => setShowPhotos(false)} 
+                className="px-12 py-4 bg-[#143d1f] text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] shadow-xl hover:scale-105 transition-all"
+              >
+                Cerrar Galería
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 // --- BASE DE DATOS CAMPOS DE ARAGÓN (ACTUALIZADA 100%) ---
 const INITIAL_DATA = [
@@ -440,7 +498,7 @@ export default function App() {
               </div>
 
               {/* 2. GESTIÓN ADMINISTRATIVA Y OPERATIVA */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 gap-8">
                 <Card title="Seguridad y Control de Acceso" icon={ShieldCheck} badge="Modernización">
                   <ul className="space-y-4 text-xs font-bold text-slate-600">
                     <li className="flex gap-4 p-3 bg-slate-50 rounded-xl">
@@ -467,69 +525,22 @@ export default function App() {
                     <li className="flex gap-4 p-3 bg-slate-50 rounded-xl">
                       <Eye size={20} className="text-[#0ea5e9] shrink-0" />
                       <div>
-                        <span className="text-slate-900 font-black block mb-1">Blindaje Portería</span>
+                        <span className="text-slate-900 font-black block mb-1">Refuerzo seguridad porteria</span>
                         Aplicación de polarizado en vidrios para protección del guarda y ventana tipo ventanilla bancaria.
                       </div>
                     </li>
                   </ul>
                 </Card>
-
-                <div className="space-y-8">
-                  <Card title="Infraestructura & Convivencia" icon={Wrench}>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="p-4 border-2 border-dashed border-slate-100 rounded-2xl">
-                        <Droplets className="text-[#143d1f] mb-2" size={20} />
-                        <h5 className="text-[10px] font-black text-slate-800 uppercase mb-1">Obra Mayor: Terraza</h5>
-                        <p className="text-[9px] text-slate-500 font-bold">Impermeabilización ejecutada por Casa Andina. Coordinación con Evolti para paneles solares.</p>
-                      </div>
-                      <div className="p-4 border-2 border-dashed border-slate-100 rounded-2xl">
-                        <Users className="text-[#0ea5e9] mb-2" size={20} />
-                        <h5 className="text-[10px] font-black text-slate-800 uppercase mb-1">Uso de Gimnasio</h5>
-                        <p className="text-[9px] text-slate-500 font-bold">Restricción de entrenadores externos y regulación de uso exclusivo para residentes.</p>
-                      </div>
-                      <div className="p-4 border-2 border-dashed border-slate-100 rounded-2xl">
-                        <FolderOpen className="text-[#143d1f] mb-2" size={20} />
-                        <h5 className="text-[10px] font-black text-slate-800 uppercase mb-1">Adquisición Activos</h5>
-                        <p className="text-[9px] text-slate-500 font-bold">Compra de Hidrolavadora Stihl pesada y Cortasetos para mantenimiento de áreas comunes.</p>
-                      </div>
-                      <div className="p-4 border-2 border-dashed border-slate-100 rounded-2xl">
-                        <Award className="text-[#0ea5e9] mb-2" size={20} />
-                        <h5 className="text-[10px] font-black text-slate-800 uppercase mb-1">Comunidad</h5>
-                        <p className="text-[9px] text-slate-500 font-bold">Celebración de Novenas Navideñas e integración de la comunidad de copropietarios.</p>
-                      </div>
-                    </div>
-                  </Card>
-                  
-                  <div className="bg-[#f8fafc] border border-[#0ea5e9] rounded-3xl p-6 shadow-sm flex items-center gap-6">
-                    <div className="h-16 w-16 bg-sky-100 rounded-2xl flex items-center justify-center text-[#0ea5e9] shrink-0 shadow-inner">
-                      <Wallet size={32} />
-                    </div>
-                    <div>
-                      <h4 className="text-[10px] font-black text-sky-800 uppercase tracking-widest mb-1">Reserva de Imprevistos (CDT)</h4>
-                      <p className="text-lg font-black text-slate-900 tracking-tighter leading-none">$91.623.813</p>
-                      <p className="text-[9px] text-sky-600 font-bold mt-1 uppercase tracking-tight italic">Constituidos en Banco Contactar al cierre 2025.</p>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               {/* 3. RELACIÓN DE GASTOS Y MANTENIMIENTOS */}
               <div className="space-y-8">
                 <div className="bg-[#143d1f] p-8 rounded-[40px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
                    <div className="z-10 text-center md:text-left">
-                      <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">Resumen de Inversiones 2025</h3>
-                      <p className="text-emerald-300 font-bold text-xs uppercase tracking-widest">Ejecución total consolidada del periodo administrativo.</p>
+                      <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">gestion administrativa</h3>
+                      <p className="text-emerald-300 font-bold text-xs uppercase tracking-widest">Seguridad Electrónica, Actualización Tecnológica, Infraestructura Crítica.</p>
                    </div>
-                   <div className="flex gap-12 z-10">
-                      <div className="text-center">
-                         <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-1">Obras Civiles</p>
-                         <p className="text-2xl font-black text-white">$71.1M</p>
-                      </div>
-                      <div className="text-center">
-                         <p className="text-[10px] font-black text-emerald-400 uppercase tracking-widest mb-1">Seguridad</p>
-                         <p className="text-2xl font-black text-white">$22.0M</p>
-                      </div>
-                   </div>
+                   
                    <div className="absolute top-0 right-0 w-1/2 h-full bg-[#1a4a26] -skew-x-12 translate-x-32 z-0"></div>
                 </div>
 
@@ -550,6 +561,8 @@ export default function App() {
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100 uppercase font-bold text-slate-600">
+                          <tr><td className="px-6 py-3 text-slate-900">servicio de vigilancia</td><td className="px-6 py-3">seguridad del sur</td><td className="px-6 py-3 text-[9px]">servicio de vigilancia y porteria.</td></tr>
+                          <tr><td className="px-6 py-3 text-slate-900">servicio de aseo</td><td className="px-6 py-3">impecol</td><td className="px-6 py-3 text-[9px]">servicio de aseo y mantenimiento en zonas comunes</td></tr>
                           <tr><td className="px-6 py-3 text-slate-900">Energía Eléctrica</td><td className="px-6 py-3">ENERTOTAL</td><td className="px-6 py-3 text-[9px]">Comunes, Ascensores, Bombas.</td></tr>
                           <tr><td className="px-6 py-3 text-slate-900">Acueducto</td><td className="px-6 py-3">EMPOPASTO</td><td className="px-6 py-3 text-[9px]">Agua potable zonas comunes.</td></tr>
                           <tr><td className="px-6 py-3 text-slate-900">Aseo & Residuos</td><td className="px-6 py-3">EMAS PASTO</td><td className="px-6 py-3 text-[9px]">Recolección certificada.</td></tr>
@@ -566,9 +579,17 @@ export default function App() {
                     title="A. Seguridad Electrónica & CCTV" 
                     total="$16.612.904"
                     icon={Camera}
+                    photos={[
+                      "/img/FACIAL.jpeg",
+                      "/img/FACIAL2.jpeg"
+                    ]}
                     data={[
                       { proveedor: "Juan Sebastián Cerón", detalle: "Suministro e instalación sistema facial", valor: "$5.363.300" },
-                      { proveedor: "Juan Sebastián Cerón", detalle: "DVR 4K 16 canales, monitor industrial", valor: "$4.921.967" },
+                      { 
+                        proveedor: "Juan Sebastián Cerón", 
+                        detalle: "Disco duro 4TB y reprogramación", 
+                        
+                      },
                       { proveedor: "Juan Sebastián Cerón", detalle: "Disco duro 4TB y reprogramación", valor: "$495.000" },
                       { proveedor: "Fernando Rueda", detalle: "Materiales para cableado y CCTV", valor: "$3.551.507" },
                       { proveedor: "Fernando Rueda", detalle: "Mano de obra instalación cámaras", valor: "$2.281.130" },
@@ -581,6 +602,12 @@ export default function App() {
                     title="B. Seguridad Perimetral" 
                     total="$5.473.250"
                     icon={ShieldCheck}
+                    photos={[
+                      "/img/per1.jpeg",
+                      "/img/per2.jpeg",
+                      "/img/per3.jpeg",
+                      "/img/per4.jpeg"
+                    ]}
                     data={[
                       { proveedor: "Edgar Sarmiento", detalle: "Instalación cerca eléctrica", valor: "$5.473.250" }
                      
@@ -590,6 +617,12 @@ export default function App() {
                     title="C. Adecuaciones Portería" 
                     total="$3.341.186"
                     icon={Layout}
+                    photos={[
+                      "/img/por1.jpeg",
+                      "/img/por2.jpeg",
+                      "/img/por3.jpeg",
+                      "/img/por4.jpeg"
+                    ]}
                     data={[
                       { proveedor: "Oscar Males", detalle: "Gato hidráulico y ventana aluminio", valor: "$2.071.186" },
                       { proveedor: "Camilo Botina", detalle: "Polarizado vidrios portería", valor: "$580.000" },
@@ -600,6 +633,13 @@ export default function App() {
                     title="E. Dotación & Cumplimiento" 
                     total="$3.980.292"
                     icon={ClipboardCheck}
+                    photos={[
+                      "/img/dot1.jpeg",
+                      "/img/dot2.jpeg",
+                      "/img/dot3.jpeg",
+                      "/img/dot4.jpeg",
+                      "/img/dot5.jpeg",
+                    ]}
                     data={[
                       { proveedor: "Vialambre SAS", detalle: "Compra 4 carros de mercado", valor: "$2.084.252" },
                       { proveedor: "Pedro Nel Salas", detalle: "Tapetes caucho tráfico pesado", valor: "$1.496.040" },
@@ -613,6 +653,21 @@ export default function App() {
                     title="D. Infraestructura & Maquinaria" 
                     total="$71.156.838"
                     icon={Wrench}
+                    photos={[
+                      "/img/in1.jpeg",
+                      "/img/in2.jpeg",
+                      "/img/in3.jpeg",
+                      "/img/in4.jpeg",
+                      "/img/in5.jpeg",
+                      "/img/in6.jpeg",
+                      "/img/in7.jpeg",
+                      "/img/in8.jpeg",
+                      "/img/in9.jpeg",
+                      "/img/in10.jpeg",
+                      "/img/in11.jpeg",
+                      "/img/in12.jpeg",
+
+                    ]}
                     data={[
                       { proveedor: "Casa Andina", detalle: "Impermeabilización Cubierta Principal", valor: "$62.487.425" },
                       { proveedor: "Evolti", detalle: "Levantamiento de paneles solares", valor: "$4.483.000" },
@@ -623,12 +678,31 @@ export default function App() {
                     ]}
                   />
                   <InvestmentTable 
-                    title="F. Convivencia & Ornato" 
+                    title="F. Convivencia, Ornato y otros" 
                     total="$4.950.000"
                     icon={Calendar}
+                    photos={[
+                      "/img/or1.jpeg",
+                      "/img/or2.jpeg",
+                      "/img/or3.jpeg",
+                      "/img/or4.jpeg",
+                      "/img/or5.jpeg",
+                      "/img/or6.jpeg",
+                      "/img/or7.jpeg",
+                      "/img/or8.jpeg",
+                      "/img/or9.jpeg",
+                      "/img/or10.jpeg",
+                      "/img/or11.jpeg",
+                      "/img/na1.jpeg",
+                      "/img/na2.jpeg",
+                      "/img/na3.jpeg",
+                      "/img/na4.jpeg",
+
+                    ]}
                     data={[
                       { proveedor: "Varios", detalle: "Decoración navideña y evento novena", valor: "$3.750.000" },
                       { proveedor: "Alex Maigual", detalle: "Siembra de pinos y jardinería", valor: "$1.200.000" },
+                      { proveedor: "2kfit", detalle: "Mantenimiento de gimnasio", valor: "$1.200.000" },
                     ]}
                   />
                 </div>
@@ -708,12 +782,12 @@ export default function App() {
                         <tr>
                           <td className="px-6 py-4 text-slate-950">Pintura de Paredes en Pisos</td>
                           <td className="px-6 py-4"><span className="bg-sky-100 text-sky-700 px-3 py-1 rounded-full text-[9px] font-black">PROGRAMADO</span></td>
-                          <td className="px-6 py-4 text-[10px] font-bold">Para iniciar en el mes de febrero 2026.</td>
+                          <td className="px-6 py-4 text-[10px] font-bold">Para iniciar en el mes de marzo 2026.</td>
                         </tr>
                         <tr>
                           <td className="px-6 py-4 text-slate-950">Avalúo Copropiedad</td>
                           <td className="px-6 py-4"><span className="bg-slate-100 text-slate-500 px-3 py-1 rounded-full text-[9px] font-black">PROYECTADO</span></td>
-                          <td className="px-6 py-4 text-[10px] font-bold">Recomendación técnica para la vigencia 2026.</td>
+                          <td className="px-6 py-4 text-[10px] font-bold">Recomendación técnica para la proxima vigencia 2026.</td>
                         </tr>
                       </tbody>
                     </table>
@@ -788,10 +862,37 @@ export default function App() {
                   <div className="h-20 w-20 bg-sky-50 rounded-full flex items-center justify-center text-sky-600 mb-6"><FileText size={40}/></div>
                   <h4 className="text-2xl font-black text-slate-800 uppercase mb-2 tracking-tighter">Balance General a Dic 31</h4>
                   <p className="text-slate-500 font-bold mb-10 max-w-sm uppercase text-xs">Aprobación de la ejecución presupuestal y estados contables auditados.</p>
-                  <a href="#" className="bg-[#143d1f] text-white px-10 py-5 rounded-2xl font-black flex items-center gap-3 shadow-2xl hover:bg-[#0d2a15] transition-all uppercase text-xs tracking-widest">
-                     <Download size={20} /> Descargar PDF Contable
-                  </a>
+                  
                </Card>
+            </div>
+          )}
+
+          {activeSection === 'presupuesto' && (
+            <div className="space-y-8 animate-in fade-in text-center">
+              {/* Encabezado de sección vinculado al punto 8 del orden del día */}
+              <SectionHeader 
+                title="Presupuesto 2026" 
+                icon={Settings} 
+                agendaIndex={7} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+              
+              <Card className="py-20 flex flex-col items-center">
+                {/* Icono central descriptivo */}
+                <div className="h-20 w-20 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 mb-6">
+                  <BarChart3 size={40}/>
+                </div>
+                
+                {/* Título y descripción solicitada */}
+                <h4 className="text-2xl font-black text-slate-800 uppercase mb-2 tracking-tighter">
+                  Proyecto de Presupuesto Año 2026
+                </h4>
+                
+                <p className="text-slate-500 font-bold max-w-sm uppercase text-xs leading-relaxed">
+                  Presentación detallada de ingresos, gastos proyectados y fijación de nuevas cuotas de administración para la vigencia 2026.
+                </p>
+              </Card>
             </div>
           )}
 
