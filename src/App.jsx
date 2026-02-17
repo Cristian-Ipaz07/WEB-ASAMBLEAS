@@ -156,7 +156,7 @@ const INITIAL_DATA = [
   { id: 8, unidad: '404', propietario: 'JOHANA CARDENAS', coeficiente: 1.45567 },
   { id: 9, unidad: '501', propietario: 'CARLOS ENRIQUEZ', coeficiente: 1.43467 },
   { id: 10, unidad: '502', propietario: 'JOSE IGNACIO CORAL', coeficiente: 1.89493 },
-  { id: 11, unidad: '503', propietario: 'EMMA GUERRA NIETO', coeficiente: 1.95358 },
+  { id: 11, unidad: '503', propietario: 'LUCÍA RIASCOS', coeficiente: 1.95358 },
   { id: 12, unidad: '504', propietario: 'YOLANDA VELEZ', coeficiente: 1.42934 },
   { id: 13, unidad: '601', propietario: 'LILIANA CORAL', coeficiente: 1.49991 },
   { id: 14, unidad: '602', propietario: 'MYRIAM PAREDES AGUIRRE', coeficiente: 1.86992 },
