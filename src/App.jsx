@@ -194,7 +194,7 @@ const INITIAL_DATA = [
   { id: 46, unidad: '1402', propietario: 'TERESITA CHAMORRO DE LÓPEZ', coeficiente: 1.91303 },
   { id: 47, unidad: '1403', propietario: 'PEDRO GARCIA REALPE', coeficiente: 1.99933 },
   { id: 48, unidad: '1404', propietario: 'ANYELI GUERRERO', coeficiente: 1.47213 },
-  { id: 49, unidad: '1501', propietario: 'OSCAR ROSERO DE LA ROSA', coeficiente: 1.44218 },
+  { id: 49, unidad: '1501', propietario: 'JHON HENRY CABRERA', coeficiente: 1.44218 },
   { id: 50, unidad: '1502', propietario: 'ANDRES SANTANDER H.', coeficiente: 1.91502 },
   { id: 51, unidad: '1503', propietario: 'JESUS MARIA TORRONTEGUI', coeficiente: 1.89697 },
   { id: 52, unidad: '1504', propietario: 'JOSE ANTONIO MARTINEZ', coeficiente: 1.54835 },
@@ -681,7 +681,7 @@ export default function App() {
                       { proveedor: "Vialambre SAS", detalle: "Compra 4 carros de mercado", valor: "$2.084.252" },
                       { proveedor: "Pedro Nel Salas", detalle: "Tapetes caucho tráfico pesado", valor: "$1.496.040" },
                       { proveedor: "Ricardo Fierro", detalle: "Actualización anual SGSST", valor: "$400.000" },
-                      { proveedor: "Agromaquinas del Cauca", detalle: "Cortasetos", valor: "$400.000" },
+                      
                     ]}
                   />
                 </div>
@@ -712,6 +712,7 @@ export default function App() {
                       { proveedor: "Ferretería Chaves", detalle: "Compra Hidrolavadora Stihl", valor: "$1.530.000" },
                       { proveedor: "Cummins de los Andes", detalle: "Batería Planta Eléctrica", valor: "$1.422.694" },
                       { proveedor: "Oscar Males", detalle: "Mantenimiento 23 puertas shut basuras", valor: "$633.719" },
+                      { proveedor: "Agromaquinas del Cauca", detalle: "Cortasetos", valor: "$400.000" },
                       
                     ]}
                   />
