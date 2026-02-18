@@ -913,9 +913,11 @@ export default function App() {
                     <Card title="PÓLIZA D&O" icon={Scale} className="bg-slate-900 text-white border-none shadow-2xl relative overflow-hidden uppercase">
                       <div className="space-y-6">
                         <p className="text-[10px] text-[#D4AF37] font-black uppercase tracking-widest">LÍMITE RESPONSABILIDAD</p>
-                        <p className="text-4xl font-black text-white leading-none tracking-tighter">$500.000.000</p>
+                        <p className="text-4xl font-black text-[#D4AF37] leading-none tracking-tighter">
+                            $500.000.000
+                        </p>
                         <div className="pt-6 border-t border-slate-800 space-y-4">
-                          <div className="flex justify-between">
+                          <div className="flex justify-between">  
                             <span className="text-[9px] font-black text-slate-400 uppercase text-left">PRÁCTICAS LABORALES:</span>
                             <span className="text-[10px] font-black text-white">$70M</span>
                           </div>
