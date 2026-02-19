@@ -192,6 +192,8 @@ export default function App() {
     return saved ? JSON.parse(saved) : defaultValue;
   };
 
+  
+
   const [activeSection, setActiveSection] = useState('inicio');
 
   // --- ESTADOS CON PERSISTENCIA ---
@@ -199,57 +201,88 @@ export default function App() {
     getInitialState('asistencia_valle', COEFICIENTES_DATA.map(c => ({ ...c, presente: false })))
   );
   
-  const InvestmentTable = ({ title, total, icon: Icon, photos = [], data = [] }) => (
-    <div className="bg-white rounded-[40px] border border-slate-200 overflow-hidden shadow-lg flex flex-col">
-      <div className="bg-slate-900 px-10 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b-4 border-[#D4AF37]">
-        <div className="flex items-center gap-4">
-          {Icon && <Icon className="text-[#D4AF37]" size={28} />}
-          <h4 className="text-sm font-black text-white uppercase tracking-[0.2em]">{title}</h4>
+  const InvestmentTable = ({ title, total, icon: Icon, photos = [], data = [] }) => {
+    const [showGallery, setShowGallery] = React.useState(false);
+
+    return (
+      <div className="bg-white rounded-[40px] border border-slate-200 overflow-hidden shadow-lg flex flex-col uppercase font-sans">
+        {/* CABECERA PREMIUM */}
+        <div className="bg-slate-900 px-10 py-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b-4 border-[#D4AF37]">
+          <div className="flex items-center gap-4">
+            {Icon && <Icon className="text-[#D4AF37]" size={28} />}
+            <h4 className="text-sm font-black text-white uppercase tracking-[0.2em]">{title}</h4>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="bg-[#D4AF37] px-6 py-2 rounded-full shadow-lg">
+              <p className="text-[#1A1A1A] font-black text-xs uppercase tracking-widest">{total}</p>
+            </div>
+            {/* BOTÓN DE GALERÍA ESTILO ARAGÓN */}
+            {photos.length > 0 && (
+              <button 
+                onClick={() => setShowGallery(true)}
+                className="group flex flex-col items-center gap-1 transition-transform hover:scale-110 active:scale-95"
+              >
+                <div className="p-3 bg-white/10 rounded-2xl border border-white/20 group-hover:bg-[#D4AF37] group-hover:text-[#1A1A1A] text-[#D4AF37] transition-all shadow-xl">
+                  <Camera size={20} />
+                </div>
+                <span className="text-[8px] font-black text-[#D4AF37] uppercase tracking-tighter">Ver Galería</span>
+              </button>
+            )}
+          </div>
         </div>
-        <div className="bg-[#D4AF37] px-6 py-2 rounded-full">
-          <p className="text-[#1A1A1A] font-black text-xs uppercase tracking-widest">{total}</p>
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-slate-100">
-        <div className="lg:col-span-2 overflow-x-auto">
+
+        {/* TABLA DE DATOS CORREGIDA */}
+        <div className="overflow-x-auto">
           <table className="w-full text-left text-[11px]">
             <thead className="bg-slate-50 text-slate-400 font-black uppercase tracking-tighter border-b">
               <tr>
-                <th className="px-8 py-4">Proveedor</th>
-                <th className="px-8 py-4">Detalle</th>
-                <th className="px-8 py-4 text-right">Valor/Estado</th>
+                <th className="px-10 py-5 text-left">PROVEEDOR</th>
+                <th className="px-10 py-5 text-left">DETALLE</th>
+                <th className="px-10 py-5 text-center">VALOR/ESTADO</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 font-bold text-slate-600">
               {data.map((row, i) => (
-                <tr key={i} className="hover:bg-slate-50/50">
-                  <td className="px-8 py-4 text-slate-900">{row.proveedor || row.p}</td>
-                  <td className="px-8 py-4 italic">{row.detalle || row.d}</td>
-                  <td className="px-8 py-4 text-right font-black text-[#143d24]">{row.valor || row.v}</td>
+                <tr key={i} className="hover:bg-slate-50/50 transition-colors uppercase">
+                  {/* CAMBIO CLAVE: p -> proveedor, d -> detalle, v -> valor */}
+                  <td className="px-10 py-4 text-slate-900 font-black">{row.proveedor}</td>
+                  <td className="px-10 py-4 italic text-slate-500 lowercase first-letter:uppercase">{row.detalle}</td>
+                  <td className="px-10 py-4 text-center font-black text-[#143d24] bg-slate-50/30">{row.valor}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
-        <div className="p-8 bg-slate-50/50">
-          <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Evidencia Fotográfica</p>
-          <div className="grid grid-cols-2 gap-3">
-            {photos.length > 0 ? photos.map((ph, i) => (
-              <div key={i} className="aspect-square bg-slate-200 rounded-2xl border-2 border-white shadow-sm overflow-hidden flex items-center justify-center">
-                <Camera size={20} className="text-slate-400" />
-              </div>
-            )) : (
-              <div className="col-span-2 py-10 text-center border-2 border-dashed border-slate-200 rounded-2xl">
-                <Camera size={24} className="mx-auto text-slate-300 mb-2" />
-                <p className="text-[9px] font-black text-slate-400 uppercase">Sin imágenes</p>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
+        {/* MODAL DE GALERÍA TIPO OVERLAY */}
+        {showGallery && (
+          <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center p-10 animate-in fade-in duration-300">
+            <button 
+              onClick={() => setShowGallery(false)} 
+              className="absolute top-10 right-10 text-white bg-red-600 px-8 py-4 rounded-full font-black text-xs shadow-2xl hover:bg-red-700 transition-all flex items-center gap-3"
+            >
+              CERRAR GALERÍA <Trash2 size={18} />
+            </button>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-7xl">
+              {photos.map((ph, i) => (
+                <div key={i} className="aspect-video rounded-[32px] overflow-hidden border-4 border-white/10 shadow-2xl group relative">
+                  <img 
+                    src={ph} 
+                    alt={`Evidencia ${i + 1}`} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    onError={(e) => { e.target.src = "https://via.placeholder.com/400x225?text=Imagen+no+encontrada"; }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <p className="text-white font-black text-[10px] uppercase tracking-widest">Reserva Valle de Atriz</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
   const [agendaStatus, setAgendaStatus] = useState(() => 
     getInitialState('agenda_status_valle', new Array(ORDEN_DIA.length).fill(false))
   );
@@ -657,7 +690,7 @@ export default function App() {
                       </div>
                     </div>
                     <a 
-                      href="TU_LINK_AQUI" // <--- AQUÍ PEGAS EL LINK DE TU ARCHIVO
+                      href="https://drive.google.com/file/d/1bdhrLyMM1UtbfuogfBofblcyng6y_Ce9/view?usp=sharing" // <--- AQUÍ PEGAS EL LINK DE TU ARCHIVO
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="px-10 py-5 bg-[#D4AF37] text-[#1A1A1A] rounded-2xl font-black text-xs uppercase tracking-widest hover:scale-105 transition-all shadow-xl flex items-center gap-3"
@@ -792,7 +825,14 @@ export default function App() {
                     title="1.5. Seguridad Electrónica (Modernización CCTV)" 
                     total="Prioridad 2025"
                     icon={Camera}
-                    photos={["/img/cctv_antes.jpg", "/img/cctv_despues.jpg"]}
+                    photos={[
+                      "/img/cctv1.jpeg", 
+                      "/img/cctv2.jpeg",
+                      "/img/cctv3.jpeg",
+                      "/img/cctv4.jpeg",
+                      "/img/cctv5.jpeg",
+                      "/img/cctv6.jpeg"
+                    ]}
                     data={[
                       { proveedor: "Comisión Técnica", detalle: "Evaluación de cotizaciones: Ing. Ricardo Paz, Seguridad del Sur y SEDEC", valor: "Gestión" },
                       { proveedor: "Asamblea", detalle: "Cambio de cámaras perimetrales por tecnología de alta resolución y PTZ para reconocimiento facial y de placas", valor: "Ejecutado" },
@@ -806,7 +846,7 @@ export default function App() {
                     title="1.6. Seguridad Física y Control de Accesos" 
                     total="Nuevos Protocolos"
                     icon={ShieldAlert}
-                    photos={["/img/porteria.jpg"]}
+                    
                     data={[
                       { proveedor: "Administración", detalle: "Orden de bajar ventanilla del vehículo al ingresar", valor: "Protocolo" },
                       { proveedor: "Vigilancia", detalle: "Exigencia de identificación para visitantes y agentes inmobiliarios", valor: "Control" },
@@ -819,7 +859,11 @@ export default function App() {
                     title="1.7. Mantenimiento de Fachada y Estructura" 
                     total="$12.191.505"
                     icon={HardHat}
-                    photos={["/img/fachada_valle.jpg"]}
+                    photos={[
+                      "/img/fac1.jpeg", 
+                      "/img/fac2.jpeg", 
+                      "/img/fac3.jpeg"
+                    ]}
                     data={[
                       { proveedor: "Bellavista", detalle: "Limpieza profunda de vidrios en altura en las cuatro caras del edificio", valor: "$12.191.505" }
                     ]}
@@ -830,7 +874,12 @@ export default function App() {
                     title="1.8. Zonas Comunes y Adecuaciones Civiles" 
                     total="Mantenimiento Integral"
                     icon={Layout}
-                    photos={["/img/pisos_valle.jpg", "/img/senalizacion.jpg"]}
+                    photos={[
+                      "/img/señalizacion.jpeg",
+                      "/img/señalizacion1.jpeg",
+                      "/img/señ.jpeg",
+                      "/img/señ1.jpeg"
+                    ]}
                     data={[
                       { proveedor: "Andrés Guerrero / Camilo Botina", detalle: "Suministro e instalación total de señalización de seguridad, rutas de evacuación y parqueaderos", valor: "Ejecutado" },
                       { proveedor: "Carlos Efraín Calpa", detalle: "Mantenimiento y pulido de gradas de ingreso, líneas en huellas y cebra peatonal", valor: "Finalizado" },
@@ -844,7 +893,6 @@ export default function App() {
                     title="1.9 - 1.10. Sistemas Eléctricos, Automatización y Equipos" 
                     total="Operación y Amenidades"
                     icon={Zap}
-                    photos={["/img/gym_valle.jpg", "/img/sensores.jpg"]}
                     data={[
                       { proveedor: "Luis H. Barrera / José F. Jojoa", detalle: "Cambio de luminarias LED y revisión de tubos quemados", valor: "Eléctrico" },
                       { proveedor: "Administración", detalle: "Instalación de sensores de movimiento en cuartos de basura y pisos", valor: "Ahorro" },
@@ -858,7 +906,12 @@ export default function App() {
                     title="1.11. Mantenimientos Varios y Dotación" 
                     total="Cumplimiento Anual"
                     icon={ListChecks}
-                    photos={["/img/tanques_valle.jpg"]}
+                    photos={[
+                      "/img/1.jpeg",
+                      "/img/2.jpeg",
+                      "/img/3.jpeg",
+                      "/img/4.jpeg"
+                    ]}
                     data={[
                       { proveedor: "Varios", detalle: "Recarga de extintores y compra de bandera", valor: "Dotación" },
                       { proveedor: "Varios", detalle: "Lavado de alfombras y lavado anual de tanque de reserva", valor: "Salubridad" },
