@@ -697,7 +697,7 @@ export default function App() {
                 <div className="lg:col-span-3">
                   <Card title="1. Resumen de Ejecución Administrativa" icon={Activity} highlight>
                     <p className="text-sm font-bold text-slate-600 leading-relaxed mb-6 uppercase tracking-tight">
-                      Durante el periodo 2025, la administración ejecutó acciones clave enfocadas en la <span className="text-[#1A4B84] font-black underline decoration-[#E65100]">optimización de servicios verticales</span>, la recuperación de la <span className="text-[#1A4B84] font-black underline decoration-[#E65100]">infraestructura hidráulica</span> y el fortalecimiento de la seguridad perimetral y vehicular[cite: 2].
+                      Durante el periodo 2025, la administración ejecutó acciones clave enfocadas en la <span className="text-[#1A4B84] font-black underline decoration-[#E65100]">optimización de servicios verticales</span>, la recuperación de la <span className="text-[#1A4B84] font-black underline decoration-[#E65100]">infraestructura hidráulica</span> y el fortalecimiento de la seguridad perimetral y vehicular.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
@@ -724,11 +724,11 @@ export default function App() {
                   <div className="space-y-3">
                     <div>
                       <p className="text-[9px] font-black text-white/60 uppercase">Representante Legal</p>
-                      <p className="text-xs font-black">Ana Lucía Yépez [cite: 32]</p>
+                      <p className="text-xs font-black">Ana Lucía Yépez</p>
                     </div>
                     <div>
                       <p className="text-[9px] font-black text-white/60 uppercase">Contabilidad</p>
-                      <p className="text-xs font-black">Andrea E. Delgado [cite: 32]</p>
+                      <p className="text-xs font-black">Andrea E. Delgado</p>
                     </div>
                   </div>
                 </div>
@@ -745,7 +745,7 @@ export default function App() {
                     <thead className="bg-[#F8FAFC] text-[#4B6A88] font-black uppercase tracking-widest border-b-2">
                       <tr>
                         <th className="px-8 py-4">Entidad / Proveedor</th>
-                        <th className="px-8 py-4">Concepto del Servicio [cite: 32]</th>
+                        <th className="px-8 py-4">Concepto del Servicio</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-[#1A4B84]/5 uppercase font-bold text-[#1E293B]">
@@ -766,87 +766,80 @@ export default function App() {
                   </table>
                 </div>
               </div>
+
               {/* 3. DETALLE DE INVERSIONES POR SISTEMA (1 AL 6) */}
               <div className="grid grid-cols-1 gap-10">
-                
-                {/* 1. SISTEMA DE ACCESOS VEHICULARES */}
                 <InvestmentTable 
                   title="1. Sistema de Accesos Vehiculares" 
                   total="Operativo" 
                   icon={Zap}
                   photos={["/img/puerta1.jpg", "/img/puerta2.jpg"]}
                   data={[
-                    { proveedor: "Manuel Quelal", detalle: "Suministro e instalación Brazo Accessmatic (Sustitución maquinaria) [cite: 37, 38]", valor: "EJECUTADO" },
-                    { proveedor: "Manuel Quelal", detalle: "Programación control de acceso y sensores parqueadero inferior [cite: 11, 38]", valor: "EJECUTADO" },
-                    { proveedor: "Manuel Quelal", detalle: "Mantenimiento puerta vehicular y fotoceldas [cite: 38]", valor: "AL DÍA" }
+                    { proveedor: "Manuel Quelal", detalle: "Suministro e instalación Brazo Accessmatic (Sustitución maquinaria)", valor: "EJECUTADO" },
+                    { proveedor: "Manuel Quelal", detalle: "Programación control de acceso y sensores parqueadero inferior", valor: "EJECUTADO" },
+                    { proveedor: "Manuel Quelal", detalle: "Mantenimiento puerta vehicular y fotoceldas", valor: "AL DÍA" }
                   ]}
                 />
 
-                {/* 2. SISTEMA HIDRÁULICO Y REDES */}
                 <InvestmentTable 
                   title="2. Sistema Hidráulico y Redes" 
                   total="Reparado" 
                   icon={Droplets}
                   photos={["/img/bomba1.jpg", "/img/bomba2.jpg"]}
                   data={[
-                    { proveedor: "Jhon Franco Cuatin", detalle: "Reparación equipos presión constante y bombas [cite: 41]", valor: "EJECUTADO" },
-                    { proveedor: "Hydroflow", detalle: "Suministro e instalación equipo Hydroflow [cite: 13]", valor: "EJECUTADO" },
-                    { proveedor: "Jhon Franco Cuatin", detalle: "Búsqueda y reparación de fuga de malos olores (Apto 1003) [cite: 40, 41]", valor: "SOLUCIONADO" }
+                    { proveedor: "Jhon Franco Cuatin", detalle: "Reparación equipos presión constante y bombas", valor: "EJECUTADO" },
+                    { proveedor: "Hydroflow", detalle: "Suministro e instalación equipo Hydroflow", valor: "EJECUTADO" },
+                    { proveedor: "Jhon Franco Cuatin", detalle: "Búsqueda y reparación de fuga de malos olores (Apto 1003)", valor: "SOLUCIONADO" }
                   ]}
                 />
 
-                {/* 3. REPARACIONES LOCATIVAS */}
                 <InvestmentTable 
                   title="3. Reparaciones Locativas y Estructurales" 
                   total="Mejorado" 
                   icon={Wrench}
                   photos={["/img/obras1.jpg", "/img/obras2.jpg"]}
                   data={[
-                    { proveedor: "Andina de Materiales", detalle: "Compra de impermeabilizante para terraza y cubiertas [cite: 44]", valor: "EJECUTADO" },
-                    { proveedor: "Ariel Iván Pinto", detalle: "Reparación cielo raso salón comunal y pintura Apto 1102 [cite: 44]", valor: "EJECUTADO" },
-                    { proveedor: "Jose Jojoa", detalle: "Compra de manila para mantenimiento general [cite: 44]", valor: "SUMINISTRADO" }
+                    { proveedor: "Andina de Materiales", detalle: "Compra de impermeabilizante para terraza y cubiertas", valor: "EJECUTADO" },
+                    { proveedor: "Ariel Iván Pinto", detalle: "Reparación cielo raso salón comunal y pintura Apto 1102", valor: "EJECUTADO" },
+                    { proveedor: "Jose Jojoa", detalle: "Compra de manila para mantenimiento general", valor: "SUMINISTRADO" }
                   ]}
                 />
 
-                {/* 4. PLANTA ELÉCTRICA Y ENERGÍA */}
                 <InvestmentTable 
-                  title="4. Planta Eléctrica y Sistema Energético" 
+                  title="4. Planta Eléctrica y Energía" 
                   total="Vigente" 
                   icon={Zap}
                   photos={["/img/planta1.jpg"]}
                   data={[
-                    { proveedor: "Cummins de los Andes", detalle: "Mantenimiento preventivo Planta Eléctrica (Anual) [cite: 14, 47]", valor: "3 SESIONES" },
-                    { proveedor: "Albeiro Bastidas", detalle: "Suministro e instalación batería Varta Black 4D [cite: 47]", valor: "NUEVO" },
-                    { proveedor: "Luis Libardo Yanguatin", detalle: "Configuración y revisión de transferencia de emergencia [cite: 47]", valor: "AL DÍA" }
+                    { proveedor: "Cummins de los Andes", detalle: "Mantenimiento preventivo Planta Eléctrica (Anual)", valor: "3 SESIONES" },
+                    { proveedor: "Albeiro Bastidas", detalle: "Suministro e instalación batería Varta Black 4D", valor: "NUEVO" },
+                    { proveedor: "Luis Libardo Yanguatin", detalle: "Configuración y revisión de transferencia de emergencia", valor: "AL DÍA" }
                   ]}
                 />
 
-                {/* 5. TRANSPORTE VERTICAL (ASCENSORES) */}
                 <InvestmentTable 
                   title="5. Ascensores (Reparaciones Adicionales)" 
                   total="En Ajuste" 
                   icon={ArrowUpRight}
                   photos={["/img/ascensor1.jpg", "/img/ascensor2.jpg"]}
                   data={[
-                    { proveedor: "Ascensur Elevadores", detalle: "Cambio de proveedor tras inconformidad con Greenergy [cite: 5, 7]", valor: "NUEVO CONTRATO" },
-                    { proveedor: "Ascensur SAS", detalle: "Ajuste excéntricas, tensión de guayas y renivelación [cite: 8, 50]", valor: "50% AVANCE" },
-                    { proveedor: "Greenergy", detalle: "Compra de zapatas de cabina e inductor tipo tabaco [cite: 50]", valor: "INSTALADO" }
+                    { proveedor: "Ascensur Elevadores", detalle: "Cambio de proveedor tras inconformidad con Greenergy", valor: "NUEVO CONTRATO" },
+                    { proveedor: "Ascensur SAS", detalle: "Ajuste excéntricas, tensión de guayas y renivelación", valor: "50% AVANCE" },
+                    { proveedor: "Greenergy", detalle: "Compra de zapatas de cabina e inductor tipo tabaco", valor: "INSTALADO" }
                   ]}
                 />
 
-                {/* 6. SEGURIDAD ELECTRÓNICA Y VARIOS */}
                 <InvestmentTable 
                   title="6. Seguridad Electrónica y Operativos" 
                   total="Monitoreado" 
                   icon={Camera}
                   photos={["/img/cctv1.jpg"]}
                   data={[
-                    { proveedor: "Hernando Tarapuez", detalle: "Revisión de cámaras CCTV, adaptadores y video balum [cite: 51, 53]", valor: "EJECUTADO" },
-                    { proveedor: "Paola Alejandra Coral", detalle: "Servicio de desratización y control de roedores [cite: 53]", valor: "CERTIFICADO" },
-                    { proveedor: "Jose Francisco Jojoa", detalle: "Instalación y revisión de series navideñas [cite: 53]", valor: "TEMPORADA" }
+                    { proveedor: "Hernando Tarapuez", detalle: "Revisión de cámaras CCTV, adaptadores y video balum", valor: "EJECUTADO" },
+                    { proveedor: "Paola Alejandra Coral", detalle: "Servicio de desratización y control de roedores", valor: "CERTIFICADO" },
+                    { proveedor: "Jose Francisco Jojoa", detalle: "Instalación y revisión de series navideñas", valor: "TEMPORADA" }
                   ]}
                 />
-
               </div>
 
               {/* 4. GESTIÓN DE RIESGOS (PÓLIZAS) */}
@@ -854,7 +847,7 @@ export default function App() {
                 <div className="bg-[#E65100] p-8 rounded-[40px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
                   <div className="z-10 text-center md:text-left">
                     <h3 className="text-3xl font-black uppercase tracking-tighter mb-2">Protección Patrimonial</h3>
-                    <p className="text-white/80 font-bold text-xs uppercase tracking-widest">Relación de Pólizas Vigentes - Seguros del Estado[cite: 67].</p>
+                    <p className="text-white/80 font-bold text-xs uppercase tracking-widest">Relación de Pólizas Vigentes - Seguros del Estado.</p>
                   </div>
                   <ShieldCheck size={56} className="text-white opacity-20 absolute right-10" />
                 </div>
@@ -864,18 +857,18 @@ export default function App() {
                     <Card title="Póliza Todo Riesgo Daños Materiales" icon={ShieldCheck} badge="Vigente 2026">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
-                          <p className="text-[10px] font-black text-[#4B6A88] uppercase mb-1">Fin Vigencia [cite: 67]</p>
+                          <p className="text-[10px] font-black text-[#4B6A88] uppercase mb-1">Fin Vigencia</p>
                           <p className="text-xs font-black text-[#1A4B84]">24 DE AGOSTO DE 2026</p>
                         </div>
                         <div className="p-4 bg-slate-50 rounded-2xl border-2 border-[#1A4B84]/10">
-                          <p className="text-[10px] font-black text-[#4B6A88] uppercase mb-1">Prima Total [cite: 77]</p>
+                          <p className="text-[10px] font-black text-[#4B6A88] uppercase mb-1">Prima Total</p>
                           <p className="text-xs font-black text-[#E65100]">$6.663.423 (IVA INCL.)</p>
                         </div>
                       </div>
                       <div className="overflow-x-auto rounded-xl border-2 border-slate-50">
                         <table className="w-full text-left text-[11px] uppercase">
                           <thead className="bg-slate-50 text-[#4B6A88] font-black tracking-tight border-b">
-                            <tr><th className="px-4 py-2">Amparo [cite: 71-75]</th><th className="px-4 py-2">Valor Asegurado</th></tr>
+                            <tr><th className="px-4 py-2">Amparo</th><th className="px-4 py-2">Valor Asegurado</th></tr>
                           </thead>
                           <tbody className="divide-y divide-slate-50 font-bold text-[#1E293B]">
                             <tr><td className="px-4 py-2">Bienes Comunes</td><td className="px-4 py-2 font-black">$5.000.000.000</td></tr>
@@ -888,16 +881,23 @@ export default function App() {
                     </Card>
                   </div>
                   <div className="space-y-6">
-                    <Card title="Póliza D&O" icon={Scale} className="bg-[#1A4B84] text-white border-none shadow-2xl">
-                      <div className="space-y-4">
-                        <p className="text-[10px] text-[#E65100] font-black uppercase tracking-widest">Errores y Omisiones [cite: 80]</p>
-                        <p className="text-3xl font-black text-white leading-none tracking-tighter">$100.000.000</p>
-                        <p className="text-[11px] text-white/60 leading-relaxed font-bold italic">
-                          Protección para directores y administrador ante perjuicio patrimonial o gastos de defensa legal[cite: 82].
+                    <Card title="Póliza D&O (Directivos)" icon={Scale} highlight>
+                      <div className="space-y-6 relative z-10">
+                        <div>
+                          <p className="text-[10px] text-[#E65100] font-black uppercase tracking-[0.2em] mb-1">Errores y Omisiones</p>
+                          <p className="text-5xl font-black text-[#1A4B84] leading-none tracking-tighter">$100.000.000</p>
+                        </div>
+                        <p className="text-[12px] text-slate-600 leading-relaxed font-medium italic border-l-2 border-[#E65100] pl-4">
+                          Protección patrimonial para directores y administrador ante reclamaciones por errores u omisiones en su gestión.
                         </p>
-                        <div className="pt-4 border-t border-white/10 flex justify-between">
-                          <span className="text-[9px] font-black uppercase text-[#E65100]">Inversión:</span>
-                          <span className="text-[11px] font-black">$166.600 [cite: 83]</span>
+                        <div className="pt-6 border-t border-slate-100 flex justify-between items-end">
+                          <div>
+                            <span className="text-[9px] font-black uppercase text-[#E65100] block mb-1 tracking-widest">Inversión Anual:</span>
+                            <span className="text-xl font-black text-[#1A4B84] tracking-tight">$166.600</span>
+                          </div>
+                          <div className="text-right">
+                            <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest">ACTIVA</span>
+                          </div>
                         </div>
                       </div>
                     </Card>
@@ -912,7 +912,7 @@ export default function App() {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left text-xs uppercase font-black">
                       <thead className="bg-[#1A4B84] text-white font-black border-b-4 border-[#E65100]">
-                        <tr><th className="px-6 py-4">Actividad / Gestión [cite: 14-17]</th><th className="px-6 py-4">Estado</th><th className="px-6 py-4">Observación</th></tr>
+                        <tr><th className="px-6 py-4">Actividad / Gestión</th><th className="px-6 py-4">Estado</th><th className="px-6 py-4">Observación</th></tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100 text-[#1E293B]">
                         <tr>
