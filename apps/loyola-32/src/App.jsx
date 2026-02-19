@@ -780,9 +780,7 @@ export default function App() {
                   title="1. Sistema de Accesos Vehiculares" 
                   total="Operativo" 
                   icon={Zap}
-                  photos={[
-                    "/img/VE.jpeg"
-                  ]}
+                  photos={["/img/VE.jpeg"]}
                   data={[
                     { proveedor: "Manuel Quelal", detalle: "Suministro e instalación Brazo Accessmatic (Sustitución maquinaria)", valor: "EJECUTADO" },
                     { proveedor: "Manuel Quelal", detalle: "Programación control de acceso y sensores parqueadero inferior", valor: "EJECUTADO" },
