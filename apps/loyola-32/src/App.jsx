@@ -884,6 +884,7 @@ export default function App() {
             </div>
           )}
           {/* SECCIÓN 7: FINANCIERO */}
+          {/* SECCIÓN 7: FINANCIERO */}
           {activeSection === 'financiero' && (
             <div className="space-y-10 animate-in fade-in">
               <SectionHeader title="7. Estados Financieros" icon={BarChart3} agendaIndices={[6]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
