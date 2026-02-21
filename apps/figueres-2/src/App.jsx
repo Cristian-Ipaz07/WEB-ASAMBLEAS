@@ -136,6 +136,57 @@ const COEFICIENTES_DATA = [
 export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [searchTerm, setSearchTerm] = useState('');
+
+  const InvestmentTable = ({ title, headers, data, icon: Icon, total, photos = [] }) => (
+    <div className="bg-white rounded-[40px] border-4 border-[#4E8A2F]/10 overflow-hidden shadow-2xl flex flex-col mb-12">
+      <div className="bg-[#4E8A2F] px-10 py-7 flex justify-between items-center border-b-[6px] border-[#7FB069]">
+        <div className="flex items-center gap-6">
+          <div className="p-3 bg-white/10 rounded-2xl">
+            {Icon && <Icon className="text-white" size={28} />}
+          </div>
+          <h4 className="text-lg font-black text-white uppercase tracking-[0.2em]">{title}</h4>
+        </div>
+        
+        <div className="flex items-center gap-6">
+          {total && (
+            <div className="bg-[#7FB069] text-white px-6 py-2 rounded-full text-[12px] font-black uppercase tracking-widest shadow-inner">
+              {total}
+            </div>
+          )}
+          {/* BOTÓN DE EVIDENCIAS TIPO LOYOLA */}
+          {photos.length > 0 && (
+            <button 
+              onClick={() => alert(`Visualizando ${photos.length} evidencias de: ${title}`)}
+              className="flex flex-col items-center gap-1 group transition-all"
+            >
+              <div className="p-3 bg-[#7FB069] text-white rounded-xl group-hover:bg-white group-hover:text-[#4E8A2F] shadow-lg transition-colors">
+                <Camera size={20} />
+              </div>
+              <span className="text-[8px] font-black text-white uppercase tracking-tighter opacity-80 group-hover:opacity-100">Evidencias</span>
+            </button>
+          )}
+        </div>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="w-full text-left">
+          <thead className="bg-[#F8FAFC] text-[#4E8A2F] font-black uppercase tracking-widest border-b-2">
+            <tr>
+              {headers.map((h, i) => <th key={i} className="px-10 py-6 text-sm">{h}</th>)}
+            </tr>
+          </thead>
+          <tbody className="divide-y-2 divide-slate-50 uppercase font-bold text-slate-700">
+            {data.map((row, idx) => (
+              <tr key={idx} className="hover:bg-[#4E8A2F]/5 transition-colors">
+                {Object.values(row).map((val, i) => (
+                  <td key={i} className="px-10 py-6 text-[15px]">{val}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
   
   // Persistencia segura de estados
   const [asistencia, setAsistencia] = useState(() => {
@@ -258,11 +309,13 @@ export default function App() {
             { id: 'inicio', label: 'Inicio', icon: Home },
             { id: 'quorum', label: '1. Quórum', icon: Users },
             { id: 'orden', label: '2. Orden del Día', icon: ListChecks },
-            { id: 'dignatarios', label: '3-4. Dignatarios', icon: UserPlus },
+            { id: 'dignatarios', label: '3. Dignatarios', icon: UserPlus },
+            { id: 'acta-anterior', label: '4. Acta Anterior', icon: FileText },
             { id: 'gestion', label: '5. Informe Gestión', icon: TrendingUp },
             { id: 'financiero', label: '6-7. Financiero', icon: BarChart3 },
             { id: 'presupuesto', label: '8. Presupuesto', icon: PieChart },
-            { id: 'elecciones', label: '9-10. Elecciones', icon: Gavel },
+            { id: 'consejo', label: '9. Consejo y Comité', icon: Users },
+            { id: 'revisoria', label: '10. Revisoría Fiscal', icon: ShieldCheck },
             { id: 'proposiciones', label: '11. Proposiciones', icon: MessageSquare },
             { id: 'final', label: 'Finalizar Acta', icon: Printer },
           ].map(item => (
@@ -295,7 +348,7 @@ export default function App() {
               <span className="text-[11px] font-black text-[#2F2F2F] uppercase tracking-widest">Quórum Actual</span>
               <div className="flex items-center gap-4 mt-1">
                 <span className={`text-4xl font-black tracking-tighter ${totalQuorum >= 50.1 ? 'text-[#4E8A2F]' : 'text-[#2F2F2F]'}`}>
-                  {totalQuorum.toFixed(3)}%
+                  {Math.round(totalQuorum)}%
                 </span>
                 <div className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest shadow-sm ${totalQuorum >= 50.1 ? 'bg-[#4E8A2F] text-white' : 'bg-slate-100 text-slate-400'}`}>
                   {totalQuorum >= 50.1 ? 'VALIDADO' : 'PENDIENTE'}
@@ -354,9 +407,15 @@ export default function App() {
                        <p className="text-[11px] font-black text-[#4E8A2F] opacity-80 uppercase">Hora: 3:00 P.M.</p>
                     </div>
                   </Card>
-                  <Card className="bg-[#4E8A2F] text-white border-none flex flex-col items-center justify-center shadow-2xl">
-                    <p className="text-6xl font-black text-white mb-2 leading-none tracking-tighter">{asistencia.length}</p>
-                    <p className="text-[11px] font-black uppercase tracking-[0.3em] text-white/60 leading-none">Unidades / Coeficientes</p>
+                  <Card className="bg-[#4E8A2F] text-white border-none flex flex-col items-center justify-center shadow-2xl !bg-[#4E8A2F]">
+                    <div className="text-center">
+                      <p className="text-6xl font-black text-white mb-2 leading-none tracking-tighter">
+                        {asistencia.length}
+                      </p>
+                      <p className="text-[11px] font-black uppercase tracking-[0.3em] text-white/90 leading-none">
+                        Unidades / Coeficientes
+                      </p>
+                    </div>
                   </Card>
                </div>
             </div>
@@ -470,39 +529,115 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 3-4: DIGNATARIOS */}
+          {/* SECCIÓN 3: DIGNATARIOS */}
           {activeSection === 'dignatarios' && (
-            <div className="space-y-10 animate-in zoom-in-95">
-               <SectionHeader title="3-4. Dignatarios y Acta" icon={UserPlus} agendaIndices={[2, 3]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 uppercase">
-                  <div className="md:col-span-2 space-y-10">
-                    <Card title="Elección de Mesa Directiva" icon={ShieldCheck} highlight>
-                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 pt-4">
-                          <div className="space-y-4">
-                             <label className="text-[11px] font-black text-[#2F2F2F] uppercase tracking-widest block">Presidente de Asamblea</label>
-                             <input type="text" className="w-full p-6 bg-slate-50 border-2 border-[#4E8A2F]/10 rounded-2xl font-black uppercase text-xs focus:border-[#4E8A2F] outline-none shadow-inner" placeholder="NOMBRE COMPLETO..." value={dignatarios.presidente} onChange={(e) => setDignatarios({...dignatarios, presidente: e.target.value})} />
-                          </div>
-                          <div className="space-y-4">
-                             <label className="text-[11px] font-black text-[#2F2F2F] uppercase tracking-widest block">Secretario(a)</label>
-                             <input type="text" className="w-full p-6 bg-slate-50 border-2 border-[#4E8A2F]/10 rounded-2xl font-black uppercase text-xs focus:border-[#4E8A2F] outline-none shadow-inner" placeholder="NOMBRE COMPLETO..." value={dignatarios.secretario} onChange={(e) => setDignatarios({...dignatarios, secretario: e.target.value})} />
-                          </div>
-                       </div>
-                    </Card>
-                    <Card title="Comisión Verificadora del Acta" icon={ClipboardCheck}>
-                       <div className="space-y-4 pt-4">
-                          <label className="text-[11px] font-black text-[#2F2F2F] uppercase tracking-widest block">Miembros Comisión 2026</label>
-                          <textarea className="w-full p-6 bg-slate-50 border-2 border-[#4E8A2F]/10 rounded-2xl font-black uppercase text-[11px] h-40 focus:border-[#4E8A2F] outline-none leading-loose shadow-inner" placeholder="INGRESE NOMBRES DE LOS DESIGNADOS..." value={dignatarios.comision} onChange={(e) => setDignatarios({...dignatarios, comision: e.target.value})}></textarea>
-                       </div>
-                    </Card>
+            <div className="space-y-10 animate-in zoom-in-95 uppercase">
+              <SectionHeader 
+                title="3. Dignatarios de Asamblea" 
+                icon={UserPlus} 
+                agendaIndices={[2]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div className="md:col-span-2 space-y-10">
+                  <Card title="Elección de Mesa Directiva" icon={ShieldCheck} highlight>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 pt-4">
+                      <div className="space-y-4">
+                        <label className="text-[11px] font-black text-[#2F2F2F] uppercase tracking-widest block">
+                          Presidente de Asamblea
+                        </label>
+                        <input 
+                          type="text" 
+                          className="w-full p-6 bg-slate-50 border-2 border-[#4E8A2F]/10 rounded-2xl font-black uppercase text-xs focus:border-[#4E8A2F] outline-none shadow-inner" 
+                          placeholder="NOMBRE COMPLETO..." 
+                          value={dignatarios.presidente} 
+                          onChange={(e) => setDignatarios({...dignatarios, presidente: e.target.value})} 
+                        />
+                      </div>
+                      <div className="space-y-4">
+                        <label className="text-[11px] font-black text-[#2F2F2F] uppercase tracking-widest block">
+                          Secretario(a)
+                        </label>
+                        <input 
+                          type="text" 
+                          className="w-full p-6 bg-slate-50 border-2 border-[#4E8A2F]/10 rounded-2xl font-black uppercase text-xs focus:border-[#4E8A2F] outline-none shadow-inner" 
+                          placeholder="NOMBRE COMPLETO..." 
+                          value={dignatarios.secretario} 
+                          onChange={(e) => setDignatarios({...dignatarios, secretario: e.target.value})} 
+                        />
+                      </div>
+                    </div>
+                  </Card>
+                  
+                  <Card title="Comisión Verificadora del Acta" icon={ClipboardCheck}>
+                    <div className="space-y-4 pt-4">
+                      <label className="text-[11px] font-black text-[#2F2F2F] uppercase tracking-widest block">
+                        Miembros Comisión 2026
+                      </label>
+                      <textarea 
+                        className="w-full p-6 bg-slate-50 border-2 border-[#4E8A2F]/10 rounded-2xl font-black uppercase text-[11px] h-40 focus:border-[#4E8A2F] outline-none leading-loose shadow-inner" 
+                        placeholder="INGRESE NOMBRES DE LOS DESIGNADOS..." 
+                        value={dignatarios.comision} 
+                        onChange={(e) => setDignatarios({...dignatarios, comision: e.target.value})}
+                      ></textarea>
+                    </div>
+                  </Card>
+                </div>
+
+                <div className="bg-[#4E8A2F] rounded-[48px] p-12 text-white flex flex-col justify-center text-center shadow-2xl border-b-[12px] border-[#7FB069]">
+                  <Gavel className="text-white mb-10 mx-auto" size={56} />
+                  <h4 className="font-black text-2xl mb-6 uppercase tracking-tighter">Normativa</h4>
+                  <p className="text-[11px] font-black text-white/60 leading-loose uppercase tracking-[0.2em]">
+                    La asamblea sesiona bajo la Ley 675 de 2001. Las decisiones tomadas obligan a ausentes y disidentes si se cumple el quórum de ley.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* SECCIÓN 4: ACTA ANTERIOR */}
+          {activeSection === 'acta-anterior' && (
+            <div className="space-y-10 animate-in fade-in duration-500 uppercase">
+              <SectionHeader 
+                title="4. Acta Asamblea 2025" 
+                icon={FileText} 
+                agendaIndices={[3]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <Card title="Documento Oficial" icon={ShieldCheck} highlight>
+                  <div className="space-y-6 pt-4">
+                    <p className="text-[11px] font-bold text-slate-600 leading-loose">
+                      LECTURA DEL CONCEPTO EMITIDO POR LA COMISIÓN VERIFICADORA DEL TEXTO DEL ACTA DE LA ASAMBLEA GENERAL ORDINARIA DEL AÑO 2025.
+                    </p>
+                    
+                    <a 
+                      href="https://drive.google.com/file/d/1VbQz1_0C6QFLNPTq7s3nx2FBl-m4re4n/view?usp=sharing" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-4 w-full bg-[#4E8A2F] text-white py-6 rounded-2xl font-black text-xs hover:bg-[#7FB069] transition-all shadow-lg group"
+                    >
+                      <ExternalLink size={20} className="group-hover:scale-110 transition-transform" />
+                      VER ACTA 2025 EN DRIVE
+                    </a>
                   </div>
-                  <div className="bg-[#4E8A2F] rounded-[48px] p-12 text-white flex flex-col justify-center text-center shadow-2xl border-b-[12px] border-[#7FB069]">
-                     <Gavel className="text-white mb-10 mx-auto" size={56} />
-                     <h4 className="font-black text-2xl mb-6 uppercase tracking-tighter">Normativa</h4>
-                     <p className="text-[11px] font-black text-white/60 leading-loose uppercase tracking-[0.2em]">
-                        La asamblea sesiona bajo la Ley 675 de 2001. Las decisiones tomadas obligan a ausentes y disidentes si se cumple el quórum de ley.
-                     </p>
+                </Card>
+
+                <Card title="Estado de Verificación" icon={ClipboardCheck}>
+                  <div className="space-y-6 pt-4">
+                    <p className="text-[10px] font-black text-slate-400 tracking-widest uppercase">
+                      OBSERVACIONES DE LA COMISIÓN
+                    </p>
+                    <textarea 
+                      className="w-full p-6 bg-slate-50 border-2 border-[#4E8A2F]/10 rounded-2xl font-black uppercase text-[11px] h-32 focus:border-[#4E8A2F] outline-none shadow-inner"
+                      placeholder="REGISTRE AQUÍ SI EL ACTA FUE APROBADA SIN OBSERVACIONES O SI EXISTEN ACLARACIONES..."
+                    ></textarea>
                   </div>
-               </div>
+                </Card>
+              </div>
             </div>
           )}
 
@@ -511,63 +646,111 @@ export default function App() {
             <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
               <SectionHeader title="5. Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
 
-              {/* GESTIÓN ADMINISTRATIVA Y OPERATIVA */}
-              <Card title="1. Gestión Administrativa y Operativa" icon={Building2} highlight>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
-                  <div className="space-y-6">
-                    <div className="p-6 bg-slate-50 rounded-3xl border-l-8 border-[#4E8A2F]">
-                      <p className="text-sm font-black text-[#4E8A2F] mb-2">Instalación del Consejo</p>
-                      <p className="text-[11px] font-bold text-[#2F2F2F]">Consejo instalado el 22 de abril, Sra. Amanda Cualtan como Presidenta. Reuniones bimensuales.</p>
-                    </div>
-                    <div className="p-6 bg-slate-50 rounded-3xl border-l-8 border-[#4E8A2F]">
-                      <p className="text-sm font-black text-[#4E8A2F] mb-2">Entorno y Jardín</p>
-                      <p className="text-[11px] font-bold text-[#2F2F2F]">Plan de renovación (diseño, iluminación, piedras decorativas). Gestión con arrendatario local.</p>
-                    </div>
-                    <div className="p-6 bg-slate-50 rounded-3xl border-l-8 border-[#4E8A2F]">
-                      <p className="text-sm font-black text-[#4E8A2F] mb-2">Dotación y Mantenimiento</p>
-                      <ul className="text-[11px] font-bold list-disc pl-4 space-y-1">
-                        <li>Mesa recepción: $202.000 (financiado venta vidrio).</li>
-                        <li>Gabinete salón comunal: $500.000.</li>
-                        <li>Pulsador inalámbrico sótano: $135.000.</li>
-                      </ul>
-                    </div>
+              {/* GESTIÓN ADMINISTRATIVA Y OPERATIVA - AJUSTADA A ANCHO COMPLETO */}
+              <Card title="1. Gestión Administrativa y Operativa" icon={Building2} highlight className="p-10">
+                <div className="flex flex-col gap-8 pt-4">
+                  
+                  {/* BLOQUE 1: INSTALACIÓN CONSEJO */}
+                  <div className="p-10 bg-slate-50 rounded-[40px] border-l-[16px] border-[#4E8A2F] shadow-sm">
+                    <p className="text-base font-black text-[#4E8A2F] mb-4 tracking-[0.2em] uppercase">
+                      Instalación del Consejo
+                    </p>
+                    <p className="text-2xl font-bold text-slate-800 leading-snug uppercase tracking-tight">
+                      Consejo instalado el 22 de abril, Sra. Amanda Cualtan como Presidenta. Reuniones bimensuales de seguimiento.
+                    </p>
                   </div>
-                  <div className="space-y-6">
-                    <div className="p-6 bg-slate-50 rounded-3xl border-l-8 border-[#7FB069]">
-                      <p className="text-sm font-black text-[#7FB069] mb-2">Seguridad y Emergencias</p>
-                      <p className="text-[11px] font-bold text-[#2F2F2F]">Evaluación incremento cámaras. Cotización camilla y botiquín obligatorio. Capacitación primeros auxilios.</p>
-                    </div>
-                    <div className="p-6 bg-slate-50 rounded-3xl border-l-8 border-[#7FB069]">
-                      <p className="text-sm font-black text-[#7FB069] mb-2">Talento Humano</p>
-                      <p className="text-[11px] font-bold text-[#2F2F2F]">Reconocimiento operaria de aseo. Gestión de reemplazo temporal por incapacidad médica.</p>
-                    </div>
+
+                  {/* BLOQUE 2: ENTORNO Y JARDÍN */}
+                  <div className="p-10 bg-slate-50 rounded-[40px] border-l-[16px] border-[#7FB069] shadow-sm">
+                    <p className="text-base font-black text-[#7FB069] mb-4 tracking-[0.2em] uppercase">
+                      Entorno y Jardín
+                    </p>
+                    <p className="text-2xl font-bold text-slate-800 leading-snug uppercase tracking-tight">
+                      Plan de renovación integral (diseño, iluminación, piedras decorativas). Gestión con arrendatario local.
+                    </p>
                   </div>
+
+                  {/* BLOQUE 3: DOTACIÓN */}
+                  <div className="p-10 bg-slate-50 rounded-[40px] border-l-[16px] border-[#4E8A2F] shadow-sm">
+                    <p className="text-base font-black text-[#4E8A2F] mb-6 tracking-[0.2em] uppercase">
+                      Dotación y Mantenimiento
+                    </p>
+                    <ul className="space-y-6 text-2xl font-bold text-slate-800 uppercase tracking-tight">
+                      <li className="flex items-center gap-6">
+                        <div className="h-4 w-4 rounded-full bg-[#7FB069] shrink-0"></div>
+                        Mesa recepción: $202.000 (financiado venta vidrio).
+                      </li>
+                      <li className="flex items-center gap-6">
+                        <div className="h-4 w-4 rounded-full bg-[#7FB069] shrink-0"></div>
+                        Gabinete salón comunal: $500.000.
+                      </li>
+                      <li className="flex items-center gap-6">
+                        <div className="h-4 w-4 rounded-full bg-[#7FB069] shrink-0"></div>
+                        Pulsador inalámbrico sótano: $135.000.
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* BLOQUE 4: SEGURIDAD */}
+                  <div className="p-10 bg-slate-50 rounded-[40px] border-l-[16px] border-[#7FB069] shadow-sm">
+                    <p className="text-base font-black text-[#7FB069] mb-4 tracking-[0.2em] uppercase">
+                      Seguridad y Emergencias
+                    </p>
+                    <p className="text-2xl font-bold text-slate-800 leading-snug uppercase tracking-tight">
+                      Evaluación incremento cámaras. Cotización camilla y botiquín obligatorio. Capacitación primeros auxilios.
+                    </p>
+                  </div>
+
+                  {/* BLOQUE 5: TALENTO HUMANO */}
+                  <div className="p-10 bg-slate-50 rounded-[40px] border-l-[16px] border-[#4E8A2F] shadow-sm">
+                    <p className="text-base font-black text-[#4E8A2F] mb-4 tracking-[0.2em] uppercase">
+                      Talento Humano
+                    </p>
+                    <p className="text-2xl font-bold text-slate-800 leading-snug uppercase tracking-tight">
+                      Reconocimiento operaria de aseo. Gestión de reemplazo temporal por incapacidad médica.
+                    </p>
+                  </div>
+
                 </div>
               </Card>
 
-              {/* GESTIÓN FINANCIERA Y CARTERA */}
-              <Card title="2. Gestión Financiera y Cartera" icon={BarChart3}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 pt-4">
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4 p-4 border-2 border-slate-50 rounded-2xl">
-                       <Percent className="text-[#4E8A2F] shrink-0" />
-                       <p className="text-[11px] font-bold text-slate-700">Apertura cuenta ahorros para fondo imprevistos y CDT vigente (Intereses acumulados a oct: $1.253.083).</p>
+              {/* GESTIÓN FINANCIERA Y CARTERA - AJUSTADA A ANCHO COMPLETO */}
+              <Card title="2. Gestión Financiera y Cartera" icon={BarChart3} className="p-10">
+                <div className="flex flex-col gap-6 pt-4">
+                  {[
+                    { 
+                      icon: Percent, 
+                      txt: "APERTURA CUENTA AHORROS PARA FONDO IMPREVISTOS Y CDT VIGENTE (INTERESES ACUMULADOS A OCT: $1.253.083).", 
+                      color: "#4E8A2F" 
+                    },
+                    { 
+                      icon: Wallet, 
+                      txt: "CAJA MENOR DE $200.000 ADMINISTRADA POR EL CONSEJO PARA GASTOS BÁSICOS E INMEDIATOS.", 
+                      color: "#4E8A2F" 
+                    },
+                    { 
+                      icon: ShieldAlert, 
+                      txt: "COBRO PREJURÍDICO Y JURÍDICO EFECTIVO. REDUCCIÓN CARTERA MOROSA (CASO ESPECIAL APTO 301).", 
+                      color: "#4E8A2F" 
+                    },
+                    { 
+                      icon: Scale, 
+                      txt: "ASUNCIÓN PAGO PREDIAL BODEGAS (1, 3, 4, 8, 9, 10) PARA PROCESO DE PERTENENCIA LEGAL.", 
+                      color: "#4E8A2F" 
+                    }
+                  ].map((item, idx) => (
+                    <div 
+                      key={idx} 
+                      className="flex items-center gap-10 p-10 border-4 border-slate-50 rounded-[40px] bg-white shadow-md hover:border-[#4E8A2F]/20 transition-all group"
+                    >
+                      <div className="p-6 bg-[#4E8A2F]/10 rounded-[28px] group-hover:bg-[#4E8A2F] transition-colors">
+                        <item.icon className="text-[#4E8A2F] group-hover:text-white transition-colors" size={40} />
+                      </div>
+                      <p className="text-xl font-black text-slate-700 leading-tight uppercase tracking-tight">
+                        {item.txt}
+                      </p>
                     </div>
-                    <div className="flex items-start gap-4 p-4 border-2 border-slate-50 rounded-2xl">
-                       <Wallet className="text-[#4E8A2F] shrink-0" />
-                       <p className="text-[11px] font-bold text-slate-700">Caja menor de $200.000 administrada por el Consejo para gastos básicos.</p>
-                    </div>
-                  </div>
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4 p-4 border-2 border-slate-50 rounded-2xl">
-                       <ShieldAlert className="text-[#4E8A2F] shrink-0" />
-                       <p className="text-[11px] font-bold text-slate-700">Cobro prejurídico y jurídico efectivo. Reducción cartera morosa (Apto 301).</p>
-                    </div>
-                    <div className="flex items-start gap-4 p-4 border-2 border-slate-50 rounded-2xl">
-                       <Scale className="text-[#4E8A2F] shrink-0" />
-                       <p className="text-[11px] font-bold text-slate-700">Asunción pago predial bodegas (1, 3, 4, 8, 9, 10) para proceso de pertenencia.</p>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </Card>
 
@@ -575,144 +758,214 @@ export default function App() {
               <div className="space-y-12">
                 <ManagementTable 
                   title="RELACIÓN DE GASTOS MENSUALES FIJOS (OPERATIVOS)"
-                  headers={["PROVEEDOR", "CONCEPTO", "DETALLE"]}
+                  headers={["PROVEEDOR / ENTIDAD", "CONCEPTO", "DETALLE DE OPERACIÓN"]}
                   data={[
-                    {p: "CEDENAR SA ESP", c: "Energía Eléctrica", d: "Pago mensual luz zonas comunes."},
-                    {p: "EMPOPASTO SA ESP", c: "Acueducto", d: "Pago mensual agua y alcantarillado."},
-                    {p: "EMAS SA ESP", c: "Servicio Aseo", d: "Pago mensual recolección residuos."},
-                    {p: "QUALIS SOLUCIONES", c: "Personal Aseo", d: "Servicio operaria limpieza (contrato fijo)."},
-                    {p: "EUROLIFT SAS", c: "Mantenimiento Ascensor", d: "Servicio preventivo mensual."},
-                    {p: "TALAMO LTDA", c: "Seguridad y Monitoreo", d: "Servicio mensual monitoreo alarmas."},
-                    {p: "COLOMBIA TELECOM", c: "Internet/Telefonía", d: "Conectividad administración y citofonía."},
-                    {p: "ANA LUCIA YEPEZ C.", c: "Honorarios Admin", d: "Pago mensual gestión administrativa."},
-                    {p: "LUZ JANETH LOPEZ", c: "Honorarios Contabilidad", d: "Pago mensual servicios contables."},
-                    {p: "MIGUEL ANGEL ACOSTA", c: "Honorarios Revisoría", d: "Pago mensual auditoría fiscal."},
-                    {p: "SEGUROS DEL ESTADO", c: "Póliza Zonas Comunes", d: "Prima anual financiada."},
-                    {p: "DIAN / MUNICIPIO", c: "Impuestos", d: "Retenciones fuente e Industria y Comercio."}
-                  ]}
+                    {p: "CEDENAR SA ESP", c: "ENERGÍA ELÉCTRICA", d: "PAGO MENSUAL LUZ ZONAS COMUNES."},
+                    {p: "EMPOPASTO SA ESP", c: "ACUEDUCTO", d: "PAGO MENSUAL AGUA Y ALCANTARILLADO."},
+                    {p: "EMAS SA ESP", c: "SERVICIO ASEO", d: "PAGO MENSUAL RECOLECCIÓN RESIDUOS."},
+                    {p: "QUALIS SOLUCIONES", c: "PERSONAL ASEO", d: "SERVICIO OPERARIA LIMPIEZA (CONTRATO FIJO)."},
+                    {p: "EUROLIFT SAS", c: "MANTENIMIENTO ASCENSOR", d: "SERVICIO PREVENTIVO MENSUAL."},
+                    {p: "TALAMO LTDA", c: "SEGURIDAD Y MONITOREO", d: "SERVICIO MENSUAL MONITOREO ALARMAS."},
+                    {p: "ANA LUCIA YEPEZ C.", c: "HONORARIOS ADMIN", d: "PAGO MENSUAL GESTIÓN ADMINISTRATIVA."},
+                    {p: "LUZ JANETH LOPEZ", c: "HONORARIOS CONTABILIDAD", d: "PAGO MENSUAL SERVICIOS CONTABLES."},
+                    {p: "MIGUEL ANGEL ACOSTA", c: "HONORARIOS REVISORÍA", d: "PAGO MENSUAL AUDITORÍA FISCAL."}
+                  ].map(item => ({
+                    ...item,
+                    p: <span className="text-lg font-black text-[#4E8A2F]">{item.p}</span>,
+                    c: <span className="text-lg font-bold text-slate-700">{item.c}</span>,
+                    d: <span className="text-base font-medium text-slate-500 italic">{item.d}</span>
+                  }))}
                   icon={Activity}
                 />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                  <ManagementTable 
+                {/* BLOQUE DE INFRAESTRUCTURA Y SEGURIDAD - CADA UNO A ANCHO COMPLETO */}
+                <div className="flex flex-col gap-16">
+                  
+                  {/* 1. INFRAESTRUCTURA Y MEJORAS - CON EVIDENCIAS INTEGRADAS */}
+                  <InvestmentTable 
                     title="INFRAESTRUCTURA Y MEJORAS"
-                    headers={["PROVEEDOR", "OBRA", "DETALLE"]}
-                    data={[
-                      {p: "CASTEIR MORENO", o: "Mantenimiento Cubierta", d: "Reparación techos y materiales."},
-                      {p: "JHON FRANCO CUATIN", o: "Hidráulico", d: "Lavado tanques y equipos presión."},
-                      {p: "JOSE FRANCISCO JOJOA", o: "Iluminación LED", d: "Instalación lámparas parqueadero/pisos."},
-                      {p: "LUIS HUMBERTO BARRERA", o: "Suministros Eléctricos", d: "Compra paneles LED."},
-                      {p: "ANA LUCÍA YÉPEZ (C.M.)", o: "Jardín", d: "Arreglo jardinera (Caja Menor)."}
-                    ]}
+                    headers={["PROVEEDOR / CONTRATISTA", "OBRA EJECUTADA", "DETALLE DE GESTIÓN"]}
                     icon={Wrench}
+                    total="OPTIMIZADO"
+                    /* Aquí vinculas las fotos directamente al componente */
+                    photos={["/img/obra1.jpg", "/img/obra2.jpg"]} 
+                    data={[
+                      {p: "CASTEIR MORENO", o: "MANTENIMIENTO CUBIERTA", d: "REPARACIÓN TECHOS Y SUMINISTRO DE MATERIALES."},
+                      {p: "JHON FRANCO CUATIN", o: "SISTEMA HIDRÁULICO", d: "LAVADO DE TANQUES Y MANTENIMIENTO EQUIPOS PRESIÓN."},
+                      {p: "JOSE FRANCISCO JOJOA", o: "ILUMINACIÓN LED", d: "INSTALACIÓN DE LÁMPARAS EN PARQUEADERO Y PISOS."},
+                      {p: "LUIS HUMBERTO BARRERA", o: "SUMINISTROS ELÉCTRICOS", d: "COMPRA DE PANELES LED DE ALTA EFICIENCIA."},
+                      {p: "ANA LUCÍA YÉPEZ (C.M.)", o: "ZONAS VERDES", d: "ARREGLO DE JARDINERA PRINCIPAL (FONDO CAJA MENOR)."}
+                    ].map(item => ({
+                      ...item,
+                      p: <span className="text-xl font-black text-[#4E8A2F]">{item.p}</span>,
+                      o: <span className="text-xl font-bold text-slate-700">{item.o}</span>,
+                      d: <span className="text-lg font-medium text-slate-500 italic">{item.d}</span>
+                    }))}
                   />
-                  <ManagementTable 
+                  {/* 1. SEGURIDAD Y EQUIPOS TÉCNICOS */}
+                  <InvestmentTable 
                     title="SEGURIDAD Y EQUIPOS TÉCNICOS"
-                    headers={["PROVEEDOR", "CONCEPTO", "DETALLE"]}
-                    data={[
-                      {p: "TALAMO LTDA", c: "Actualización DVR", d: "Suministro disco duro 2TB."},
-                      {p: "CUMMINS DE LOS ANDES", c: "Planta Eléctrica", d: "Mantenimiento preventivo cuatrimestral."},
-                      {p: "HERNANDO TOBAR - EDN", c: "Red Contra Incendio", d: "Recarga 14 extintores ABC."},
-                      {p: "OSCAR MALES", c: "Acceso Sótano", d: "Pulsador inalámbrico."}
-                    ]}
+                    headers={["PROVEEDOR", "CONCEPTO TÉCNICO", "DETALLE DEL SERVICIO"]}
                     icon={ShieldCheck}
+                    total="MONITOREADO"
+                    photos={["/img/seguridad1.jpg"]} // Añade tus rutas de fotos aquí
+                    data={[
+                      {p: "TALAMO LTDA", c: "ACTUALIZACIÓN DVR", d: "SUMINISTRO DISCO DURO 2TB PARA SISTEMA CCTV."},
+                      {p: "CUMMINS DE LOS ANDES", c: "PLANTA ELÉCTRICA", d: "MANTENIMIENTO PREVENTIVO CUATRIMESTRAL."},
+                      {p: "HERNANDO TOBAR - EDN", c: "RED CONTRA INCENDIO", d: "RECARGA DE 14 EXTINTORES TIPO ABC."},
+                      {p: "OSCAR MALES", c: "ACCESO SÓTANO", d: "INSTALACIÓN DE PULSADOR INALÁMBRICO."}
+                    ].map(item => ({
+                      ...item,
+                      p: <span className="text-xl font-black text-[#4E8A2F]">{item.p}</span>,
+                      c: <span className="text-xl font-bold text-slate-700">{item.c}</span>,
+                      d: <span className="text-lg font-medium text-slate-500 italic">{item.d}</span>
+                    }))}
                   />
-                </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                   <ManagementTable 
+                  {/* 2. SUMINISTROS Y BIENESTAR */}
+                  <InvestmentTable 
                     title="SUMINISTROS Y BIENESTAR"
-                    headers={["PROVEEDOR", "CONCEPTO", "DETALLE"]}
-                    data={[
-                      {p: "ADRIANA BARRERA", c: "Insumos Aseo", d: "Productos de limpieza."},
-                      {p: "YASMIN CUALTAN", c: "Carpintería/Eventos", d: "Mueble salón y evento navideño."},
-                      {p: "ALBA LUCY LOPEZ", c: "Jardinería", d: "Compra plantas y tierra."},
-                      {p: "PAOLA ALEJANDRA CORAL", c: "Control Plagas", d: "Fumigación y roedores."},
-                      {p: "ANA LUCÍA YÉPEZ", c: "Bienestar", d: "Bono fin de año personal."}
-                    ]}
+                    headers={["PROVEEDOR", "CONCEPTO", "DETALLE DE COMPRA"]}
                     icon={HeartPulse}
-                  />
-                  <ManagementTable 
-                    title="LEGALES Y ADMINISTRATIVOS"
-                    headers={["PROVEEDOR", "CONCEPTO", "DETALLE"]}
+                    total="EJECUTADO"
+                    photos={["/img/bienestar1.jpg"]} // Añade tus rutas de fotos aquí
                     data={[
-                      {p: "ALCALDÍA DE PASTO", c: "Prediales", d: "Pago prediales bodegas 3,4,8,9,10."},
-                      {p: "STEFANIA MUÑOZ", c: "Cartera", d: "Honorarios recuperación morosos."},
-                      {p: "COMERCIALIZADORA HH", c: "Papelería", d: "Separadores archivo."},
-                      {p: "ANA LUCIA YEPEZ C.", c: "Insumos Operativos", d: "Gasolina planta y papelería."}
-                    ]}
+                      {p: "ADRIANA BARRERA", c: "INSUMOS ASEO", d: "PRODUCTOS DE LIMPIEZA PARA ÁREAS COMUNES."},
+                      {p: "YASMIN CUALTAN", c: "CARPINTERÍA/EVENTOS", d: "MUEBLE PARA SALÓN Y GESTIÓN EVENTO NAVIDEÑO."},
+                      {p: "ALBA LUCY LOPEZ", c: "JARDINERÍA", d: "COMPRA DE PLANTAS ORNAMENTALES Y TIERRA."},
+                      {p: "PAOLA ALEJANDRA CORAL", c: "CONTROL PLAGAS", d: "FUMIGACIÓN Y CONTROL DE ROEDORES."},
+                      {p: "ANA LUCÍA YÉPEZ", c: "BIENESTAR", d: "BONO DE FIN DE AÑO PARA PERSONAL OPERATIVO."}
+                    ].map(item => ({
+                      ...item,
+                      p: <span className="text-xl font-black text-[#4E8A2F]">{item.p}</span>,
+                      c: <span className="text-xl font-bold text-slate-700">{item.c}</span>,
+                      d: <span className="text-lg font-medium text-slate-500 italic">{item.d}</span>
+                    }))}
+                  />
+
+                  {/* 3. LEGALES Y ADMINISTRATIVOS */}
+                  <InvestmentTable 
+                    title="LEGALES Y ADMINISTRATIVOS"
+                    headers={["PROVEEDOR / ENTIDAD", "CONCEPTO", "DETALLE DE GESTIÓN"]}
                     icon={Scale}
+                    total="AL DÍA"
+                    photos={[]} // Si no hay fotos, el botón de evidencias no aparecerá
+                    data={[
+                      {p: "ALCALDÍA DE PASTO", c: "PREDIALES", d: "PAGO PREDIALES BODEGAS 3, 4, 8, 9 Y 10."},
+                      {p: "STEFANIA MUÑOZ", c: "CARTERA", d: "HONORARIOS RECUPERACIÓN DE MOROSOS HISTÓRICOS."},
+                      {p: "COMERCIALIZADORA HH", c: "PAPELERÍA", d: "SUMINISTROS DE SEPARADORES PARA ARCHIVO."},
+                      {p: "ANA LUCIA YEPEZ C.", c: "INSUMOS OPERATIVOS", d: "GASOLINA PARA PLANTA ELÉCTRICA Y PAPELERÍA."}
+                    ].map(item => ({
+                      ...item,
+                      p: <span className="text-xl font-black text-[#4E8A2F]">{item.p}</span>,
+                      c: <span className="text-xl font-bold text-slate-700">{item.c}</span>,
+                      d: <span className="text-lg font-medium text-slate-500 italic">{item.d}</span>
+                    }))}
                   />
                 </div>
               </div>
 
-              {/* PÓLIZAS */}
+              {/* PÓLIZAS - AJUSTE ANCHO TOTAL Y LETRA GRANDE */}
               <div className="space-y-12">
-                <div className="bg-[#4E8A2F] p-12 rounded-[50px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
+                <div className="bg-[#4E8A2F] p-16 rounded-[60px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
                   <div className="z-10 text-center md:text-left">
-                    <h3 className="text-4xl font-black uppercase tracking-tighter mb-2">Seguros y Amparos</h3>
-                    <p className="text-white/80 font-bold text-sm uppercase tracking-[0.2em]">Pólizas Vigentes: Mayo 2025 - Mayo 2026 (Seguros del Estado)</p>
+                    <h3 className="text-6xl font-black uppercase tracking-tighter mb-4">Seguros y Amparos</h3>
+                    <p className="text-white/80 font-bold text-2xl uppercase tracking-[0.2em]">Pólizas Vigentes: Mayo 2025 - Mayo 2026 (Seguros del Estado)</p>
                   </div>
-                  <ShieldCheck size={80} className="text-white opacity-20 absolute right-12" />
+                  <ShieldCheck size={120} className="text-white opacity-20 absolute right-12" />
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                  <div className="lg:col-span-2">
-                    <Card title="Póliza Bienes Comunes" icon={ShieldCheck} badge="Vigente">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#4E8A2F]/10">
-                          <p className="text-[11px] font-black text-[#2F2F2F] uppercase mb-1">V. Asegurado Total</p>
-                          <p className="text-base font-black text-[#4E8A2F]">$6.645.200.000</p>
-                        </div>
-                        <div className="p-6 bg-slate-50 rounded-3xl border-2 border-[#4E8A2F]/10">
-                          <p className="text-[11px] font-black text-[#2F2F2F] uppercase mb-1">Prima Total</p>
-                          <p className="text-base font-black text-[#2F2F2F]">$5.428.795</p>
-                        </div>
+                <div className="flex flex-col gap-10">
+                  {/* PÓLIZA BIENES COMUNES - ANCHO COMPLETO */}
+                  <Card title="Póliza Bienes Comunes" icon={ShieldCheck} badge="Vigente" highlight className="p-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                      <div className="p-10 bg-slate-50 rounded-[48px] border-4 border-[#4E8A2F]/10 flex flex-col items-center justify-center shadow-inner">
+                        <p className="text-base font-black text-slate-500 uppercase mb-3 tracking-widest">V. Asegurado Total</p>
+                        <p className="text-6xl font-black text-[#4E8A2F] tracking-tighter">$6.645.200.000</p>
                       </div>
-                      <div className="overflow-x-auto rounded-[32px] border-4 border-slate-50">
-                        <table className="w-full text-left uppercase">
-                          <tbody className="divide-y divide-slate-50 font-bold text-slate-700">
-                            <tr><td className="px-6 py-4 text-[12px]">Edificio (Áreas Comunes)</td><td className="px-6 py-4 font-black text-[#4E8A2F]">$5.735.000.000</td></tr>
-                            <tr><td className="px-6 py-4 text-[12px]">RC Extracontractual</td><td className="px-6 py-4 font-black text-[#4E8A2F]">$300.000.000</td></tr>
-                            <tr><td className="px-6 py-4 text-[12px]">Maquinaria y Equipo</td><td className="px-6 py-4 font-black text-[#4E8A2F]">$257.000.000</td></tr>
-                          </tbody>
-                        </table>
+                      <div className="p-10 bg-slate-50 rounded-[48px] border-4 border-[#4E8A2F]/10 flex flex-col items-center justify-center shadow-inner">
+                        <p className="text-base font-black text-slate-500 uppercase mb-3 tracking-widest">Prima Total Anual</p>
+                        <p className="text-6xl font-black text-slate-700 tracking-tighter">$5.428.795</p>
                       </div>
-                    </Card>
-                  </div>
-                  <Card title="Póliza D&O" icon={Scale} highlight>
-                      <div className="space-y-6">
-                        <p className="text-[11px] text-[#4E8A2F] font-black uppercase tracking-[0.3em]">Directores y Administradores</p>
-                        <p className="text-4xl font-black text-[#2F2F2F] leading-none">$100.000.000</p>
-                        <p className="text-[11px] text-slate-500 font-bold leading-relaxed border-l-4 border-[#4E8A2F] pl-4">Protección patrimonial ante errores u omisiones en el ejercicio de funciones.</p>
-                        <div className="pt-4 border-t-2 border-slate-100">
-                          <span className="text-[10px] font-black uppercase text-slate-400 block mb-1">Costo Anual:</span>
-                          <span className="text-2xl font-black text-[#4E8A2F]">$166.600</span>
-                        </div>
+                    </div>
+                    
+                    <div className="overflow-x-auto rounded-[40px] border-4 border-slate-50 shadow-sm">
+                      <table className="w-full text-left uppercase">
+                        <tbody className="divide-y-4 divide-white">
+                          <tr className="bg-slate-50">
+                            <td className="px-12 py-8 text-xl font-black text-slate-600">Edificio (Áreas Comunes)</td>
+                            <td className="px-12 py-8 text-4xl font-black text-[#4E8A2F] text-right">$5.735.000.000</td>
+                          </tr>
+                          <tr>
+                            <td className="px-12 py-8 text-xl font-black text-slate-600">RC Extracontractual</td>
+                            <td className="px-12 py-8 text-4xl font-black text-[#4E8A2F] text-right">$300.000.000</td>
+                          </tr>
+                          <tr className="bg-slate-50">
+                            <td className="px-12 py-8 text-xl font-black text-slate-600">Maquinaria y Equipo</td>
+                            <td className="px-12 py-8 text-4xl font-black text-[#4E8A2F] text-right">$257.000.000</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </Card>
+
+                  {/* PÓLIZA D&O - ANCHO COMPLETO */}
+                  <Card title="Póliza D&O (Responsabilidad Civil)" icon={Scale} highlight className="p-12">
+                    <div className="flex flex-col lg:flex-row gap-12 items-center">
+                      <div className="flex-1 text-center lg:text-left space-y-6">
+                        <p className="text-xl font-black text-[#4E8A2F] uppercase tracking-[0.4em]">Directores y Administradores</p>
+                        <p className="text-8xl font-black text-slate-800 tracking-tighter leading-none">$100.000.000</p>
+                        <p className="text-2xl font-bold text-slate-500 leading-relaxed italic border-l-[12px] border-[#4E8A2F] pl-10 uppercase tracking-tight">
+                          Protección patrimonial ante errores u omisiones en el ejercicio de funciones.
+                        </p>
                       </div>
+                      <div className="bg-slate-50 p-12 rounded-[60px] border-4 border-slate-100 text-center shrink-0 shadow-xl">
+                        <p className="text-sm font-black text-slate-400 mb-2 uppercase tracking-widest">Costo de Inversión Anual</p>
+                        <p className="text-5xl font-black text-[#4E8A2F] tracking-tighter">$166.600</p>
+                      </div>
+                    </div>
                   </Card>
                 </div>
               </div>
 
-              {/* RECOMENDACIONES 2026 */}
-              <div className="space-y-8">
-                <SectionHeader title="Recomendaciones & Pendientes 2026" icon={Settings} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                   <div className="p-8 bg-white border-4 border-[#4E8A2F]/10 rounded-[40px] shadow-lg">
-                      <div className="h-14 w-14 bg-[#4E8A2F] rounded-2xl flex items-center justify-center text-white mb-6"><Wrench size={28}/></div>
-                      <h4 className="text-[13px] font-black mb-3 uppercase tracking-widest text-[#4E8A2F]">ESTRUCTURAL</h4>
-                      <p className="text-[11px] font-bold text-slate-700 leading-relaxed uppercase">Priorizar rubro para impermeabilización general del edificio, planificando el ajuste de cuota para evitar impacto abrupto.</p>
-                   </div>
-                   <div className="p-8 bg-white border-4 border-[#4E8A2F]/10 rounded-[40px] shadow-lg">
-                      <div className="h-14 w-14 bg-[#4E8A2F] rounded-2xl flex items-center justify-center text-white mb-6"><Scale size={28}/></div>
-                      <h4 className="text-[13px] font-black mb-3 uppercase tracking-widest text-[#4E8A2F]">REGLAMENTO RPH</h4>
-                      <p className="text-[11px] font-bold text-slate-700 leading-relaxed uppercase">Revisión de zonas comunes de uso privado (terrazas/patios) para aclarar responsabilidades de mantenimiento ordinario.</p>
-                   </div>
-                   <div className="p-8 bg-white border-4 border-[#4E8A2F]/10 rounded-[40px] shadow-lg">
-                      <div className="h-14 w-14 bg-[#4E8A2F] rounded-2xl flex items-center justify-center text-white mb-6"><Activity size={28}/></div>
-                      <h4 className="text-[13px] font-black mb-3 uppercase tracking-widest text-[#4E8A2F]">CARTERA</h4>
-                      <p className="text-[11px] font-bold text-slate-700 leading-relaxed uppercase">Formalizar acuerdos con morosos históricos y exigir Paz y Salvo antes de autorizar cualquier trasteo.</p>
-                   </div>
+              {/* RECOMENDACIONES 2026 - AJUSTE ANCHO TOTAL */}
+              <div className="space-y-12 mt-20">
+                <SectionHeader 
+                  title="Recomendaciones & Pendientes 2026" 
+                  icon={Settings} 
+                  agendaIndices={[4]} 
+                  agendaStatus={agendaStatus} 
+                  toggleAgendaItem={toggleAgendaItem} 
+                />
+                
+                <div className="flex flex-col gap-10">
+                  {[
+                    { 
+                      icon: Wrench, 
+                      title: "ESTRUCTURAL", 
+                      desc: "Priorizar rubro para impermeabilización general del edificio, planificando el ajuste de cuota para evitar impacto abrupto." 
+                    },
+                    { 
+                      icon: Scale, 
+                      title: "REGLAMENTO RPH", 
+                      desc: "Revisión de zonas comunes de uso privado (terrazas/patios) para aclarar responsabilidades de mantenimiento ordinario." 
+                    },
+                    { 
+                      icon: Activity, 
+                      title: "CARTERA", 
+                      desc: "Formalizar acuerdos con morosos históricos y exigir Paz y Salvo antes de autorizar cualquier trasteo." 
+                    }
+                  ].map((item, i) => (
+                    <div key={i} className="p-12 bg-white border-[6px] border-[#4E8A2F]/10 rounded-[60px] shadow-2xl flex items-center gap-12 hover:scale-[1.02] transition-all group">
+                      <div className="h-24 w-24 bg-[#4E8A2F] rounded-[32px] flex items-center justify-center text-white shrink-0 shadow-lg group-hover:rotate-6 transition-transform">
+                        <item.icon size={48}/>
+                      </div>
+                      <div>
+                        <h4 className="text-2xl font-black mb-3 uppercase tracking-[0.2em] text-[#4E8A2F]">{item.title}</h4>
+                        <p className="text-2xl font-bold text-slate-700 leading-snug uppercase tracking-tight">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -778,41 +1031,121 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 9-10: ELECCIONES */}
-          {activeSection === 'elecciones' && (
-            <div className="space-y-12 animate-in zoom-in-95 uppercase">
-              <SectionHeader title="9-10. Elecciones Órganos Control" icon={Gavel} agendaIndices={[8, 9]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                <Card title="Consejo y Convivencia" icon={Users} highlight>
-                  <div className="space-y-8 pt-2">
-                    <div className="flex flex-wrap gap-3 min-h-[60px] p-6 bg-slate-50 rounded-[32px] border-2 border-[#4E8A2F]/10 shadow-inner">
-                      {postuladosConsejo.length === 0 && (
-                        <p className="text-[9px] text-slate-400 font-black uppercase tracking-widest">No hay candidatos seleccionados aún</p>
+          {/* SECCIÓN 9: ELECCIONES CONSEJO Y COMITÉ */}
+          {activeSection === 'consejo' && (
+            <div className="space-y-10 animate-in fade-in duration-500 uppercase">
+              <SectionHeader 
+                title="9. Elección Consejo y Comité" 
+                icon={Users} 
+                agendaIndices={[8]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                
+                {/* COLUMNA 1: CONSEJO */}
+                <Card title="9. Consejo de Administración" icon={Users} highlight>
+                  <div className="space-y-6">
+                    <div className="min-h-[60px] p-4 bg-slate-50 rounded-[24px] border-2 border-dashed border-[#4E8A2F]/20">
+                      {postuladosConsejo.length === 0 ? (
+                        <p className="text-[9px] text-slate-400 font-black text-center py-2">SIN CANDIDATOS PARA CONSEJO</p>
+                      ) : (
+                        <div className="flex flex-wrap gap-2">
+                          {postuladosConsejo.map(p => (
+                            <span key={p} className="bg-[#4E8A2F] text-white px-3 py-1.5 rounded-lg text-[9px] font-black flex items-center gap-2">
+                              {p} <button onClick={() => togglePostulacion(p, 'consejo')}><Trash2 size={12} /></button>
+                            </span>
+                          ))}
+                        </div>
                       )}
-                      {postuladosConsejo.map(p => (
-                        <span key={p} className="bg-[#4E8A2F] text-white px-5 py-2.5 rounded-2xl text-[10px] font-black flex items-center gap-3 border-b-4 border-black/20">
-                          {p} <button onClick={() => togglePostulacion(p, 'consejo')}><Trash2 size={14} /></button>
-                        </span>
-                      ))}
                     </div>
-                    <div className="max-h-80 overflow-y-auto border-2 border-[#4E8A2F]/10 rounded-[32px] divide-y divide-slate-100 text-[10px] font-bold bg-white">
+                    <div className="max-h-80 overflow-y-auto pr-2 custom-scrollbar">
                       {asistencia.map(r => (
-                        <div key={r.id} className="flex items-center justify-between p-5 hover:bg-slate-50 transition-colors">
-                          <span className="text-slate-700 font-black">{r.unidad} - {r.propietario}</span>
-                          <button onClick={() => togglePostulacion(r.propietario, 'consejo')} className={`px-5 py-2.5 rounded-xl transition-all ${postuladosConsejo.includes(r.propietario) ? 'bg-[#7FB069] text-white' : 'bg-slate-100 text-slate-400'}`}>POSTULAR</button>
+                        <div key={r.id} className="flex items-center justify-between p-4 border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors">
+                          <span className="text-[11px] font-black text-slate-700">{r.unidad} - {r.propietario}</span>
+                          <button 
+                            onClick={() => togglePostulacion(r.propietario, 'consejo')} 
+                            className={`px-4 py-2 rounded-xl text-[9px] font-black transition-all ${
+                              postuladosConsejo.includes(r.propietario) ? 'bg-[#7FB069] text-white' : 'bg-slate-100 text-slate-400'
+                            }`}
+                          >
+                            {postuladosConsejo.includes(r.propietario) ? 'POSTULADO' : 'POSTULAR'}
+                          </button>
                         </div>
                       ))}
                     </div>
                   </div>
                 </Card>
-                <div className="bg-[#4E8A2F] rounded-[48px] p-12 text-white flex flex-col justify-center text-center shadow-2xl border-b-[16px] border-[#7FB069]">
-                    <ShieldCheck size={72} className="text-white mb-10 mx-auto" />
-                    <h4 className="font-black text-2xl mb-4 uppercase tracking-tighter">Punto 10: Revisoría</h4>
-                    <p className="text-[11px] font-black text-white/60 leading-loose uppercase mb-8">Presentación y elección del Revisor Fiscal para el período 2026-2027.</p>
-                    <div className="p-8 bg-white/10 rounded-3xl border-2 border-white/20 uppercase">
-                       <p className="text-[11px] font-black mb-2 text-[#7FB069]">Actual Revisor:</p>
-                       <p className="text-xl font-black">MIGUEL ÁNGEL ACOSTA</p>
+
+                {/* COLUMNA 2: COMITÉ */}
+                <Card title="9.1 Comité de Convivencia" icon={HeartPulse}>
+                  <div className="space-y-6">
+                    <div className="min-h-[60px] p-4 bg-slate-50 rounded-[24px] border-2 border-dashed border-[#4E8A2F]/20">
+                      {postuladosConvivencia.length === 0 ? (
+                        <p className="text-[9px] text-slate-400 font-black text-center py-2">SIN CANDIDATOS PARA COMITÉ</p>
+                      ) : (
+                        <div className="flex flex-wrap gap-2">
+                          {postuladosConvivencia.map(p => (
+                            <span key={p} className="bg-[#4E8A2F] text-white px-3 py-1.5 rounded-lg text-[9px] font-black flex items-center gap-2">
+                              {p} <button onClick={() => togglePostulacion(p, 'convivencia')}><Trash2 size={12} /></button>
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
+                    <div className="max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+                      {asistencia.map(r => (
+                        <div key={r.id} className="flex items-center justify-between p-4 border-b border-slate-100 last:border-0 hover:bg-slate-50 transition-colors">
+                          <span className="text-[11px] font-black text-slate-700">{r.unidad} - {r.propietario}</span>
+                          <button 
+                            onClick={() => togglePostulacion(r.propietario, 'convivencia')} 
+                            className={`px-4 py-2 rounded-xl text-[9px] font-black transition-all ${
+                              postuladosConvivencia.includes(r.propietario) ? 'bg-[#7FB069] text-white' : 'bg-slate-100 text-slate-400'
+                            }`}
+                          >
+                            {postuladosConvivencia.includes(r.propietario) ? 'POSTULADO' : 'POSTULAR'}
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          )}
+
+          {/* SECCIÓN 10: REVISORÍA FISCAL */}
+          {activeSection === 'revisoria' && (
+            <div className="space-y-12 animate-in zoom-in-95 uppercase">
+              <SectionHeader 
+                title="10. Elección Revisoría Fiscal" 
+                icon={Gavel} 
+                agendaIndices={[9]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+
+              <div className="max-w-4xl mx-auto">
+                <div className="bg-[#4E8A2F] rounded-[56px] p-16 text-white text-center shadow-2xl border-b-[20px] border-[#7FB069] relative overflow-hidden">
+                  <div className="relative z-10">
+                    <ShieldCheck size={80} className="mx-auto mb-8 text-white/40" />
+                    <h3 className="text-4xl font-black mb-6 tracking-tighter">ELECCIÓN PERÍODO 2026-2027</h3>
+                    <p className="text-white/70 text-sm font-bold max-w-xl mx-auto mb-12 leading-relaxed">
+                      PRESENTACIÓN DE PROPUESTAS Y ELECCIÓN DEL PROFESIONAL ENCARGADO DE LA VIGILANCIA CONTABLE Y LEGAL.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="bg-white/10 backdrop-blur-md p-8 rounded-[40px] border-2 border-white/20">
+                        <p className="text-[10px] font-black text-[#7FB069] mb-2 tracking-widest">ACTUAL REVISOR</p>
+                        <p className="text-2xl font-black">MIGUEL ÁNGEL ACOSTA</p>
+                      </div>
+                      <div className="bg-white p-8 rounded-[40px] shadow-xl flex items-center justify-center">
+                        <p className="text-[#4E8A2F] font-black text-xs tracking-[0.2em]">SUJETO A VOTACIÓN ASAMBLEA</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-20 -mt-20"></div>
                 </div>
               </div>
             </div>
@@ -875,7 +1208,8 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-20 mb-32">
                   <div className="p-12 bg-slate-50 rounded-[56px] border-2 border-[#4E8A2F]/10 flex flex-col items-center">
                     <p className="text-[11px] font-black text-[#2F2F2F] mb-10 tracking-[0.3em]">Quórum de Cierre</p>
-                    <p className="text-7xl font-black text-[#4E8A2F] leading-none">{totalQuorum.toFixed(3)}%</p>
+                    {/* Cambia totalQuorum.toFixed(3) por Math.round */}
+                    <p className="text-7xl font-black text-[#4E8A2F] leading-none">{Math.round(totalQuorum)}%</p>
                   </div>
                   <div className="space-y-10 py-6 text-left">
                     <p className="text-[11px] font-black text-[#2F2F2F] tracking-[0.3em] uppercase leading-none mb-12">Mesa Directiva Electa</p>
