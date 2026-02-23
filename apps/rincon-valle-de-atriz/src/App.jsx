@@ -215,6 +215,63 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [searchTerm, setSearchTerm] = useState('');
 
+  const EvidenceSection = ({ title, content, icon: Icon, photos = [], color = "#8C1D2C" }) => {
+    const [showGallery, setShowGallery] = useState(false);
+
+    return (
+      <div className={`p-8 bg-slate-50 rounded-[40px] border-l-[16px] shadow-sm flex flex-col relative group transition-all hover:shadow-md`} style={{ borderColor: color }}>
+        <div className="flex justify-between items-start mb-4">
+          <p className="text-sm font-black uppercase tracking-widest" style={{ color: color }}>{title}</p>
+          
+          {photos.length > 0 && (
+            <button 
+              onClick={() => setShowGallery(true)}
+              className="flex flex-col items-center gap-1 transition-transform hover:scale-110 active:scale-95"
+            >
+              <div className="p-3 bg-white rounded-2xl border-2 shadow-sm text-[#1F1F1F] hover:bg-[#8C1D2C] hover:text-white transition-all" style={{ borderColor: `${color}20` }}>
+                <Camera size={22} />
+              </div>
+              <span className="text-[8px] font-black text-slate-400 uppercase tracking-tighter">Evidencias</span>
+            </button>
+          )}
+        </div>
+
+        <div className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
+          {content}
+        </div>
+
+        {/* MODAL DE GALERÍA DE GRAN TAMAÑO */}
+        {showGallery && (
+          <div className="fixed inset-0 z-[200] bg-[#1F1F1F]/fb backdrop-blur-2xl flex flex-col items-center justify-center p-6 sm:p-12 animate-in fade-in zoom-in duration-300">
+            <button 
+              onClick={() => setShowGallery(false)} 
+              className="absolute top-8 right-8 text-white bg-[#8C1D2C] px-10 py-5 rounded-full font-black text-xs shadow-2xl hover:bg-black transition-all flex items-center gap-3 border-2 border-white/20 z-[210]"
+            >
+              CERRAR GALERÍA <Trash2 size={20} />
+            </button>
+            
+            <div className="w-full max-w-6xl h-full flex items-center justify-center">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full overflow-y-auto max-h-[80vh] p-4 custom-scrollbar">
+                  {photos.map((ph, i) => (
+                    <div key={i} className="rounded-[40px] overflow-hidden border-8 border-white shadow-2xl bg-white group">
+                      <img 
+                        src={ph} 
+                        alt={`Evidencia ${i + 1}`} 
+                        className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-105" 
+                      />
+                      <div className="bg-white p-6 text-center">
+                        <p className="text-[#8C1D2C] font-black text-xs uppercase tracking-[0.2em]">RINCÓN VALLE DE ATRIZ - EVIDENCIA {i + 1}</p>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const InvestmentTable = ({ title, headers, data, icon: Icon, total, photos = [] }) => (
     <div className="bg-white rounded-[40px] border-4 border-[#8C1D2C]/10 overflow-hidden shadow-2xl flex flex-col mb-12">
       <div className="bg-[#8C1D2C] px-10 py-7 flex justify-between items-center border-b-[6px] border-[#3A3A3A]">
@@ -792,59 +849,66 @@ export default function App() {
               </div>
 
               {/* GESTIÓN OPERATIVA - SEGURIDAD */}
-              <Card title="1. Seguridad, Control de Acceso Y PLANTA ELÉCTRICA" icon={ShieldCheck} highlight className="p-10">
+              <Card title="1. SEGURIDAD, CONTROL DE ACCESO Y PLANTA ELÉCTRICA" icon={ShieldCheck} highlight className="p-10">
                 <div className="flex flex-col gap-6 pt-4">
                   
-                  {/* Sistemas de Vigilancia */}
-                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
-                    <p className="text-sm font-black text-[#8C1D2C] mb-3 uppercase tracking-widest">Sistemas de Vigilancia</p>
-                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
-                      INSTALACIÓN DE CÁMARAS: SE APROBÓ LA CONTRATACIÓN PARA INSTALAR NUEVAS CÁMARAS EN TODO EL PERÍMETRO. SE REEMPLAZARON 9 CÁMARAS Y SE REUBICARON OTRAS PARA MEJORAR RESOLUCIÓN Y COBERTURA.
-                    </p>
-                  </div>
+                  <EvidenceSection 
+                    title="Sistemas de Vigilancia"
+                    content="INSTALACIÓN DE CÁMARAS: SE APROBÓ LA CONTRATACIÓN PARA INSTALAR NUEVAS CÁMARAS EN TODO EL PERÍMETRO. SE REEMPLAZARON 9 CÁMARAS Y SE REUBICARON OTRAS PARA MEJORAR RESOLUCIÓN Y COBERTURA."
+                    photos={["/img/SV.jpeg", "/img/SV1.jpeg"]} // Agrega aquí tus URLs
+                  />
 
-                  {/* Infraestructura de Acceso */}
-                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#3A3A3A] shadow-sm">
-                    <p className="text-sm font-black text-[#3A3A3A] mb-3 uppercase tracking-widest">Infraestructura de Acceso</p>
-                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
-                      MODIFICACIÓN PUERTA TORRE 1: SE CONTRATÓ A LA EMPRESA IMAP PARA CAMBIAR EL SENTIDO DE LA PUERTA VEHICULAR, BUSCANDO QUE SEA CORREDIZA PARA NO AFECTAR EL PASO PEATONAL TRAS UN ACCIDENTE CON UNA RESIDENTE.
-                    </p>
-                  </div>
+                  <EvidenceSection 
+                    title="Infraestructura de Acceso"
+                    color="#3A3A3A"
+                    content="MODIFICACIÓN PUERTA TORRE 1: SE CONTRATÓ A LA EMPRESA IMAP PARA CAMBIAR EL SENTIDO DE LA PUERTA VEHICULAR, BUSCANDO QUE SEA CORREDIZA PARA NO AFECTAR EL PASO PEATONAL TRAS UN ACCIDENTE CON UNA RESIDENTE."
+                    photos={["/img/MOD1.jpeg", "/img/MOD2.jpeg"]}
+                  />
 
-                  {/* Instalación Cámaras Ascensores */}
-                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
-                    <p className="text-sm font-black text-[#8C1D2C] mb-3 uppercase tracking-widest">INSTALACIÓN CÁMARAS EN ASCENSORES</p>
-                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
-                      SE INSTALÓ UN SISTEMA DE COMUNICACIÓN INALÁMBRICO EN LOS ASCENSORES CON EL CUAL SE BUSCA ELIMINAR LAS FALLAS DE VIDEO OCASIONADAS POR EL DETERIORO DEL CABLEADO ANTERIOR Y ASEGURAR UNA TRANSMISIÓN ESTABLE Y CONTINUA.
-                    </p>
-                  </div>
+                  <EvidenceSection 
+                    title="INSTALACIÓN CÁMARAS EN ASCENSORES"
+                    content="SE INSTALÓ UN SISTEMA DE COMUNICACIÓN INALÁMBRICO EN LOS ASCENSORES CON EL CUAL SE BUSCA ELIMINAR LAS FALLAS DE VIDEO OCASIONADAS POR EL DETERIORO DEL CABLEADO ANTERIOR."
+                    photos={["/img/CAM.jpeg", "/img/CAM1.jpeg"]}
+                  />
 
-                  {/* Planta Eléctrica - Formato de Lista */}
-                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#3A3A3A] shadow-sm">
-                    <p className="text-sm font-black text-[#3A3A3A] mb-4 uppercase tracking-widest">MANTENIMIENTO CORRECTIVO Y PREVENTIVO PLANTA ELÉCTRICA</p>
-                    <ul className="space-y-3">
-                      {[
-                        "SUMINISTRO ACEITE Y REFRIGERANTE",
-                        "SUMINISTRO DE EMPAQUES, MANGUERAS, GRAFADAS Y ACOPLES",
-                        "LAVADO EXTERNO DEL RADIADOR",
-                        "INSUMOS VARIOS"
-                      ].map((item, index) => (
-                        <li key={index} className="flex items-center gap-3 text-xl font-bold text-slate-800 uppercase tracking-tight">
-                          <div className="w-2 h-2 bg-[#3A3A3A] rounded-full shrink-0"></div>
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  <EvidenceSection 
+                    title="PLANTA ELÉCTRICA"
+                    color="#3A3A3A"
+                    content={
+                      <ul className="space-y-3">
+                        {["SUMINISTRO ACEITE Y REFRIGERANTE", "SUMINISTRO DE EMPAQUES Y MANGUERAS", "LAVADO RADIADOR", "COMPRA DE BATERÍA"].map((li, idx) => (
+                          <li key={idx} className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-[#3A3A3A] rounded-full"></div> {li}
+                          </li>
+                        ))}
+                      </ul>
+                    }
+                    photos={["/img/PLE.jpeg", "/img/PLE1.jpeg", "/img/PLE2.jpeg", "/img/PLE3.jpeg"]}
+                  />
 
-                  {/* Instalación Cámaras Ascensores */}
-                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
-                    <p className="text-sm font-black text-[#8C1D2C] mb-3 uppercase tracking-widest">ZONAS DE SERVICIO</p>
-                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
-                      MANTENIMIENTO DE PUERTAS DE CUARTOS DE BASURAS Y CAMBIO DE PUERTAS DE BAÑO/BODEGA DEL PERSONAL.
-                    </p>
-                  </div>
+                  <EvidenceSection 
+                    title="ZONAS DE SERVICIO"
+                    content="MANTENIMIENTO DE PUERTAS DE CUARTOS DE BASURAS Y CAMBIO DE PUERTAS DE BAÑO/BODEGA DEL PERSONAL."
+                    photos={["/img/ZS.jpeg", "/img/ZS1.jpeg", "/img/ZS2.jpeg"]}
+                  />
 
+                  <EvidenceSection 
+                    title="OTROS/DIVERSOS"
+                    content={
+                      <ul className="space-y-3">
+                        {["PISO TORRE 1 SEXTO NIVEL", "MANTENIMIENTO JARDINES", "PINTURA REJA EXTERNA", "DECORACIÓN NAVIDEÑA"].map((li, idx) => (
+                          <li key={idx} className="flex items-center gap-3">
+                            <div className="w-2 h-2 bg-[#8C1D2C] rounded-full"></div> {li}
+                          </li>
+                        ))}
+                      </ul>
+                    }
+                    photos={[
+      "/img/OTR.jpeg", "/img/OTR1.jpeg", "/img/OTR2.jpeg", "/img/OTR3.jpeg", 
+      "/img/OTR4.jpeg", "/img/OTR5.jpeg", "/img/OTR6.jpeg", "/img/OTR7.jpeg",
+      "/img/OTR8.jpeg", "/img/OTR9.jpeg", "/img/OTR10.jpeg", "/img/OTR11.jpeg", "/img/OTR12.jpeg"
+    ]}
+                  />
                 </div>
               </Card>
 
@@ -899,7 +963,6 @@ export default function App() {
                       {p: "PEDRO NEL SALAS", o: "Dotación", d: "Suministro de 4 tapetes de caucho para ascensores."},
                       {p: "ADMINISTRACIÓN", o: "Combustibles", d: "Gasolina y ACPM para maquinaria."},
                       {p: "ADMINISTRACIÓN", o: "Jardinería", d: "Compra de manguera con regadera e insumos."},
-                      {p: "ADMINISTRACIÓN", o: "Dotación", d: "Compra de 2 termos para el servicio."},
                       {p: "DISTRIBUIDORA DE ACABADOS", o: "Ferretería", d: "Materiales de acabados."}
                     ]}
                   />
@@ -1054,19 +1117,32 @@ export default function App() {
                   </div>
                   <h3 className="text-4xl font-black text-[#8C1D2C] mb-6 tracking-tighter">DICTAMEN DE REVISORÍA</h3>
                   <div className="w-24 h-2 bg-[#1F1F1F] mb-10 rounded-full"></div>
-                  <div className="space-y-4">
+                  <div className="space-y-4 mb-10">
                     <p className="text-[14px] font-black text-[#1F1F1F] tracking-[0.4em]">Presentado por:</p>
                     <p className="text-3xl font-black text-[#1F1F1F] tracking-tight">ALVARO ARCINIEGAS</p>
                     <p className="text-xl font-bold text-[#8C1D2C] mt-4 tracking-widest">REVISOR FISCAL 2025</p>
                   </div>
-                  <div className="mt-16 bg-[#F5F5F5] p-10 rounded-[40px] w-full max-w-xl">
-                    <p className="text-xs font-black leading-relaxed">INFORME SOBRE LA RAZONABILIDAD DE LOS ESTADOS FINANCIEROS Y CUMPLIMIENTO NORMATIVO.</p>
+
+                  {/* BOTÓN DE VER DOCUMENTO */}
+                  <a 
+                    href="https://drive.google.com/file/d/1TywvudgJdvXG3TJ3sx9YAI_nWlgy1JPL/view?usp=sharing" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="mb-10 inline-flex items-center gap-3 bg-[#1F1F1F] text-white px-10 py-5 rounded-2xl font-black text-[11px] hover:bg-[#8C1D2C] transition-all shadow-xl hover:scale-105 active:scale-95 tracking-widest"
+                  >
+                    <FileText size={18} />
+                    VER DICTAMEN COMPLETO
+                  </a>
+
+                  <div className="bg-[#F5F5F5] p-10 rounded-[40px] w-full max-w-xl border-2 border-dashed border-slate-200">
+                    <p className="text-xs font-black leading-relaxed text-slate-500">
+                      INFORME SOBRE LA RAZONABILIDAD DE LOS ESTADOS FINANCIEROS Y CUMPLIMIENTO NORMATIVO.
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           )}
-
           {/* SECCIÓN 7: ESTADOS FINANCIEROS */}
           {activeSection === 'financiero' && (
             <div className="space-y-10 animate-in fade-in">
