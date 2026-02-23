@@ -692,6 +692,18 @@ export default function App() {
                     </p>
                     <div className="p-8 bg-slate-50 rounded-3xl border-2 border-dashed border-[#8C1D2C]/20 flex flex-col items-center justify-center text-center">
                         <FileText size={40} className="text-[#8C1D2C] mb-4 opacity-40" />
+                        
+                        {/* BOTÓN AGREGADO */}
+                        <a 
+                          href="https://drive.google.com/file/d/1Xlxfs3eMFE_y3Tda6E3DSJqLX_OT1WDJ/view?usp=sharing" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="mb-4 inline-flex items-center gap-2 bg-[#8C1D2C] text-white px-6 py-3 rounded-xl font-black text-[10px] hover:bg-[#6d1622] transition-colors shadow-lg shadow-[#8C1D2C]/20"
+                        >
+                          <FileText size={14} />
+                          VER ACTA COMPLETA
+                        </a>
+
                         <p className="text-[9px] font-black text-slate-400">ARCHIVOS SOPORTE DISPONIBLES EN ADMINISTRACIÓN</p>
                     </div>
                   </div>
@@ -712,40 +724,112 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 5: INFORME GESTIÓN */}
+          {/* SECCIÓN 5: INFORME GESTIÓN (ACTUALIZADO CON DOCUMENTO ADMINISTRATIVO) */}
           {activeSection === 'gestion' && (
             <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
-              <SectionHeader title="5. Informe de Gestión 2025" icon={TrendingUp} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              <SectionHeader title="5. Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
 
-              <Card title="1. Gestión Administrativa y Operativa" icon={Building2} highlight className="p-10">
-                <div className="flex flex-col gap-8 pt-4">
-                  <div className="p-10 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
-                    <p className="text-base font-black text-[#8C1D2C] mb-4 tracking-[0.2em] uppercase">
-                      Resumen Ejecutivo
+              {/* GESTIÓN OPERATIVA - SEGURIDAD */}
+              <Card title="1. Seguridad y Control de Acceso" icon={ShieldCheck} highlight className="p-10">
+                <div className="flex flex-col gap-6 pt-4">
+                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
+                    <p className="text-sm font-black text-[#8C1D2C] mb-3 uppercase tracking-widest">Sistemas de Vigilancia</p>
+                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
+                      INSTALACIÓN DE CÁMARAS: SE APROBÓ LA CONTRATACIÓN PARA INSTALAR NUEVAS CÁMARAS EN TODO EL PERÍMETRO. SE REEMPLAZARON 9 CÁMARAS Y SE REUBICARON OTRAS PARA MEJORAR RESOLUCIÓN Y COBERTURA. SE ACORDÓ SOLICITAR COTIZACIONES PARA CÁMARAS AL INTERIOR DE ASCENSORES.
                     </p>
-                    <p className="text-2xl font-bold text-slate-800 leading-snug uppercase tracking-tight">
-                      Durante el periodo 2025, la administración de Ana Lucía Yépez enfocó sus esfuerzos en la modernización de accesos y el mantenimiento preventivo de la infraestructura crítica. Se destaca la ejecución de obras civiles importantes en la portería y la automatización de accesos vehiculares para mejorar la seguridad de los copropietarios.
+                  </div>
+                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#3A3A3A] shadow-sm">
+                    <p className="text-sm font-black text-[#3A3A3A] mb-3 uppercase tracking-widest">Infraestructura de Acceso</p>
+                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
+                      MODIFICACIÓN PUERTA TORRE 1: SE CONTRATÓ A LA EMPRESA IMAP PARA CAMBIAR EL SENTIDO DE LA PUERTA VEHICULAR, BUSCANDO QUE SEA CORREDIZA PARA NO AFECTAR EL PASO PEATONAL TRAS UN ACCIDENTE CON UNA RESIDENTE.
                     </p>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-6 bg-[#8C1D2C]/5 rounded-3xl border-2 border-[#8C1D2C]/10">
+                       <p className="text-[10px] font-black text-[#8C1D2C] mb-2">PROYECTOS EN ANÁLISIS</p>
+                       <ul className="text-xs font-bold space-y-2 text-slate-600 list-disc pl-4">
+                         <li>TALANQUERA DOBLE PARA HORAS PICO.</li>
+                         <li>PUERTAS EN PARQUEADEROS PARA RESTRINGIR ACCESO A PISOS.</li>
+                         <li>CONTROLES BIOMÉTRICOS DE INGRESO.</li>
+                         <li>MAYOR SEGURIDAD EN PUERTA DE BASURAS.</li>
+                       </ul>
+                    </div>
+                    <div className="bg-[#1F1F1F] p-8 rounded-[40px] flex flex-col items-center justify-center text-center text-white">
+                        <p className="text-[10px] font-black text-white/40 mb-2">INVERSIÓN PUERTA T1</p>
+                        <p className="text-4xl font-black tracking-tighter text-[#8C1D2C]">$16.350.750</p>
+                    </div>
                   </div>
                 </div>
               </Card>
 
+              {/* OBRAS Y MANTENIMIENTO */}
+              <Card title="2. Obras, Mantenimiento e Infraestructura" icon={Wrench} className="p-10">
+                <div className="flex flex-col gap-6 pt-4">
+                  {[
+                    { t: "MANTENIMIENTO GENERAL", d: "JARDINERÍA, MANTENIMIENTO DE PLANTA ELÉCTRICA Y CERCA ELÉCTRICA. LABORES DE DESRATIZACIÓN Y FUMIGACIÓN." },
+                    { t: "REPARACIONES ESTRUCTURALES", d: "INTERVENCIÓN EN TORRES 3 Y 4 PARA REPARAR HUMEDADES Y FILTRACIONES EN PARQUEADEROS." },
+                    { t: "ZONAS DE SERVICIO", d: "MANTENIMIENTO DE PUERTAS DE CUARTOS DE BASURAS Y CAMBIO DE PUERTAS DE BAÑO/BODEGA DEL PERSONAL." },
+                    { t: "ENERGÍA SOLAR", d: "ESTUDIO TÉCNICO CON EVOLTI PARA EVALUAR VIABILIDAD DE PANELES SOLARES DE NUEVA GENERACIÓN EN ZONAS COMUNES." }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-8 p-8 border-2 border-slate-50 rounded-[40px] bg-white shadow-sm hover:border-[#8C1D2C]/20 transition-all">
+                      <div className="h-12 w-12 bg-[#8C1D2C] rounded-2xl flex items-center justify-center text-white shrink-0">
+                        <Activity size={24} />
+                      </div>
+                      <div>
+                        <p className="text-xs font-black text-[#8C1D2C] mb-1">{item.t}</p>
+                        <p className="text-sm font-bold text-slate-700 leading-tight tracking-tight">{item.d}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
+              {/* GESTIÓN FINANCIERA */}
+              <Card title="3. Gestión Financiera y Presupuestal" icon={BarChart3} highlight className="p-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
+                  <div className="space-y-6">
+                    <div className="p-10 bg-[#1F1F1F] rounded-[48px] text-white flex flex-col items-center justify-center text-center shadow-xl">
+                      <p className="text-[10px] font-black text-white/40 mb-3 tracking-[0.3em]">EFECTIVO LÍQUIDO (OCT)</p>
+                      <p className="text-6xl font-black text-[#8C1D2C] tracking-tighter">$145.000.000</p>
+                    </div>
+                    <div className="p-8 border-4 border-slate-50 rounded-[40px] flex gap-6 items-center">
+                        <div className="p-4 bg-[#8C1D2C]/10 rounded-2xl text-[#8C1D2C]"><Percent size={32}/></div>
+                        <div>
+                          <p className="text-[10px] font-black text-slate-400">EJECUCIÓN PRESUPUESTAL</p>
+                          <p className="text-3xl font-black text-slate-800">76% <span className="text-xs text-slate-400">(A SEP 2025)</span></p>
+                        </div>
+                    </div>
+                  </div>
+                  <div className="bg-slate-50 rounded-[48px] p-10 flex flex-col justify-center space-y-8">
+                     <div className="border-b-2 border-slate-200 pb-6">
+                        <p className="text-xs font-black text-[#8C1D2C] mb-2">INVERSIÓN DE EXCEDENTES</p>
+                        <p className="text-sm font-bold text-slate-600">MANTENER $50.000.000 PARA OPERACIÓN Y DESTINAR EXCEDENTE A RENTA DIARIA O CDT.</p>
+                     </div>
+                     <div>
+                        <p className="text-xs font-black text-[#8C1D2C] mb-2">RECUPERACIÓN DE CARTERA</p>
+                        <p className="text-sm font-bold text-slate-600">CONTRATACIÓN DRA. STEFANIA MUÑOZ. RECOMENDACIÓN DE COBRO JURÍDICO SOBRE CUOTAS EXTRAORDINARIAS.</p>
+                     </div>
+                  </div>
+                </div>
+              </Card>
+
+              {/* TABLAS COMPLETAS DEL INFORME */}
               <div className="space-y-12">
                 <ManagementTable 
-                  title="2. RELACIÓN DE GASTOS MENSUALES FIJOS (OPERATIVOS) 2025"
-                  headers={["PROVEEDOR", "CONCEPTO", "DETALLE"]}
+                  title="CUADRO DE GASTOS MENSUALES FIJOS"
+                  headers={["PROVEEDOR", "CONCEPTO", "DETALLE DEL GASTO"]}
                   data={[
-                    {p: "Seguridad del Sur Ltda", c: "Vigilancia", d: "Servicio de vigilancia privada 24/7."},
-                    {p: "Escoba Mágica SAS", c: "Aseo y Jardinería", d: "Servicios integrales de limpieza y jardines."},
-                    {p: "Mitsubishi Electric", c: "Mantenimiento Ascensores", d: "Servicio preventivo mensual."},
-                    {p: "Enertotal SA ESP", c: "Energía Eléctrica", d: "Pago mensual luz zonas comunes."},
-                    {p: "Empopasto SA ESP", c: "Acueducto", d: "Servicio de agua y alcantarillado."},
-                    {p: "Emas SA ESP", c: "Servicio de Aseo", d: "Recolección de basuras y residuos."},
-                    {p: "Colombia Telecomunicaciones", c: "Internet y Telefonía", d: "Conectividad para administración."},
-                    {p: "Ana Lucía Yépez C.", c: "Honorarios Administración", d: "Gestión administrativa mensual."},
-                    {p: "Luz Janeth López Vela", c: "Honorarios Contabilidad", d: "Gestión contable y financiera."},
-                    {p: "La Equidad Seguros", c: "Póliza Copropiedad", d: "Prima anual de seguro zonas comunes."},
-                    {p: "DIAN", c: "Impuestos", d: "Pago de Retención en la Fuente e IVA."}
+                    {p: "SEGURIDAD DEL SUR LTDA", c: "Vigilancia", d: "Servicio de vigilancia y seguridad privada mensual."},
+                    {p: "ESCOBA MÁGICA SAS", c: "Aseo y Jardinería", d: "Limpieza, zonas verdes y servicios generales."},
+                    {p: "MITSUBISHI ELECTRIC", c: "Mantenimiento", d: "Mantenimiento preventivo mensual de ascensores."},
+                    {p: "ENERTOTAL SA ESP", c: "Energía Eléctrica", d: "Consumo de energía de áreas comunes."},
+                    {p: "EMPOPASTO SA ESP", c: "Acueducto", d: "Servicio de agua y alcantarillado."},
+                    {p: "EMAS SA ESP", c: "Aseo Público", d: "Servicio de recolección de residuos."},
+                    {p: "COLOMBIANA TELECOMUNICACIONES", c: "Conectividad", d: "Internet y telefonía para administración."},
+                    {p: "ANA LUCIA YEPEZ C.", c: "Administración", d: "Honorarios gestión administrativa mensual."},
+                    {p: "LUZ JANETH LOPEZ VELA", c: "Contabilidad", d: "Honorarios servicios contables mensuales."},
+                    {p: "ALVARO ARCINIEGAS", c: "Revisoría Fiscal", d: "Honorarios revisoría fiscal mensual."},
+                    {p: "NELSY ROCIO VELASQUEZ", c: "Cafetería", d: "Servicio mensual de cafetería e insumos."}
                   ].map(item => ({
                     ...item,
                     p: <span className="text-lg font-black text-[#8C1D2C]">{item.p}</span>,
@@ -755,51 +839,170 @@ export default function App() {
                   icon={Activity}
                 />
 
-                <InvestmentTable 
-                    title="3. INFRAESTRUCTURA, SEGURIDAD Y MEJORAS (ADICIONALES)"
-                    headers={["PROVEEDOR", "OBRA REALIZADA", "DETALLE DEL SERVICIO"]}
+                <div className="flex flex-col gap-12">
+                  <InvestmentTable 
+                    title="MANTENIMIENTO Y REPARACIONES LOCATIVAS"
+                    headers={["PROVEEDOR", "OBRA REALIZADA", "DETALLE"]}
                     icon={Wrench}
-                    total="EXTRAORDINARIOS"
                     data={[
-                      {p: "USAG IMAP SAS", o: "Puerta Vehicular", d: "Adecuación puerta lateral y automatización."},
-                      {p: "Juan Sebastián Cerón", o: "Cámaras de Seguridad", d: "Mantenimiento e instalación CCTV."},
-                      {p: "Bellavista JT SAS", o: "Reparaciones Locativas", d: "Impermeabilización y ajuste de láminas."},
-                      {p: "Luis Hernando Villota", o: "Citofonía", d: "Mantenimiento de citófonos en torres."},
-                      {p: "Oscar Males", o: "Soldadura y Puertas", d: "Arreglo puertas shut de basuras."},
-                      {p: "Albeiro Bastidas G.", o: "Mantenimiento Planta", d: "Cambio de aceite y mantenimiento radiador."},
-                      {p: "Andrés Guerrero", o: "Señalización", d: "Instalación de placas PVC en portería."},
-                      {p: "Jolmar Valdés Castaño", o: "Extintores", d: "Recarga y mantenimiento (FVE 2091)."},
-                      {p: "Paola Coral (Sol Agroind)", o: "Control de Plagas", d: "Desratización y control de roedores."},
-                      {p: "Jesús Arnulfo Córdoba", o: "Soporte Técnico", d: "Mantenimiento de equipos de cómputo."},
-                      {p: "Carlos Efraín Calpa", o: "Mantenimiento de Pisos", d: "Trabajos según cuenta de cobro."},
-                      {p: "Mónica Chicaiza", o: "Acabados", d: "Compra de porcelanato para reparaciones."}
-                    ].map(item => ({
-                      ...item,
-                      p: <span className="text-xl font-black text-[#8C1D2C]">{item.p}</span>,
-                      o: <span className="text-xl font-bold text-slate-700">{item.o}</span>,
-                      d: <span className="text-lg font-medium text-slate-500 italic">{item.d}</span>
-                    }))}
+                      {p: "BELLAVISTA JT SAS", o: "Cubiertas/Techos", d: "Inspección, ajuste de láminas y siliconado de tornillos."},
+                      {p: "BELLAVISTA JT SAS", o: "Limpieza Fachada", d: "Alquiler de hidrolavadora y reparaciones varias."},
+                      {p: "JUAN IGNACIO DIAZ", o: "Humedades", d: "Reparación de daños causados por humedad."},
+                      {p: "OSCAR MALES", o: "Cerrajería", d: "Arreglo de puerta y soldadura puerta doble hoja."},
+                      {p: "LUIS HERNANDO VILLOTA", o: "Citofonía", d: "Arreglo y mantenimiento de citófonos."},
+                      {p: "ANDRES GUERRERO", o: "Señalética", d: "Instalación de placas PVC vinilo con remaches."}
+                    ]}
                   />
 
-                  <Card title="4. RELACIÓN DE GASTOS MENORES (CAJA MENOR)" icon={Wallet} className="p-12">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {[
-                        { t: "Papelería y Oficina", d: "Micropuntas, marcadores Sharpie, sobres para bonos, fotocopias y separadores." },
-                        { t: "Ferretería", d: "Pulsadores, llaves, aceite, chapas, tornillos, taladro DeWalt y herramientas." },
-                        { t: "Cafetería y Eventos", d: "Refrigerios asamblea, sándwiches consejo, empanadas, pan de bono y dulces Halloween." },
-                        { t: "Trámites Legales", d: "Autenticaciones en notaría y certificados de representación legal." },
-                        { t: "Impuestos", d: "Pagos de ReteICA correspondientes a los diferentes bimestres del año." },
-                        { t: "Temporada Navideña", d: "Compra de series de luces y decoración para el condominio." },
-                        { t: "Transporte", d: "Movilización para diligencias de inspección de policía y secuestros." }
-                      ].map((item, idx) => (
-                        <div key={idx} className="p-6 bg-slate-50 rounded-3xl border border-slate-100">
-                          <p className="text-[#8C1D2C] font-black text-xs mb-2 tracking-widest">{item.t}</p>
-                          <p className="text-sm font-bold text-slate-600">{item.d}</p>
-                        </div>
-                      ))}
+                  <InvestmentTable 
+                    title="SUMINISTROS, EQUIPOS E INSUMOS"
+                    headers={["PROVEEDOR", "CATEGORÍA", "DETALLE"]}
+                    icon={Cog}
+                    data={[
+                      {p: "ADRIANA BARRERA", o: "Aseo", d: "Compra de suministros y productos de limpieza."},
+                      {p: "LUIS HUMBERTO BARRERA", o: "Eléctrico", d: "Suministros eléctricos (FE 1056 y 1067)."},
+                      {p: "PEDRO NEL SALAS", o: "Dotación", d: "Suministro de 4 tapetes de caucho para ascensores."},
+                      {p: "WILSON ANDRES GUACHA", o: "Combustibles", d: "Gasolina y ACPM para maquinaria."},
+                      {p: "NELSON JAIRO GUERRERO", o: "Jardinería", d: "Compra de manguera con regadera e insumos."},
+                      {p: "ANA LUCIA YEPEZ", o: "Dotación", d: "Compra de 2 termos para el servicio."},
+                      {p: "DISTRIBUIDORA DE ACABADOS", o: "Ferretería", d: "Materiales de acabados (Facturas pendientes)."}
+                    ]}
+                  />
+
+                  <InvestmentTable 
+                    title="GASTOS LEGALES, SEGUROS Y ADMINISTRATIVOS"
+                    headers={["PROVEEDOR", "CATEGORÍA", "DETALLE"]}
+                    icon={Scale}
+                    data={[
+                      {p: "LA EQUIDAD SEGUROS", o: "Seguros", d: "Pago de cuotas de la póliza de áreas comunes."},
+                      {p: "CLAUDIA ARCINIEGAS TORRES", o: "Jurídico", d: "Honorarios por asesoría y gestiones jurídicas."},
+                      {p: "DIAN", o: "Impuestos", d: "Pagos de Retención en la Fuente e IVA."},
+                      {p: "KUMARA SEG Y SALUD", o: "SGSST", d: "Acompañamiento implementación Salud y Seguridad."},
+                      {p: "JESUS ARNULFO CORDOBA", o: "Sistemas", d: "Mantenimiento físico y lógico de equipos."},
+                      {p: "COLOMBIANA DE COMERCIO", o: "Asamblea", d: "Refrigerios para Asamblea de Copropietarios."}
+                    ]}
+                  />
+                </div>
+              </div>
+
+              {/* CAJA MENOR */}
+              <Card title="Listado de Gastos de Caja Menor" icon={Wallet} className="p-12">
+                <div className="overflow-x-auto">
+                   <table className="w-full text-left text-sm uppercase">
+                      <thead className="bg-[#F5F5F5] text-[#8C1D2C] font-black border-b-2">
+                        <tr>
+                           <th className="px-6 py-4">PROVEEDOR</th>
+                           <th className="px-6 py-4">CONCEPTO</th>
+                           <th className="px-6 py-4">DETALLE</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 font-bold text-slate-600">
+                        {[
+                          {p: "LA CALI", c: "Papelería", d: "Micropunta y marcador Sharpie"},
+                          {p: "DORALINE M. BRAVO", c: "Servicios", d: "Creación de base de datos residentes"},
+                          {p: "SUPERMERCADOS ANDI", c: "Alimentación", d: "Sándwich de pollo"},
+                          {p: "SU FERRETERIA PANDIACO", c: "Ferretería", d: "Pulsador y duplicado de llave"},
+                          {p: "ALCALDÍA DE PASTO", c: "Impuestos", d: "Rete ICA Bimestre 6 - 2024"},
+                          {p: "ALFONSO J. BENITEZ", c: "Legal", d: "Gastos de autenticación"},
+                          {p: "ALSACIA SLS SAS", c: "Alimentación", d: "11 Sándwiches"},
+                          {p: "SU FERRETERIA PANDIACO", c: "Ferretería", d: "Chapa alcoba metal / Pistola calafateadora"},
+                          {p: "ALCALDÍA DE PASTO", c: "Legal", d: "Certificación representación legal"},
+                          {p: "KETHY ALEXANDRA NIETO", c: "Insumos", d: "Compra de brocha profesional"}
+                        ].map((row, i) => (
+                          <tr key={i} className="hover:bg-slate-50">
+                            <td className="px-6 py-4 text-[#8C1D2C]">{row.p}</td>
+                            <td className="px-6 py-4">{row.c}</td>
+                            <td className="px-6 py-4 italic font-medium">{row.d}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                   </table>
+                </div>
+              </Card>
+
+              {/* SEGUROS (ACTUALIZADO CON CIFRAS REALES) */}
+              <div className="space-y-12 mt-20">
+                <div className="bg-[#8C1D2C] p-16 rounded-[60px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
+                  <div className="z-10 text-center md:text-left">
+                    <h3 className="text-6xl font-black uppercase tracking-tighter mb-4">Póliza de Copropiedad</h3>
+                    <p className="text-white/80 font-bold text-2xl uppercase tracking-[0.2em]">La Equidad Seguros (AA006031) | 2025 - 2026</p>
+                  </div>
+                  <ShieldCheck size={120} className="text-white opacity-20 absolute right-12" />
+                </div>
+
+                <div className="flex flex-col gap-10">
+                  <Card title="Valores Asegurados Totales" icon={ShieldCheck} badge="Vigente" highlight className="p-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
+                      <div className="p-10 bg-slate-50 rounded-[48px] border-4 border-[#8C1D2C]/10 flex flex-col items-center justify-center shadow-inner">
+                        <p className="text-base font-black text-slate-500 uppercase mb-3 tracking-widest">V. Asegurado Total</p>
+                        <p className="text-6xl font-black text-[#8C1D2C] tracking-tighter">$44.825.000.000</p>
+                      </div>
+                      <div className="p-10 bg-slate-50 rounded-[48px] border-4 border-[#8C1D2C]/10 flex flex-col items-center justify-center shadow-inner">
+                        <p className="text-base font-black text-slate-500 uppercase mb-3 tracking-widest">Prima Total Anual</p>
+                        <p className="text-6xl font-black text-[#1F1F1F] tracking-tighter">$48.633.078</p>
+                      </div>
+                    </div>
+                    
+                    <div className="overflow-x-auto rounded-[40px] border-4 border-slate-50 shadow-sm">
+                      <table className="w-full text-left uppercase">
+                        <tbody className="divide-y-4 divide-white">
+                          <tr className="bg-slate-50">
+                            <td className="px-12 py-8 text-xl font-black text-slate-600">EDIFICIO (ÁREAS COMUNES)</td>
+                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$42.000.000.000</td>
+                          </tr>
+                          <tr>
+                            <td className="px-12 py-8 text-xl font-black text-slate-600">RC EXTRACONTRACTUAL</td>
+                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$500.000.000</td>
+                          </tr>
+                          <tr className="bg-slate-50">
+                            <td className="px-12 py-8 text-xl font-black text-slate-600">ROTURA DE MAQUINARIA</td>
+                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$795.000.000</td>
+                          </tr>
+                          <tr>
+                            <td className="px-12 py-8 text-xl font-black text-slate-600">DIRECTORES Y ADMIN (D&O)</td>
+                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$200.000.000</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
                   </Card>
+                </div>
               </div>
+
+              {/* CONVIVENCIA Y NORMATIVA */}
+              <div className="space-y-12 mt-20">
+                <Card title="4. Convivencia y Normativas Internas" icon={Activity} highlight className="p-12">
+                  <div className="flex flex-col gap-8">
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#8C1D2C]">
+                           <p className="text-xs font-black text-[#8C1D2C] mb-2 uppercase">OBRAS PRIVADAS</p>
+                           <p className="text-sm font-bold text-slate-700 uppercase">LÍMITE NOV 2025 PARA INTERVENCIONES ESTRUCTURALES EN APTO 1-602. SUSPENSIÓN DE TODA ACTIVIDAD DE OBRA EN DICIEMBRE.</p>
+                        </div>
+                        <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#3A3A3A]">
+                           <p className="text-xs font-black text-[#3A3A3A] mb-2 uppercase">ZONAS COMUNES</p>
+                           <p className="text-sm font-bold text-slate-700 uppercase">NO ES PROCEDENTE LA COMERCIALIZACIÓN DE PRODUCTOS PARTICULARES POR COLABORADORES EN ÁREAS COMUNES.</p>
+                        </div>
+                     </div>
+                     <div className="bg-[#1F1F1F] p-10 rounded-[48px] text-white">
+                        <div className="flex items-center gap-6 mb-6">
+                           <UserPlus size={40} className="text-[#8C1D2C]" />
+                           <h4 className="text-2xl font-black uppercase tracking-tighter">CONSEJO DE ADMINISTRACIÓN VIGENTE</h4>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-white/10 pt-8 uppercase">
+                           <div>
+                              <p className="text-[10px] text-white/40 mb-1">PRESIDENTE DEL CONSEJO</p>
+                              <p className="text-xl font-black">SR. MARIO ROJAS</p>
+                           </div>
+                           <div>
+                              <p className="text-[10px] text-white/40 mb-1">PRESIDENTE SUPLENTE</p>
+                              <p className="text-xl font-black">DR. JUAN CARLOS NARVAEZ</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                </Card>
+              </div>
+
             </div>
           )}
           
