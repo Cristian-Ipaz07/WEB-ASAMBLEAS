@@ -389,7 +389,8 @@ export default function App() {
             { id: 'orden', label: '3. Orden del Día', icon: ListChecks },
             { id: 'acta-anterior', label: '4. Acta Anterior', icon: FileText },
             { id: 'gestion', label: '5. Informe Gestión', icon: TrendingUp },
-            { id: 'financiero', label: '6-7. Financiero', icon: BarChart3 },
+            { id: 'dictamen', label: '6. Dictamen', icon: ShieldCheck },
+            { id: 'financiero', label: '7. Estados Financieros', icon: BarChart3 },
             { id: 'presupuesto', label: '8. Presupuesto', icon: PieChart },
             { id: 'consejo', label: '9-10. Elecciones', icon: Users },
             { id: 'revisoria', label: '11. Revisoría Fiscal', icon: ShieldCheck },
@@ -729,89 +730,124 @@ export default function App() {
             <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
               <SectionHeader title="5. Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
 
+              {/* CONVIVENCIA Y NORMATIVA */}
+              <div className="space-y-12 mt-20">
+                <Card title="CONSEJO DE ADMINISTRACION Y CONVIVENCIA" icon={Activity} highlight className="p-12">
+                  <div className="flex flex-col gap-8">
+                      <div className="bg-[#1F1F1F] p-10 rounded-[48px] text-white">
+                        <div className="flex items-center gap-6 mb-6">
+                           <UserPlus size={40} className="text-[#8C1D2C]" />
+                           <h4 className="text-2xl font-black uppercase tracking-tighter">CONSEJO DE ADMINISTRACIÓN VIGENTE</h4>
+                        </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-white/10 pt-8 uppercase">
+                           <div>
+                              <p className="text-[10px] text-white/40 mb-1">PRESIDENTE DEL CONSEJO</p>
+                              <p className="text-xl font-black">SR. MARIO ROJAS</p>
+                           </div>
+                           <div>
+                              <p className="text-[10px] text-white/40 mb-1">PRESIDENTE SUPLENTE</p>
+                              <p className="text-xl font-black">DR. JUAN CARLOS NARVAEZ</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {/* COMUNICADOS Y CIRCULARES */}
+                        <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#8C1D2C] shadow-sm w-full flex flex-col">
+                          <p className="text-xs font-black text-[#8C1D2C] mb-6 uppercase tracking-widest">COMUNICADOS Y CIRCULARES</p>
+                          <ul className="space-y-4 flex-1">
+                            {[
+                              "RUIDOS",
+                              "TRABAJOS EN APARTAMENTOS",
+                              "TENENCIA DE MASCOTAS",
+                              "USO PARQUEADERO DE VISITANTES"
+                            ].map((item, index) => (
+                              <li key={index} className="flex items-center gap-3 text-sm font-bold text-slate-700 uppercase tracking-tight">
+                                <div className="w-2 h-2 bg-[#8C1D2C] rounded-full shrink-0 shadow-sm"></div>
+                                <span className="leading-tight">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* SOLICITUDES */}
+                        <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#3A3A3A] shadow-sm w-full flex flex-col">
+                          <p className="text-xs font-black text-[#3A3A3A] mb-6 uppercase tracking-widest">SOLICITUDES</p>
+                          <ul className="space-y-4 flex-1">
+                            {[
+                              "FUENTE DE LA TRANSPARENCIA",
+                              "RUIDOS EN PARQUEADEROS EXTERNOS",
+                              "DIFERENTES DERECHOS DE PETICIÓN POR ESPACIO PÚBLICO"
+                            ].map((item, index) => (
+                              <li key={index} className="flex items-center gap-3 text-sm font-bold text-slate-700 uppercase tracking-tight">
+                                <div className="w-2 h-2 bg-[#3A3A3A] rounded-full shrink-0 shadow-sm"></div>
+                                <span className="leading-tight">{item}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                     </div>
+                     
+                  </div>
+                </Card>
+              </div>
+
               {/* GESTIÓN OPERATIVA - SEGURIDAD */}
-              <Card title="1. Seguridad y Control de Acceso" icon={ShieldCheck} highlight className="p-10">
+              <Card title="1. Seguridad, Control de Acceso Y PLANTA ELÉCTRICA" icon={ShieldCheck} highlight className="p-10">
                 <div className="flex flex-col gap-6 pt-4">
+                  
+                  {/* Sistemas de Vigilancia */}
                   <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
                     <p className="text-sm font-black text-[#8C1D2C] mb-3 uppercase tracking-widest">Sistemas de Vigilancia</p>
                     <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
-                      INSTALACIÓN DE CÁMARAS: SE APROBÓ LA CONTRATACIÓN PARA INSTALAR NUEVAS CÁMARAS EN TODO EL PERÍMETRO. SE REEMPLAZARON 9 CÁMARAS Y SE REUBICARON OTRAS PARA MEJORAR RESOLUCIÓN Y COBERTURA. SE ACORDÓ SOLICITAR COTIZACIONES PARA CÁMARAS AL INTERIOR DE ASCENSORES.
+                      INSTALACIÓN DE CÁMARAS: SE APROBÓ LA CONTRATACIÓN PARA INSTALAR NUEVAS CÁMARAS EN TODO EL PERÍMETRO. SE REEMPLAZARON 9 CÁMARAS Y SE REUBICARON OTRAS PARA MEJORAR RESOLUCIÓN Y COBERTURA.
                     </p>
                   </div>
+
+                  {/* Infraestructura de Acceso */}
                   <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#3A3A3A] shadow-sm">
                     <p className="text-sm font-black text-[#3A3A3A] mb-3 uppercase tracking-widest">Infraestructura de Acceso</p>
                     <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
                       MODIFICACIÓN PUERTA TORRE 1: SE CONTRATÓ A LA EMPRESA IMAP PARA CAMBIAR EL SENTIDO DE LA PUERTA VEHICULAR, BUSCANDO QUE SEA CORREDIZA PARA NO AFECTAR EL PASO PEATONAL TRAS UN ACCIDENTE CON UNA RESIDENTE.
                     </p>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="p-6 bg-[#8C1D2C]/5 rounded-3xl border-2 border-[#8C1D2C]/10">
-                       <p className="text-[10px] font-black text-[#8C1D2C] mb-2">PROYECTOS EN ANÁLISIS</p>
-                       <ul className="text-xs font-bold space-y-2 text-slate-600 list-disc pl-4">
-                         <li>TALANQUERA DOBLE PARA HORAS PICO.</li>
-                         <li>PUERTAS EN PARQUEADEROS PARA RESTRINGIR ACCESO A PISOS.</li>
-                         <li>CONTROLES BIOMÉTRICOS DE INGRESO.</li>
-                         <li>MAYOR SEGURIDAD EN PUERTA DE BASURAS.</li>
-                       </ul>
-                    </div>
-                    <div className="bg-[#1F1F1F] p-8 rounded-[40px] flex flex-col items-center justify-center text-center text-white">
-                        <p className="text-[10px] font-black text-white/40 mb-2">INVERSIÓN PUERTA T1</p>
-                        <p className="text-4xl font-black tracking-tighter text-[#8C1D2C]">$16.350.750</p>
-                    </div>
+
+                  {/* Instalación Cámaras Ascensores */}
+                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
+                    <p className="text-sm font-black text-[#8C1D2C] mb-3 uppercase tracking-widest">INSTALACIÓN CÁMARAS EN ASCENSORES</p>
+                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
+                      SE INSTALÓ UN SISTEMA DE COMUNICACIÓN INALÁMBRICO EN LOS ASCENSORES CON EL CUAL SE BUSCA ELIMINAR LAS FALLAS DE VIDEO OCASIONADAS POR EL DETERIORO DEL CABLEADO ANTERIOR Y ASEGURAR UNA TRANSMISIÓN ESTABLE Y CONTINUA.
+                    </p>
                   </div>
+
+                  {/* Planta Eléctrica - Formato de Lista */}
+                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#3A3A3A] shadow-sm">
+                    <p className="text-sm font-black text-[#3A3A3A] mb-4 uppercase tracking-widest">MANTENIMIENTO CORRECTIVO Y PREVENTIVO PLANTA ELÉCTRICA</p>
+                    <ul className="space-y-3">
+                      {[
+                        "SUMINISTRO ACEITE Y REFRIGERANTE",
+                        "SUMINISTRO DE EMPAQUES, MANGUERAS, GRAFADAS Y ACOPLES",
+                        "LAVADO EXTERNO DEL RADIADOR",
+                        "INSUMOS VARIOS"
+                      ].map((item, index) => (
+                        <li key={index} className="flex items-center gap-3 text-xl font-bold text-slate-800 uppercase tracking-tight">
+                          <div className="w-2 h-2 bg-[#3A3A3A] rounded-full shrink-0"></div>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Instalación Cámaras Ascensores */}
+                  <div className="p-8 bg-slate-50 rounded-[40px] border-l-[16px] border-[#8C1D2C] shadow-sm">
+                    <p className="text-sm font-black text-[#8C1D2C] mb-3 uppercase tracking-widest">ZONAS DE SERVICIO</p>
+                    <p className="text-xl font-bold text-slate-800 leading-relaxed tracking-tight">
+                      MANTENIMIENTO DE PUERTAS DE CUARTOS DE BASURAS Y CAMBIO DE PUERTAS DE BAÑO/BODEGA DEL PERSONAL.
+                    </p>
+                  </div>
+
                 </div>
               </Card>
 
-              {/* OBRAS Y MANTENIMIENTO */}
-              <Card title="2. Obras, Mantenimiento e Infraestructura" icon={Wrench} className="p-10">
-                <div className="flex flex-col gap-6 pt-4">
-                  {[
-                    { t: "MANTENIMIENTO GENERAL", d: "JARDINERÍA, MANTENIMIENTO DE PLANTA ELÉCTRICA Y CERCA ELÉCTRICA. LABORES DE DESRATIZACIÓN Y FUMIGACIÓN." },
-                    { t: "REPARACIONES ESTRUCTURALES", d: "INTERVENCIÓN EN TORRES 3 Y 4 PARA REPARAR HUMEDADES Y FILTRACIONES EN PARQUEADEROS." },
-                    { t: "ZONAS DE SERVICIO", d: "MANTENIMIENTO DE PUERTAS DE CUARTOS DE BASURAS Y CAMBIO DE PUERTAS DE BAÑO/BODEGA DEL PERSONAL." },
-                    { t: "ENERGÍA SOLAR", d: "ESTUDIO TÉCNICO CON EVOLTI PARA EVALUAR VIABILIDAD DE PANELES SOLARES DE NUEVA GENERACIÓN EN ZONAS COMUNES." }
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-8 p-8 border-2 border-slate-50 rounded-[40px] bg-white shadow-sm hover:border-[#8C1D2C]/20 transition-all">
-                      <div className="h-12 w-12 bg-[#8C1D2C] rounded-2xl flex items-center justify-center text-white shrink-0">
-                        <Activity size={24} />
-                      </div>
-                      <div>
-                        <p className="text-xs font-black text-[#8C1D2C] mb-1">{item.t}</p>
-                        <p className="text-sm font-bold text-slate-700 leading-tight tracking-tight">{item.d}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              {/* GESTIÓN FINANCIERA */}
-              <Card title="3. Gestión Financiera y Presupuestal" icon={BarChart3} highlight className="p-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                  <div className="space-y-6">
-                    <div className="p-10 bg-[#1F1F1F] rounded-[48px] text-white flex flex-col items-center justify-center text-center shadow-xl">
-                      <p className="text-[10px] font-black text-white/40 mb-3 tracking-[0.3em]">EFECTIVO LÍQUIDO (OCT)</p>
-                      <p className="text-6xl font-black text-[#8C1D2C] tracking-tighter">$145.000.000</p>
-                    </div>
-                    <div className="p-8 border-4 border-slate-50 rounded-[40px] flex gap-6 items-center">
-                        <div className="p-4 bg-[#8C1D2C]/10 rounded-2xl text-[#8C1D2C]"><Percent size={32}/></div>
-                        <div>
-                          <p className="text-[10px] font-black text-slate-400">EJECUCIÓN PRESUPUESTAL</p>
-                          <p className="text-3xl font-black text-slate-800">76% <span className="text-xs text-slate-400">(A SEP 2025)</span></p>
-                        </div>
-                    </div>
-                  </div>
-                  <div className="bg-slate-50 rounded-[48px] p-10 flex flex-col justify-center space-y-8">
-                     <div className="border-b-2 border-slate-200 pb-6">
-                        <p className="text-xs font-black text-[#8C1D2C] mb-2">INVERSIÓN DE EXCEDENTES</p>
-                        <p className="text-sm font-bold text-slate-600">MANTENER $50.000.000 PARA OPERACIÓN Y DESTINAR EXCEDENTE A RENTA DIARIA O CDT.</p>
-                     </div>
-                     <div>
-                        <p className="text-xs font-black text-[#8C1D2C] mb-2">RECUPERACIÓN DE CARTERA</p>
-                        <p className="text-sm font-bold text-slate-600">CONTRATACIÓN DRA. STEFANIA MUÑOZ. RECOMENDACIÓN DE COBRO JURÍDICO SOBRE CUOTAS EXTRAORDINARIAS.</p>
-                     </div>
-                  </div>
-                </div>
-              </Card>
 
               {/* TABLAS COMPLETAS DEL INFORME */}
               <div className="space-y-12">
@@ -829,7 +865,9 @@ export default function App() {
                     {p: "ANA LUCIA YEPEZ C.", c: "Administración", d: "Honorarios gestión administrativa mensual."},
                     {p: "LUZ JANETH LOPEZ VELA", c: "Contabilidad", d: "Honorarios servicios contables mensuales."},
                     {p: "ALVARO ARCINIEGAS", c: "Revisoría Fiscal", d: "Honorarios revisoría fiscal mensual."},
-                    {p: "NELSY ROCIO VELASQUEZ", c: "Cafetería", d: "Servicio mensual de cafetería e insumos."}
+                    {p: "PERSONAL CONDOMINIO", c: "Cafetería", d: "Servicio mensual de cafetería e insumos."},
+                    {p: "DIAN", c: "RETEFUENTE", d: "RETENCIÓN EN LA FUENTE MENSUAL."},
+                    {p: "MUNICIPIO DE PASTO", c: "RETEICA", d: "RETENCION INDUSTRIA Y COMERCIO BIMESTRAL."},
                   ].map(item => ({
                     ...item,
                     p: <span className="text-lg font-black text-[#8C1D2C]">{item.p}</span>,
@@ -846,9 +884,6 @@ export default function App() {
                     icon={Wrench}
                     data={[
                       {p: "BELLAVISTA JT SAS", o: "Cubiertas/Techos", d: "Inspección, ajuste de láminas y siliconado de tornillos."},
-                      {p: "BELLAVISTA JT SAS", o: "Limpieza Fachada", d: "Alquiler de hidrolavadora y reparaciones varias."},
-                      {p: "JUAN IGNACIO DIAZ", o: "Humedades", d: "Reparación de daños causados por humedad."},
-                      {p: "OSCAR MALES", o: "Cerrajería", d: "Arreglo de puerta y soldadura puerta doble hoja."},
                       {p: "LUIS HERNANDO VILLOTA", o: "Citofonía", d: "Arreglo y mantenimiento de citófonos."},
                       {p: "ANDRES GUERRERO", o: "Señalética", d: "Instalación de placas PVC vinilo con remaches."}
                     ]}
@@ -860,12 +895,12 @@ export default function App() {
                     icon={Cog}
                     data={[
                       {p: "ADRIANA BARRERA", o: "Aseo", d: "Compra de suministros y productos de limpieza."},
-                      {p: "LUIS HUMBERTO BARRERA", o: "Eléctrico", d: "Suministros eléctricos (FE 1056 y 1067)."},
+                      {p: "LUIS HUMBERTO BARRERA", o: "Eléctrico", d: "Suministros eléctricos."},
                       {p: "PEDRO NEL SALAS", o: "Dotación", d: "Suministro de 4 tapetes de caucho para ascensores."},
-                      {p: "WILSON ANDRES GUACHA", o: "Combustibles", d: "Gasolina y ACPM para maquinaria."},
-                      {p: "NELSON JAIRO GUERRERO", o: "Jardinería", d: "Compra de manguera con regadera e insumos."},
-                      {p: "ANA LUCIA YEPEZ", o: "Dotación", d: "Compra de 2 termos para el servicio."},
-                      {p: "DISTRIBUIDORA DE ACABADOS", o: "Ferretería", d: "Materiales de acabados (Facturas pendientes)."}
+                      {p: "ADMINISTRACIÓN", o: "Combustibles", d: "Gasolina y ACPM para maquinaria."},
+                      {p: "ADMINISTRACIÓN", o: "Jardinería", d: "Compra de manguera con regadera e insumos."},
+                      {p: "ADMINISTRACIÓN", o: "Dotación", d: "Compra de 2 termos para el servicio."},
+                      {p: "DISTRIBUIDORA DE ACABADOS", o: "Ferretería", d: "Materiales de acabados."}
                     ]}
                   />
 
@@ -875,149 +910,181 @@ export default function App() {
                     icon={Scale}
                     data={[
                       {p: "LA EQUIDAD SEGUROS", o: "Seguros", d: "Pago de cuotas de la póliza de áreas comunes."},
-                      {p: "CLAUDIA ARCINIEGAS TORRES", o: "Jurídico", d: "Honorarios por asesoría y gestiones jurídicas."},
-                      {p: "DIAN", o: "Impuestos", d: "Pagos de Retención en la Fuente e IVA."},
+                      {p: "CLAUDIA ARCINIEGAS TORRES", o: "Jurídico", d: "Honorarios por asesoría y gestiones jurídicas."},                     
                       {p: "KUMARA SEG Y SALUD", o: "SGSST", d: "Acompañamiento implementación Salud y Seguridad."},
-                      {p: "JESUS ARNULFO CORDOBA", o: "Sistemas", d: "Mantenimiento físico y lógico de equipos."},
-                      {p: "COLOMBIANA DE COMERCIO", o: "Asamblea", d: "Refrigerios para Asamblea de Copropietarios."}
+                      {p: "ING. JESUS ARNULFO CORDOBA", o: "Sistemas", d: "Mantenimiento físico y lógico de equipos."},
+                      
                     ]}
                   />
                 </div>
               </div>
 
-              {/* CAJA MENOR */}
-              <Card title="Listado de Gastos de Caja Menor" icon={Wallet} className="p-12">
-                <div className="overflow-x-auto">
-                   <table className="w-full text-left text-sm uppercase">
-                      <thead className="bg-[#F5F5F5] text-[#8C1D2C] font-black border-b-2">
-                        <tr>
-                           <th className="px-6 py-4">PROVEEDOR</th>
-                           <th className="px-6 py-4">CONCEPTO</th>
-                           <th className="px-6 py-4">DETALLE</th>
-                        </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-100 font-bold text-slate-600">
-                        {[
-                          {p: "LA CALI", c: "Papelería", d: "Micropunta y marcador Sharpie"},
-                          {p: "DORALINE M. BRAVO", c: "Servicios", d: "Creación de base de datos residentes"},
-                          {p: "SUPERMERCADOS ANDI", c: "Alimentación", d: "Sándwich de pollo"},
-                          {p: "SU FERRETERIA PANDIACO", c: "Ferretería", d: "Pulsador y duplicado de llave"},
-                          {p: "ALCALDÍA DE PASTO", c: "Impuestos", d: "Rete ICA Bimestre 6 - 2024"},
-                          {p: "ALFONSO J. BENITEZ", c: "Legal", d: "Gastos de autenticación"},
-                          {p: "ALSACIA SLS SAS", c: "Alimentación", d: "11 Sándwiches"},
-                          {p: "SU FERRETERIA PANDIACO", c: "Ferretería", d: "Chapa alcoba metal / Pistola calafateadora"},
-                          {p: "ALCALDÍA DE PASTO", c: "Legal", d: "Certificación representación legal"},
-                          {p: "KETHY ALEXANDRA NIETO", c: "Insumos", d: "Compra de brocha profesional"}
-                        ].map((row, i) => (
-                          <tr key={i} className="hover:bg-slate-50">
-                            <td className="px-6 py-4 text-[#8C1D2C]">{row.p}</td>
-                            <td className="px-6 py-4">{row.c}</td>
-                            <td className="px-6 py-4 italic font-medium">{row.d}</td>
-                          </tr>
-                        ))}
-                      </tbody>
-                   </table>
-                </div>
-              </Card>
+              
 
-              {/* SEGUROS (ACTUALIZADO CON CIFRAS REALES) */}
-              <div className="space-y-12 mt-20">
+              {/* SEGUROS (ACTUALIZADO CON CIFRAS REALES 2025-2026) */}
+              <div className="space-y-12 mt-20 uppercase">
+                {/* Header de Póliza */}
                 <div className="bg-[#8C1D2C] p-16 rounded-[60px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
                   <div className="z-10 text-center md:text-left">
-                    <h3 className="text-6xl font-black uppercase tracking-tighter mb-4">Póliza de Copropiedad</h3>
-                    <p className="text-white/80 font-bold text-2xl uppercase tracking-[0.2em]">La Equidad Seguros (AA006031) | 2025 - 2026</p>
+                    <span className="bg-white/20 px-6 py-2 rounded-full text-[10px] font-black tracking-[0.3em] mb-4 inline-block">RENOVACIÓN EXITOSA</span>
+                    <h3 className="text-6xl font-black uppercase tracking-tighter mb-2">Póliza de Copropiedad</h3>
+                    <p className="text-white/80 font-bold text-2xl uppercase tracking-[0.1em]">La Equidad Seguros | Póliza N° AA006031</p>
+                    <div className="flex items-center gap-4 mt-6 text-[#F5F5F5]/60 font-black text-xs tracking-widest">
+                      <Calendar size={18} />
+                      VIGENCIA: 02 DE MARZO DE 2025 AL 02 DE MARZO DE 2026
+                    </div>
                   </div>
-                  <ShieldCheck size={120} className="text-white opacity-20 absolute right-12" />
+                  <ShieldCheck size={160} className="text-white opacity-10 absolute right-[-20px] top-[-20px]" />
                 </div>
 
-                <div className="flex flex-col gap-10">
-                  <Card title="Valores Asegurados Totales" icon={ShieldCheck} badge="Vigente" highlight className="p-12">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12">
-                      <div className="p-10 bg-slate-50 rounded-[48px] border-4 border-[#8C1D2C]/10 flex flex-col items-center justify-center shadow-inner">
-                        <p className="text-base font-black text-slate-500 uppercase mb-3 tracking-widest">V. Asegurado Total</p>
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                  {/* Columna Izquierda: Valores Asegurados */}
+                  <div className="lg:col-span-2 space-y-10">
+                    <Card title="Desglose de Coberturas Principales" icon={ShieldCheck} badge="VIGENTE" highlight className="h-full">
+                      <div className="p-8 bg-slate-50 rounded-[40px] border-4 border-[#8C1D2C]/10 flex flex-col items-center justify-center shadow-inner mb-8">
+                        <p className="text-sm font-black text-slate-500 uppercase mb-2 tracking-widest">Valor Asegurado Total</p>
                         <p className="text-6xl font-black text-[#8C1D2C] tracking-tighter">$44.825.000.000</p>
                       </div>
-                      <div className="p-10 bg-slate-50 rounded-[48px] border-4 border-[#8C1D2C]/10 flex flex-col items-center justify-center shadow-inner">
-                        <p className="text-base font-black text-slate-500 uppercase mb-3 tracking-widest">Prima Total Anual</p>
-                        <p className="text-6xl font-black text-[#1F1F1F] tracking-tighter">$48.633.078</p>
+
+                      <div className="overflow-hidden rounded-[32px] border-2 border-slate-100">
+                        <table className="w-full text-left">
+                          <tbody className="divide-y divide-slate-100">
+                            {[
+                              { label: "Edificio (Áreas Comunes)", val: "$42.000.000.000" },
+                              { label: "RC Extracontractual", val: "$500.000.000" },
+                              { label: "Rotura de Maquinaria", val: "$795.000.000" },
+                              { label: "Directores y Admin (D&O)", val: "$200.000.000" },
+                              { label: "Sustracción (Hurto Calificado)", val: "$65.000.000" },
+                            ].map((item, i) => (
+                              <tr key={i} className="hover:bg-slate-50 transition-colors">
+                                <td className="px-8 py-5 text-[11px] font-black text-slate-600">{item.label}</td>
+                                <td className="px-8 py-5 text-xl font-black text-[#1F1F1F] text-right">{item.val}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
                       </div>
+                    </Card>
+                  </div>
+
+                  {/* Columna Derecha: Cuadro de Primas */}
+                  <div className="space-y-10">
+                    <Card title="Cuadro de Primas Totales" icon={DollarSign} className="bg-white border-2 border-[#8C1D2C]/10 shadow-lg">
+                      <div className="space-y-6 pt-4">
+                        {/* Prima Neta */}
+                        <div className="flex justify-between items-center border-b border-slate-100 pb-4">
+                          <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">PRIMA NETA</span>
+                          <span className="text-xl font-black text-[#1F1F1F]">$40.868.133</span>
+                        </div>
+
+                        {/* IVA */}
+                        <div className="flex justify-between items-center border-b border-slate-100 pb-4">
+                          <span className="text-[10px] font-black text-slate-400 tracking-widest uppercase">IVA (19%)</span>
+                          <span className="text-xl font-black text-[#1F1F1F]">$7.764.945</span>
+                        </div>
+
+                        {/* Contenedor Total - Corregido para evitar desbordamiento */}
+                        <div className="bg-[#8C1D2C] p-6 rounded-[32px] shadow-xl text-center mt-4">
+                          <p className="text-[10px] font-black text-white/70 mb-1 tracking-[0.2em] uppercase">TOTAL POR PAGAR</p>
+                          <p className="text-3xl sm:text-4xl font-black text-white tracking-tighter leading-none">
+                            $48.633.078
+                          </p>
+                        </div>
+                      </div>
+                    </Card>
+
+                    {/* Forma de Pago */}
+                    <div className="p-8 bg-white rounded-[40px] border-2 border-[#8C1D2C]/10 shadow-sm">
+                      <div className="flex items-center gap-4 mb-4">
+                        <div className="p-3 bg-[#8C1D2C]/10 rounded-xl text-[#8C1D2C]"><Wallet size={20}/></div>
+                        <p className="text-[11px] font-black text-[#8C1D2C] tracking-widest">FORMA DE PAGO</p>
+                      </div>
+                      <p className="text-sm font-bold text-slate-700 leading-tight">
+                        PAGO PACTADO MEDIANTE CUOTAS A 30, 60 Y 90 DÍAS SEGÚN DOCUMENTO.
+                      </p>
                     </div>
-                    
-                    <div className="overflow-x-auto rounded-[40px] border-4 border-slate-50 shadow-sm">
-                      <table className="w-full text-left uppercase">
-                        <tbody className="divide-y-4 divide-white">
-                          <tr className="bg-slate-50">
-                            <td className="px-12 py-8 text-xl font-black text-slate-600">EDIFICIO (ÁREAS COMUNES)</td>
-                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$42.000.000.000</td>
-                          </tr>
-                          <tr>
-                            <td className="px-12 py-8 text-xl font-black text-slate-600">RC EXTRACONTRACTUAL</td>
-                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$500.000.000</td>
-                          </tr>
-                          <tr className="bg-slate-50">
-                            <td className="px-12 py-8 text-xl font-black text-slate-600">ROTURA DE MAQUINARIA</td>
-                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$795.000.000</td>
-                          </tr>
-                          <tr>
-                            <td className="px-12 py-8 text-xl font-black text-slate-600">DIRECTORES Y ADMIN (D&O)</td>
-                            <td className="px-12 py-8 text-4xl font-black text-[#8C1D2C] text-right">$200.000.000</td>
-                          </tr>
-                        </tbody>
-                      </table>
+                  </div>
+                </div>
+
+                {/* Observaciones Administrativas y Garantías */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="p-10 bg-white rounded-[48px] border-2 border-slate-100 shadow-sm flex items-start gap-8">
+                    <div className="p-5 bg-blue-50 rounded-[24px] text-blue-600"><ShieldAlert size={32} /></div>
+                    <div>
+                      <h4 className="font-black text-[#1F1F1F] text-sm mb-3 tracking-widest">COBERTURAS ADICIONALES</h4>
+                      <p className="text-xs font-bold text-slate-500 leading-relaxed">
+                        LA PÓLIZA INCLUYE EL ANEXO DE ASISTENCIA A COPROPIEDADES Y COBERTURA PARA ACTOS MAL INTENCIONADOS DE TERCEROS Y TERRORISMO.
+                      </p>
                     </div>
-                  </Card>
+                  </div>
+
+                  <div className="p-10 bg-[#1F1F1F] rounded-[48px] text-white shadow-2xl flex items-start gap-8 relative overflow-hidden">
+                    <div className="p-5 bg-[#8C1D2C] rounded-[24px] text-white z-10 shadow-lg shadow-[#8C1D2C]/40"><Activity size={32} /></div>
+                    <div className="z-10">
+                      <h4 className="font-black text-[#8C1D2C] text-sm mb-3 tracking-widest">GARANTÍA OBLIGATORIA</h4>
+                      <p className="text-xs font-bold text-white/70 leading-relaxed">
+                        ES OBLIGATORIO EL MANTENIMIENTO PREVENTIVO DE MAQUINARIA Y EQUIPOS ELECTRÓNICOS. SE DEBE LLEVAR HOJA DE VIDA ACTUALIZADA PARA GARANTIZAR COBERTURA EN CASO DE SINIESTRO.
+                      </p>
+                    </div>
+                    <AlertCircle size={100} className="absolute right-[-20px] bottom-[-20px] text-white/5" />
+                  </div>
                 </div>
               </div>
-
-              {/* CONVIVENCIA Y NORMATIVA */}
-              <div className="space-y-12 mt-20">
-                <Card title="4. Convivencia y Normativas Internas" icon={Activity} highlight className="p-12">
-                  <div className="flex flex-col gap-8">
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#8C1D2C]">
-                           <p className="text-xs font-black text-[#8C1D2C] mb-2 uppercase">OBRAS PRIVADAS</p>
-                           <p className="text-sm font-bold text-slate-700 uppercase">LÍMITE NOV 2025 PARA INTERVENCIONES ESTRUCTURALES EN APTO 1-602. SUSPENSIÓN DE TODA ACTIVIDAD DE OBRA EN DICIEMBRE.</p>
-                        </div>
-                        <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#3A3A3A]">
-                           <p className="text-xs font-black text-[#3A3A3A] mb-2 uppercase">ZONAS COMUNES</p>
-                           <p className="text-sm font-bold text-slate-700 uppercase">NO ES PROCEDENTE LA COMERCIALIZACIÓN DE PRODUCTOS PARTICULARES POR COLABORADORES EN ÁREAS COMUNES.</p>
-                        </div>
-                     </div>
-                     <div className="bg-[#1F1F1F] p-10 rounded-[48px] text-white">
-                        <div className="flex items-center gap-6 mb-6">
-                           <UserPlus size={40} className="text-[#8C1D2C]" />
-                           <h4 className="text-2xl font-black uppercase tracking-tighter">CONSEJO DE ADMINISTRACIÓN VIGENTE</h4>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-white/10 pt-8 uppercase">
-                           <div>
-                              <p className="text-[10px] text-white/40 mb-1">PRESIDENTE DEL CONSEJO</p>
-                              <p className="text-xl font-black">SR. MARIO ROJAS</p>
-                           </div>
-                           <div>
-                              <p className="text-[10px] text-white/40 mb-1">PRESIDENTE SUPLENTE</p>
-                              <p className="text-xl font-black">DR. JUAN CARLOS NARVAEZ</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                </Card>
-              </div>
+              
 
             </div>
           )}
           
-          {/* SECCIÓN 6-7: FINANCIERO */}
+          {/* SECCIÓN 6: DICTAMEN REVISOR FISCAL */}
+          {activeSection === 'dictamen' && (
+            <div className="space-y-10 animate-in fade-in uppercase">
+              <SectionHeader 
+                title="6. Dictamen del Revisor Fiscal" 
+                icon={ShieldCheck} 
+                agendaIndices={[5]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+              
+              <div className="max-w-5xl mx-auto">
+                <div className="bg-white rounded-[60px] p-16 shadow-2xl border-4 border-[#8C1D2C]/10 flex flex-col items-center text-center relative overflow-hidden">
+                  <div className="absolute top-0 right-0 p-12 opacity-5"><ShieldCheck size={200} className="text-[#8C1D2C]" /></div>
+                  <div className="p-8 bg-[#8C1D2C]/5 rounded-[40px] mb-10 border-2 border-[#8C1D2C]/10">
+                    <Gavel size={80} className="text-[#8C1D2C]" />
+                  </div>
+                  <h3 className="text-4xl font-black text-[#8C1D2C] mb-6 tracking-tighter">DICTAMEN DE REVISORÍA</h3>
+                  <div className="w-24 h-2 bg-[#1F1F1F] mb-10 rounded-full"></div>
+                  <div className="space-y-4">
+                    <p className="text-[14px] font-black text-[#1F1F1F] tracking-[0.4em]">Presentado por:</p>
+                    <p className="text-3xl font-black text-[#1F1F1F] tracking-tight">ALVARO ARCINIEGAS</p>
+                    <p className="text-xl font-bold text-[#8C1D2C] mt-4 tracking-widest">REVISOR FISCAL 2025</p>
+                  </div>
+                  <div className="mt-16 bg-[#F5F5F5] p-10 rounded-[40px] w-full max-w-xl">
+                    <p className="text-xs font-black leading-relaxed">INFORME SOBRE LA RAZONABILIDAD DE LOS ESTADOS FINANCIEROS Y CUMPLIMIENTO NORMATIVO.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* SECCIÓN 7: ESTADOS FINANCIEROS */}
           {activeSection === 'financiero' && (
             <div className="space-y-10 animate-in fade-in">
-              <SectionHeader title="6-7. Informe Financiero 2025" icon={BarChart3} agendaIndices={[5, 6]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              <SectionHeader 
+                title="7. Estados Financieros 2025" 
+                icon={BarChart3} 
+                agendaIndices={[6]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
               
               <div className="max-w-5xl mx-auto uppercase">
                 <div className="bg-white rounded-[60px] p-16 shadow-2xl border-4 border-[#8C1D2C]/10 flex flex-col items-center text-center relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-12 opacity-5"><BarChart3 size={200} className="text-[#8C1D2C]" /></div>
                   <div className="p-8 bg-[#8C1D2C]/5 rounded-[40px] mb-10 border-2 border-[#8C1D2C]/10">
-                    <ShieldCheck size={80} className="text-[#8C1D2C]" />
+                    <Landmark size={80} className="text-[#8C1D2C]" />
                   </div>
-                  <h3 className="text-4xl font-black text-[#8C1D2C] mb-6 tracking-tighter">DICTAMEN & ESTADOS FINANCIEROS</h3>
+                  <h3 className="text-4xl font-black text-[#8C1D2C] mb-6 tracking-tighter">ESTADOS FINANCIEROS</h3>
                   <div className="w-24 h-2 bg-[#1F1F1F] mb-10 rounded-full"></div>
                   <div className="space-y-4">
                     <p className="text-[14px] font-black text-[#1F1F1F] tracking-[0.4em]">Presentación por:</p>
@@ -1025,7 +1092,7 @@ export default function App() {
                     <p className="text-xl font-bold text-slate-400 mt-4 tracking-widest">CIERRE A DICIEMBRE 31 DE 2025</p>
                   </div>
                   <div className="mt-16 bg-[#F5F5F5] p-10 rounded-[40px] w-full max-w-xl">
-                      <p className="text-xs font-black leading-relaxed">Presentación bajo normas NIIF vigentes para copropiedades del Grupo 3.</p>
+                    <p className="text-xs font-black leading-relaxed">PRESENTACIÓN BAJO NORMAS NIIF VIGENTES PARA COPROPIEDADES DEL GRUPO 3.</p>
                   </div>
                 </div>
               </div>
