@@ -1,11 +1,13 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
-  Users, FileText, BarChart3, MessageSquare, Home, 
-  ShieldCheck, UserPlus, CheckCircle2, Printer, Trash2, 
-  TrendingUp, ClipboardCheck, Camera, Activity, Wrench, 
-  Calendar, ListChecks, AlertCircle, ShieldAlert, HeartPulse, 
-  Building2, Search, DollarSign, PieChart, Landmark, Gavel, 
-  Wallet, Plus, UserCheck, Leaf, Scale, Map, Paintbrush
+  Users, FileText, BarChart3, CheckSquare, MessageSquare, Home, 
+  ShieldCheck, ExternalLink, UserPlus, CheckCircle2, Printer, 
+  Trash2, TrendingUp, Settings, ClipboardCheck, Camera, Zap, 
+  Activity, Wrench, Calendar, Layout, ListChecks, AlertCircle, 
+  ChevronRight, Info, ShieldAlert, HeartPulse, Building2, 
+  Search, DollarSign, PieChart, Landmark, Gavel, ArrowUpRight, 
+  Percent, Wallet, HardHat, Cog, Plus, UserCheck, Leaf, Scale, 
+  Map, Paintbrush, ClipboardList, User // <--- He añadido los que faltaban
 } from 'lucide-react';
 
 // --- CONFIGURACIÓN DE IDENTIDAD VISUAL ROSALES DE ANGANOY ---
@@ -168,6 +170,14 @@ const COEFICIENTES_DATA = [
 export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [searchTerm, setSearchTerm] = useState('');
+
+  const marcarTodosPresentes = () => {
+    setAsistencia(prev => prev.map(a => ({ ...a, presente: true })));
+  };
+
+  const desmarcarTodos = () => {
+    setAsistencia(prev => prev.map(a => ({ ...a, presente: false })));
+  };
 
   const EvidenceSection = ({ title, content, icon: Icon, photos = [], color = "#C96A2C" }) => {
     const [showGallery, setShowGallery] = useState(false);
@@ -429,41 +439,65 @@ export default function App() {
           {/* SECCIÓN INICIO */}
           {activeSection === 'inicio' && (
             <div className="space-y-12 animate-in fade-in duration-700">
-               <div className="bg-[#2D2D2D] rounded-[56px] p-24 text-white relative overflow-hidden shadow-2xl border-b-[16px] border-[#C96A2C]">
-                  <div className="relative z-10 text-center">
-                     <span className="bg-[#C96A2C] text-white text-[11px] font-black uppercase px-10 py-4 rounded-full mb-12 inline-block tracking-[0.5em] shadow-xl">Asamblea General Ordinaria</span>
-                     <h1 className="text-8xl font-black mb-6 leading-none tracking-tighter uppercase">ROSALES <span className="text-[#C96A2C] italic block text-4xl mt-4">DE ANGANOY</span></h1>
-                     <div className="w-32 h-2 bg-[#C96A2C] mx-auto mb-10 rounded-full"></div>
-                     <p className="text-white/80 max-w-2xl text-2xl font-bold leading-relaxed mx-auto italic uppercase tracking-[0.1em]">CONVOCATORIA 2026<br/>Gestión 2025 - Futuro 2026</p>
-                  </div>
-                  <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 -skew-x-12 translate-x-32"></div>
-               </div>
+              <div className="bg-[#2D2D2D] rounded-[56px] p-24 text-white relative overflow-hidden shadow-2xl border-b-[16px] border-[#C96A2C]">
+                <div className="relative z-10 text-center">
+                  <span className="bg-[#C96A2C] text-white text-[11px] font-black uppercase px-10 py-4 rounded-full mb-12 inline-block tracking-[0.5em] shadow-xl">Asamblea General Ordinaria</span>
+                  <h1 className="text-8xl font-black mb-6 leading-none tracking-tighter uppercase">ROSALES <span className="text-[#C96A2C] italic block text-4xl mt-4">DE ANGANOY</span></h1>
+                  <div className="w-32 h-2 bg-[#C96A2C] mx-auto mb-10 rounded-full"></div>
+                  <p className="text-white/80 max-w-2xl text-2xl font-bold leading-relaxed mx-auto italic uppercase tracking-[0.1em]">CONVOCATORIA 2026<br/>Gestión 2025 - Futuro 2026</p>
+                </div>
+                <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 -skew-x-12 translate-x-32"></div>
+              </div>
 
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center uppercase">
-                  <Card title="Copropiedad" highlight>
-                    <div className="space-y-4 pt-2">
-                       <p className="text-[11px] font-black text-[#2D2D2D] uppercase tracking-widest leading-none">NIT: 901.094.115-1</p>
-                       <p className="text-lg font-black text-[#2D2D2D]">Carrera 36 calle 5 Oeste 85</p>
-                       <p className="text-[10px] font-black text-[#C96A2C]">San Juan de Pasto</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center uppercase">
+                {/* 1. Datos Copropiedad */}
+                <Card title="Copropiedad" icon={Building2} highlight>
+                  <div className="space-y-4 pt-2">
+                    <p className="text-[11px] font-black text-[#2D2D2D] uppercase tracking-widest leading-none">NIT: 901.094.115-1</p>
+                    <p className="text-lg font-black text-[#2D2D2D]">Carrera 36 calle 5 Oeste 85</p>
+                    <p className="text-[10px] font-black text-[#C96A2C]">San Juan de Pasto</p>
+                  </div>
+                </Card>
+
+                {/* 2. Cita Oficial */}
+                <Card title="Cita Oficial" icon={Calendar}>
+                  <div className="space-y-3 pt-2 text-[#2D2D2D]">
+                    <p className="text-lg font-black">28 de Febrero 2026</p>
+                    <p className="text-[11px] font-black text-[#C96A2C] opacity-80 uppercase">Hora: 6:30 P.M. - Salón Comunal</p>
+                  </div>
+                </Card>
+
+                {/* 3. Integrantes (CUADRO NARANJA LLENO) */}
+                <div className="bg-[#C96A2C] p-8 rounded-[40px] text-white flex flex-col items-center justify-center shadow-2xl relative overflow-hidden group">
+                  <div className="relative z-10 w-full">
+                    <h3 className="text-[12px] font-black uppercase tracking-[0.3em] mb-6 border-b border-white/20 pb-2">Equipo de Gestión</h3>
+                    
+                    <div className="space-y-4 text-left">
+                      <div className="flex flex-col">
+                        <span className="text-[9px] font-black opacity-70 tracking-tighter">Administrador</span>
+                        <span className="text-sm font-black italic">David Ipaz</span>
+                      </div>
+                      
+                      <div className="flex flex-col">
+                        <span className="text-[9px] font-black opacity-70 tracking-tighter">Órgano de Control</span>
+                        <span className="text-sm font-black italic">Consejo de Administración</span>
+                      </div>
+
+                      <div className="flex flex-col">
+                        <span className="text-[9px] font-black opacity-70 tracking-tighter">Contabilidad</span>
+                        <span className="text-sm font-black italic">Contador Público</span>
+                      </div>
                     </div>
-                  </Card>
-                  <Card title="Cita Oficial">
-                    <div className="space-y-3 pt-2 text-[#2D2D2D]">
-                       <p className="text-lg font-black">28 de Febrero 2026</p>
-                       <p className="text-[11px] font-black text-[#C96A2C] opacity-80 uppercase">Hora: 6:30 P.M. - Salón Comunal</p>
+
+                    <div className="mt-6 pt-4 border-t border-white/20">
+                      <p className="text-3xl font-black italic">100%</p>
+                      <p className="text-[8px] font-black uppercase tracking-widest">Coeficiente de Copropiedad</p>
                     </div>
-                  </Card>
-                  <Card className="bg-[#C96A2C] text-white border-none flex flex-col items-center justify-center shadow-2xl">
-                    <div className="text-center">
-                      <p className="text-6xl font-black text-white mb-2 leading-none tracking-tighter">
-                        100%
-                      </p>
-                      <p className="text-[11px] font-black uppercase tracking-[0.3em] text-white/90 leading-none">
-                        Coeficiente Total
-                      </p>
-                    </div>
-                  </Card>
-               </div>
+                  </div>
+                  {/* Adorno visual */}
+                  <Users className="absolute -bottom-4 -right-4 size-32 text-white/10" />
+                </div>
+              </div>
             </div>
           )}
 
@@ -473,7 +507,7 @@ export default function App() {
               <SectionHeader title="1. Registro y Quórum" icon={Users} agendaIndices={[0]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
               
               <div className="flex flex-col md:flex-row gap-8 items-center justify-between mb-8 print:hidden">
-                <div className="relative group w-full max-w-2xl">
+                <div className="relative group w-full max-w-xl">
                   <Search className="absolute left-8 top-1/2 -translate-y-1/2 text-[#C96A2C]" size={24} />
                   <input 
                     type="text" 
@@ -483,6 +517,23 @@ export default function App() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
                 </div>
+
+                {/* BOTONES DE ACCIÓN RÁPIDA */}
+                <div className="flex gap-4">
+                  <button 
+                    onClick={marcarTodosPresentes}
+                    className="bg-slate-800 hover:bg-black text-white px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-tighter transition-all flex items-center gap-2 shadow-lg"
+                  >
+                    <UserCheck size={16} /> Marcar Todos
+                  </button>
+                  <button 
+                    onClick={desmarcarTodos}
+                    className="bg-white hover:bg-rose-50 text-rose-500 border-2 border-rose-100 px-6 py-4 rounded-2xl text-[10px] font-black uppercase tracking-tighter transition-all"
+                  >
+                    Limpiar
+                  </button>
+                </div>
+
                 <div className="flex items-center gap-6 bg-white px-10 py-6 rounded-[32px] shadow-sm border border-slate-100">
                   <div className="text-right">
                       <p className="text-[10px] font-black text-[#2D2D2D] uppercase tracking-widest">PRESENTES</p>
@@ -492,6 +543,7 @@ export default function App() {
                 </div>
               </div>
 
+              {/* ... resto de tu tabla ... */}
               <div className="w-full bg-white rounded-[40px] shadow-sm border border-slate-100 overflow-hidden">
                 <table className="w-full text-left border-collapse">
                   <thead className="bg-[#F6F2ED] text-[#2D2D2D] font-black uppercase tracking-widest text-[11px] border-b-2">
@@ -661,54 +713,232 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 5: INFORME GESTIÓN (RESERVADA PARA DOCUMENTO WORD) */}
+          {/* SECCIÓN 5: INFORME GESTIÓN - ROSALES DE ANGANOY (VERSION FINAL) */}
           {activeSection === 'gestion' && (
-            <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
-              <SectionHeader title="5. Informe Integral de Gestión" icon={TrendingUp} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+            <div className="space-y-12 animate-in slide-in-from-bottom-10 uppercase">
+              <SectionHeader 
+                title="5. Informe Gestión 2025" 
+                icon={TrendingUp} 
+                agendaIndices={[4]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
 
-              {/* CONTENEDOR PRINCIPAL DEL INFORME (ESTRUCTURA LISTA) */}
-              <Card title="INFORME DE ADMINISTRACIÓN Y REPRESENTACIÓN LEGAL" icon={Activity} highlight className="p-12">
-                <div className="flex flex-col gap-10">
-                    <div className="bg-[#2D2D2D] p-10 rounded-[48px] text-white">
-                      <div className="flex items-center gap-6 mb-6">
-                         <UserCheck size={40} className="text-[#C96A2C]" />
-                         <h4 className="text-2xl font-black uppercase tracking-tighter">GESTIÓN ADMINISTRATIVA 2025</h4>
-                      </div>
-                      <p className="text-white/60 font-bold leading-relaxed mb-8">
-                        Señores Copropietarios, a continuación se presenta el desglose detallado de las actividades, mantenimientos, gestiones legales y financieras realizadas durante el periodo reportado.
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 border-t border-white/10 pt-8 uppercase">
-                         <div>
-                            <p className="text-[10px] text-white/40 mb-1">ADMINISTRADOR</p>
-                            <p className="text-xl font-black">LUIS DAVID IPAZ TORO</p>
-                         </div>
-                         <div className="flex items-center gap-4">
-                            <div className="h-3 w-3 bg-[#C96A2C] rounded-full"></div>
-                            <p className="text-sm font-black">VIGENCIA: ENERO - DICIEMBRE 2025</p>
-                         </div>
-                      </div>
+              {/* 1. GESTIÓN JURÍDICA */}
+              <div className="grid grid-cols-1 gap-6">
+                <EvidenceSection 
+                  title="LEGALIZACIÓN Y REPRESENTACIÓN"
+                  icon={ShieldCheck}
+                  content={
+                    <div className="space-y-3 text-[14px]">
+                      <p>• 20 MARZO: RADICACIÓN SOLICITUD DE REPRESENTACIÓN LEGAL.</p>
+                      <p>• 10 ABRIL: REQUERIMIENTO DE PLANEACIÓN POR CAMBIO DE POLÍTICAS.</p>
+                      <p>• 14 ABRIL: REMISIÓN DE DOCUMENTACIÓN COMPLEMENTARIA.</p>
+                      <p>• 20 MAYO: OBTENCIÓN DE RESOLUCIÓN (FECHA 7 DE MAYO).</p>
+                      <p>• JUNIO: ACTUALIZACIÓN EXITOSA DEL RUT.</p>
                     </div>
-
-                    <div className="p-16 border-4 border-dashed border-[#C96A2C]/20 rounded-[60px] text-center bg-[#F6F2ED]/30">
-                        <FileText size={80} className="mx-auto text-[#C96A2C] mb-8 opacity-40" />
-                        <h4 className="text-2xl font-black text-[#2D2D2D] mb-4">CARGANDO CONTENIDO DETALLADO...</h4>
-                        <p className="text-sm font-bold text-slate-500 max-w-xl mx-auto">
-                          ESTA SECCIÓN SERÁ ALIMENTADA CON LA INFORMACIÓN COMPLETA DEL "INFORME PRESENTACIÓN" WORD. SE INCLUIRÁN TODAS LAS TABLAS DE PROVEEDORES, OBRAS, GASTOS Y LOGROS SIN RESUMIR.
-                        </p>
-                    </div>
-
-                    {/* MOCKUP DE TABLA PARA REFERENCIA (BORRAR AL LLENAR CON WORD) */}
-                    <ManagementTable 
-                      title="TABLA EJEMPLO DE PROVEEDORES (ESTRUCTURA)"
-                      headers={["PROVEEDOR", "TIPO DE SERVICIO", "OBSERVACIÓN"]}
-                      data={[
-                        {p: "EJEMPLO PROVEEDOR 1", s: "MANTENIMIENTO", o: "CUMPLIMIENTO 100%"},
-                        {p: "EJEMPLO PROVEEDOR 2", s: "INSUMOS", o: "FACTURACIÓN AL DÍA"}
-                      ]}
-                      icon={Wrench}
-                    />
+                  }
+                />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <EvidenceSection 
+                    title="ARCHIVO DOCUMENTAL"
+                    icon={FileText}
+                    content="TRABAJO INTENSIVO DE ORGANIZACIÓN Y ARREGLO DEL ARCHIVO ADMINISTRATIVO REALIZADO ENTRE MARZO Y JUNIO DE 2025."
+                  />
+                  <EvidenceSection 
+                    title="MANUAL DE CONVIVENCIA"
+                    icon={Scale}
+                    content="ESTUDIO DETALLADO (AGOSTO/SEPT) Y EMISIÓN DE COMUNICADOS NORMATIVOS APROBADOS POR EL CONSEJO PARA MEJORAR LA SANA CONVIVENCIA."
+                  />
                 </div>
-              </Card>
+              </div>
+
+              {/* 2. GESTIÓN FINANCIERA */}
+              <div className="space-y-6">
+                <Card title="GESTIÓN FINANCIERA Y CARTERA" icon={DollarSign}>
+                  <div className="p-6 bg-slate-900 rounded-[32px] text-white mb-6">
+                    <p className="text-sm font-bold leading-relaxed italic">
+                      CONTABILIDAD AL DÍA: SE ORGANIZÓ EL REZAGO DE NOV 2024 A FEB 2025. TOKEN BANCARIO OBTENIDO EN ABRIL Y PAGOS A EX-ADMINISTRACIÓN NORMALIZADOS EN MAYO.
+                    </p>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-6 bg-emerald-50 rounded-[32px] border-2 border-emerald-100">
+                      <h4 className="text-[#065F46] font-black mb-3 flex items-center gap-2"><Activity size={18}/> RECUPERACIÓN DE CARTERA</h4>
+                      <ul className="text-xs space-y-2 text-emerald-900 font-bold">
+                        <li>• APTO 505: ACUERDO CULMINADO EN JUNIO.</li>
+                        <li>• APTO 206: ACUERDO SUSCRITO EN OCTUBRE.</li>
+                        <li>• APTO 308: ACUERDO EN PROCESO DE CIERRE.</li>
+                      </ul>
+                    </div>
+                    <div className="p-6 bg-rose-50 rounded-[32px] border-2 border-rose-100">
+                      <h4 className="text-[#9F1239] font-black mb-3 flex items-center gap-2"><AlertCircle size={18}/> PASIVOS PENDIENTES</h4>
+                      <ul className="text-xs space-y-2 text-rose-900 font-bold">
+                        <li>• DEUDA SEPT/OCT 2024: $700.000 (ADMIN ANTERIOR).</li>
+                        <li>• CRÉDITO APTO 307: $3.500.000 (PAGO DE DEMANDA).</li>
+                      </ul>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+
+              {/* 3. INVERSIÓN CCTV Y MEJORAS (USANDO TU TABLA) */}
+              <InvestmentTable 
+                title="DETALLE INVERSIÓN CCTV (VALOR AGREGADO)"
+                icon={Camera}
+                headers={["EQUIPO / DESCRIPCIÓN", "VALOR TOTAL", "APORTE CONDOMINIO"]}
+                data={[
+                  { item: "TELEVISOR SAMSUNG 40 PULGADAS", total: "$959.900", aporte: "$0 (GESTIÓN)" },
+                  { item: "DVR 4TB + 2 CÁMARAS NUEVAS", total: "$652.100", aporte: "$157.000" },
+                  { item: "MANO DE OBRA Y CONFIGURACIÓN", total: "$45.000", aporte: "$0 (GESTIÓN)" }
+                ]}
+                total="INVERSIÓN GESTIONADA: $1.657.000"
+              />
+
+              {/* 4. GASTOS FIJOS Y PROVEEDORES */}
+              <InvestmentTable 
+                title="RELACIÓN DE PROVEEDORES FIJOS"
+                icon={Activity}
+                headers={["PROVEEDOR", "SERVICIO / CONCEPTO"]}
+                data={[
+                  { p: "SERVICIOS COMERCIALES ARCOS", s: "SEGURIDAD Y PORTERÍA" },
+                  { p: "DAVID DELGADO / RICHARD NARVÁEZ", s: "JARDINERÍA Y ZONAS VERDES" },
+                  { p: "MOVISTAR", s: "INTERNET PORTERÍA" },
+                  { p: "CODENAR / EMPOPASTO", s: "SERVICIOS PÚBLICOS" },
+                  { p: "DAVID IPAZ", s: "ADMINISTRACIÓN Y CONTABILIDAD" },
+                  { p: "DIAN / MUNICIPIO", s: "IMPUESTOS (RETEFUENTE / RETEICA)" }
+                ]}
+              />
+
+              {/* 5. BIENESTAR Y PROYECTOS */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-slate-900 p-8 rounded-[40px] text-white">
+                  <h4 className="text-xl font-black mb-4 text-[#C96A2C] flex items-center gap-3">
+                    <HeartPulse size={24} /> BIENESTAR SOCIAL
+                  </h4>
+                  <p className="text-xs font-bold leading-relaxed opacity-80 uppercase">
+                    • BONO NAVIDEÑO: $580.000 RECAUDADOS Y ENTREGADOS ($145.000 CADA UNO) A 3 GUARDAS Y 1 OPERARIA.<br/><br/>
+                    • NAVIDAD: ADQUISICIÓN DE SERIES TIPO CASCADA Y REPARACIÓN DE GUIRNALDAS.
+                  </p>
+                </div>
+                <div className="bg-[#C96A2C] p-8 rounded-[40px] text-white">
+                  <h4 className="text-xl font-black mb-4 flex items-center gap-3">
+                    <Plus size={24} /> PROYECTOS COTIZADOS
+                  </h4>
+                  <ul className="text-[11px] font-black space-y-2">
+                    <li>• FACHADAS: COTIZACIONES CON BELLAVISTA Y VERTIANDES.</li>
+                    <li>• CUBIERTAS: PLAN DE IMPERMEABILIZACIÓN ÚLTIMOS PISOS.</li>
+                    <li>• ILUMINACIÓN: INSTALACIÓN DE SENSORES DE MOVIMIENTO.</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* 3. GESTIÓN OPERATIVA, MANTENIMIENTO Y OBRAS */}
+              <div className="space-y-10">
+                <SectionHeader 
+                  title="3. Gestión Operativa y Mantenimiento" 
+                  icon={Wrench} 
+                />
+
+                {/* SEGURIDAD Y CCTV - TABLA DETALLADA */}
+                <InvestmentTable 
+                  title="MEJORAS CCTV (GESTIÓN VALOR AGREGADO)"
+                  icon={Camera}
+                  headers={["COMPRA / SERVICIO", "VALOR TOTAL", "ORIGEN RECURSOS"]}
+                  data={[
+                    { item: "TV SAMSUNG 40 PULGADAS", total: "$959.900", origen: "VALOR AGREGADO (EMPRESA VIGILANCIA)" },
+                    { item: "DVR 4TB + 2 CÁMARAS + ACCESORIOS", total: "$652.000", origen: "COPROPIEDAD ($157.000) / GESTIÓN" },
+                    { item: "CABLE HDMI Y CONECTIVIDAD", total: "$45.000", origen: "VALOR AGREGADO" },
+                    { item: "MANO DE OBRA E INSTALACIÓN", total: "INCLUIDO", origen: "VALOR AGREGADO" }
+                  ]}
+                  total="AHORRO GESTIONADO: $1.500.000"
+                />
+
+                {/* MANTENIMIENTO LOCATIVO - GRID DE EVIDENCIAS */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <EvidenceSection 
+                    title="SALÓN COMUNAL Y MOBILIARIO"
+                    icon={Building2}
+                    content={
+                      <div className="space-y-2 text-[13px]">
+                        <p>• PINTURA GENERAL Y ARREGLO DE CHAPA (MAYO).</p>
+                        <p>• ADQUISICIÓN DE MESA DE REUNIONES (ALKOSTO).</p>
+                        <p>• INSTALACIÓN DE BASE PARA TV.</p>
+                      </div>
+                    }
+                  />
+                  <EvidenceSection 
+                    title="PUENTES Y PASILLOS"
+                    icon={Layout}
+                    content="MANTENIMIENTO CORRECTIVO DE PAREDES Y PISOS INICIADO EN MAYO. EJECUCIÓN PRIORIZADA POR PISOS SEGÚN DISPONIBILIDAD DE RECURSOS."
+                  />
+                </div>
+
+                {/* JARDINERÍA Y SISTEMAS - FILAS DE DETALLE */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="p-6 bg-white border-2 border-slate-100 rounded-[32px]">
+                    <h4 className="text-[11px] font-black text-[#C96A2C] mb-3 flex items-center gap-2 uppercase"><Leaf size={16}/> JARDINERÍA</h4>
+                    <ul className="text-[10px] font-bold text-slate-600 space-y-1 uppercase">
+                      <li>• LIMPIEZA MALEZA Y MADRIGUERAS.</li>
+                      <li>• CAMBIO TIERRA FERTILIZADA.</li>
+                      <li>• 10 PLANTAS NUEVAS (SEPT).</li>
+                      <li>• DESRATIZACIÓN CONSTANTE.</li>
+                    </ul>
+                  </div>
+                  <div className="p-6 bg-white border-2 border-slate-100 rounded-[32px]">
+                    <h4 className="text-[11px] font-black text-[#C96A2C] mb-3 flex items-center gap-2 uppercase"><Zap size={16}/> ELECTRICIDAD Y AGUA</h4>
+                    <ul className="text-[10px] font-bold text-slate-600 space-y-1 uppercase">
+                      <li>• LAVADO TANQUES AGUA (NOV).</li>
+                      <li>• ARREGLO LUMINARIAS ÁREAS COMUNES.</li>
+                      <li>• MANTENIMIENTO SENSORES.</li>
+                    </ul>
+                  </div>
+                  <div className="p-6 bg-white border-2 border-slate-100 rounded-[32px]">
+                    <h4 className="text-[11px] font-black text-[#C96A2C] mb-3 flex items-center gap-2 uppercase"><ShieldCheck size={16}/> EQUIPOS Y ACCESOS</h4>
+                    <ul className="text-[10px] font-bold text-slate-600 space-y-1 uppercase">
+                      <li>• RECARGA 5 EXTINTORES (JUL).</li>
+                      <li>• ARREGLO BISAGRAS PUERTA VEHICULAR.</li>
+                      <li>• COMPRA INSUMOS MAYORISTAS ASEO.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                {/* INTERVENCIÓN ESPECIAL HUMEDADES */}
+                <div className="bg-[#F6F2ED] p-8 rounded-[40px] border-2 border-[#C96A2C] border-dashed">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="p-3 bg-[#C96A2C] text-white rounded-2xl">
+                      <AlertCircle size={24} />
+                    </div>
+                    <h4 className="text-lg font-black text-slate-800 uppercase italic">Intervención Especial Apto 509</h4>
+                  </div>
+                  <p className="text-[13px] font-bold text-slate-700 leading-relaxed uppercase">
+                    EN RESPUESTA A DERECHO DE PETICIÓN (ABRIL), SE REALIZÓ EL ARREGLO INTEGRAL DE HUMEDADES PARA GARANTIZAR CONDICIONES DIGNAS DE HABITABILIDAD. 
+                    <span className="text-[#C96A2C] block mt-2">MODALIDAD: ADMINISTRACIÓN SUMINISTRÓ MATERIALES / PROPIETARIOS ASUMIERON MANO DE OBRA.</span>
+                  </p>
+                </div>
+
+                {/* GESTIÓN NAVIDAD - DETALLE FINAL */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <EvidenceSection 
+                    title="DECORACIÓN NAVIDEÑA"
+                    color="#1F1F1F"
+                    content={
+                      <div className="text-[13px]">
+                        <p>ADQUISICIÓN DE 4 SERIES CASCADA Y GUIRNALDAS NUEVAS. REVISIÓN TÉCNICA Y REPARACIÓN DEL MATERIAL EXISTENTE DE AÑOS ANTERIORES.</p>
+                      </div>
+                    }
+                  />
+                  <div className="bg-slate-900 p-8 rounded-[40px] flex items-center justify-between text-white">
+                    <div>
+                      <h4 className="text-[#C96A2C] font-black text-xs tracking-widest uppercase mb-1">BONO PERSONAL</h4>
+                      <p className="text-2xl font-black italic">$580.000 <span className="text-xs opacity-50 not-italic">RECAUDADOS</span></p>
+                      <p className="text-[10px] opacity-70 mt-2 font-bold uppercase">ENTREGADO A 3 GUARDAS Y 1 OPERARIA DE ASEO ($145.000 C/U)</p>
+                    </div>
+                    <HeartPulse size={40} className="text-[#C96A2C] opacity-50" />
+                  </div>
+                </div>
+              </div>
             </div>
           )}
 
@@ -954,6 +1184,115 @@ export default function App() {
                     <div className="flex-1 p-4 bg-slate-50 rounded-2xl text-[10px] font-black text-center border">IMPERMEABILIZACIÓN</div>
                   </div>
                 </Card>
+              </div>
+            </div>
+          )}
+
+          {/* SECCIÓN: PROPOSICIONES Y VARIOS */}
+          {activeSection === 'proposiciones' && (
+            <div className="space-y-10 animate-in slide-in-from-bottom-10 uppercase">
+              <SectionHeader 
+                title="Proposiciones y Varios" 
+                icon={MessageSquare} 
+                agendaIndices={[13]} // Ajusta según el índice de tu orden del día
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+
+              {/* Formulario de Entrada */}
+              <div className="bg-white p-8 rounded-[40px] border-4 border-[#C96A2C]/10 shadow-xl">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-[#C96A2C] text-white rounded-2xl">
+                    <Plus size={24} />
+                  </div>
+                  <h3 className="text-xl font-black text-slate-800 italic">Registrar Nueva Proposición</h3>
+                </div>
+
+                <div className="grid grid-cols-1 gap-6">
+                  <div>
+                    <label className="block text-[10px] font-black text-slate-400 mb-2 ml-4 tracking-widest">PROPONENTE (NOMBRE O UNIDAD)</label>
+                    <input 
+                      type="text"
+                      value={tempProp.proponente}
+                      onChange={(e) => setTempProp({...tempProp, proponente: e.target.value})}
+                      className="w-full p-5 bg-[#F6F2ED] rounded-3xl border-2 border-transparent focus:border-[#C96A2C] outline-none font-bold text-slate-700 transition-all"
+                      placeholder="EJ: APTO 405 - JUAN PEREZ"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] font-black text-slate-400 mb-2 ml-4 tracking-widest">DETALLE DE LA PROPOSICIÓN</label>
+                    <textarea 
+                      value={tempProp.texto}
+                      onChange={(e) => setTempProp({...tempProp, texto: e.target.value})}
+                      rows="3"
+                      className="w-full p-5 bg-[#F6F2ED] rounded-3xl border-2 border-transparent focus:border-[#C96A2C] outline-none font-bold text-slate-700 transition-all resize-none"
+                      placeholder="ESCRIBA AQUÍ LA PROPUESTA DETALLADA..."
+                    />
+                  </div>
+                  <button 
+                    onClick={addProposicion}
+                    className="bg-[#C96A2C] hover:bg-[#9A4E1F] text-white font-black py-5 rounded-3xl transition-all shadow-lg active:scale-95 flex items-center justify-center gap-3 tracking-widest"
+                  >
+                    <Plus size={20} /> ADJUNTAR A LA GESTIÓN
+                  </button>
+                </div>
+              </div>
+
+              {/* Lista de Proposiciones */}
+              <div className="space-y-6">
+                <div className="flex items-center justify-between px-6">
+                  <h4 className="text-sm font-black text-slate-400 tracking-[0.3em]">PROPOSICIONES RADICADAS ({proposiciones.length})</h4>
+                </div>
+
+                {proposiciones.length === 0 ? (
+                  <div className="p-12 border-4 border-dashed border-slate-100 rounded-[40px] text-center">
+                    <ClipboardList size={48} className="mx-auto text-slate-200 mb-4" />
+                    <p className="text-slate-400 font-bold italic">No hay proposiciones registradas en esta sesión</p>
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 gap-4">
+                    {proposiciones.map((prop) => (
+                      <div key={prop.id} className="group bg-white p-8 rounded-[40px] border-2 border-slate-100 hover:border-[#C96A2C] transition-all shadow-sm flex items-start justify-between gap-6">
+                        <div className="flex-1">
+                          <div className="flex items-center gap-3 mb-3">
+                            <div className="w-8 h-8 bg-[#F6F2ED] rounded-lg flex items-center justify-center">
+                              <User size={16} className="text-[#C96A2C]" />
+                            </div>
+                            <span className="text-xs font-black text-[#C96A2C] tracking-tighter uppercase italic">
+                              Proponente: {prop.proponente}
+                            </span>
+                          </div>
+                          <p className="text-lg font-bold text-slate-700 leading-relaxed italic">
+                            "{prop.texto}"
+                          </p>
+                        </div>
+                        <button 
+                          onClick={() => deleteProposicion(prop.id)}
+                          className="p-4 bg-rose-50 text-rose-500 rounded-2xl hover:bg-rose-500 hover:text-white transition-all opacity-0 group-hover:opacity-100"
+                        >
+                          <Trash2 size={20} />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Sección de Varios / Recordatorios */}
+              <div className="bg-slate-900 p-10 rounded-[50px] text-white">
+                <h4 className="text-xl font-black mb-6 flex items-center gap-3 italic text-[#C96A2C]">
+                  <Info size={24} /> Puntos Varios y Recomendaciones
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-[11px] font-bold uppercase tracking-wide opacity-90">
+                  <div className="space-y-4 border-l-2 border-[#C96A2C] pl-6">
+                    <p>• Recordar la importancia del pago oportuno (primeros 10 días) para mantener la estabilidad financiera.</p>
+                    <p>• Actualización constante de datos de contacto para emergencias y citaciones.</p>
+                  </div>
+                  <div className="space-y-4 border-l-2 border-[#C96A2C] pl-6">
+                    <p>• Uso adecuado de los puntos de basura y horarios de recolección para evitar plagas.</p>
+                    <p>• Invitación a participar activamente en los comités de convivencia.</p>
+                  </div>
+                </div>
               </div>
             </div>
           )}
