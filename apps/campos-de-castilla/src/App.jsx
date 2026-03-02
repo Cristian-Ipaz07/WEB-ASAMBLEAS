@@ -324,8 +324,8 @@ export default function App() {
           {[
             { id: 'inicio', label: 'Inicio', icon: Home },
             { id: 'quorum', label: '1. Quórum', icon: Users },
-            { id: 'dignatarios', label: '2-4. Dignatarios', icon: UserPlus },
-            { id: 'orden', label: 'Orden del Día', icon: ListChecks },
+            { id: 'orden', label: '2. Orden del Día', icon: ListChecks },
+            { id: 'dignatarios', label: '3-4. Dignatarios', icon: UserPlus },
             { id: 'acta-anterior', label: '5. Acta Anterior', icon: FileText },
             { id: 'gestion', label: '6. Informe Gestión', icon: TrendingUp },
             { id: 'financiero', label: '7. Estados Financieros', icon: BarChart3 },
@@ -422,14 +422,15 @@ export default function App() {
                        <p className="text-[11px] font-black text-[#B65A3A] opacity-80 uppercase">Hora: 7:00 P.M. - Salón Social</p>
                     </div>
                   </Card>
-                  <Card className="bg-[#B65A3A] text-white border-none flex flex-col items-center justify-center shadow-2xl">
-                    <div className="text-center">
-                      <p className="text-6xl font-black text-white mb-2 leading-none tracking-tighter">
+                  <Card className="!bg-[#B65A3A] !border-none shadow-2xl flex flex-col items-center justify-center min-h-[160px]">
+                    <div className="text-center py-4">
+                      <p className="text-7xl font-black text-white mb-3 leading-none tracking-tighter">
                         47
                       </p>
-                      <p className="text-[11px] font-black uppercase tracking-[0.3em] text-white/90 leading-none">
+                      <p className="text-[12px] font-black uppercase tracking-[0.3em] text-white/90 leading-none">
                         Unidades Privadas
                       </p>
+                      <div className="w-12 h-1 bg-white/30 mx-auto mt-4 rounded-full"></div>
                     </div>
                   </Card>
                </div>
@@ -519,7 +520,7 @@ export default function App() {
           {activeSection === 'dignatarios' && (
             <div className="space-y-10 animate-in zoom-in-95 uppercase">
               <SectionHeader 
-                title="2-4. Elección de Dignatarios" 
+                title="3-4. Elección de Dignatarios" 
                 icon={UserPlus} 
                 agendaIndices={[2, 3]} 
                 agendaStatus={agendaStatus} 
@@ -570,7 +571,7 @@ export default function App() {
           {activeSection === 'orden' && (
             <div className="space-y-10 animate-in fade-in">
               <SectionHeader title="Orden del Día Oficial" icon={ListChecks} agendaIndices={[1]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-              <Card highlight title="Puntos Convocados">
+              <Card highlight title="2. Lectura y aprobación del orden del día">
                 <div className="space-y-3 pt-6">
                   {ORDEN_DIA.map((punto, idx) => (
                     <div key={idx} className={`p-6 rounded-[28px] border-2 flex items-center gap-6 transition-all ${agendaStatus[idx] ? 'border-[#B65A3A] bg-[#B65A3A]/5' : 'border-[#B65A3A]/10 bg-white'}`}>
@@ -590,19 +591,38 @@ export default function App() {
           {/* SECCIÓN 5: ACTA ANTERIOR */}
           {activeSection === 'acta-anterior' && (
             <div className="space-y-10 animate-in fade-in uppercase">
-              <SectionHeader title="5. Acta Asamblea Anterior" icon={FileText} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              <SectionHeader 
+                title="5. Acta Asamblea Anterior" 
+                icon={FileText} 
+                agendaIndices={[4]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <Card title="Estado de Validación" icon={ShieldCheck} highlight>
                   <div className="space-y-6 pt-4">
                     <p className="text-[11px] font-bold text-slate-600 leading-loose">
                       Verificación del texto del acta de la asamblea anterior por parte de la comisión designada.
                     </p>
-                    <div className="p-8 bg-slate-50 rounded-3xl border-2 border-dashed border-[#B65A3A]/20 flex flex-col items-center justify-center text-center">
-                        <FileText size={40} className="text-[#B65A3A] mb-4 opacity-40" />
-                        <p className="text-[10px] font-black text-slate-400">ARCHIVOS DISPONIBLES EN ADMINISTRACIÓN</p>
-                    </div>
+                    
+                    {/* BOTÓN INTERACTIVO PARA ABRIR EL ACTA */}
+                    <a 
+                      href="https://drive.google.com/file/d/1MkHgTp84uYm5ZLwOrkGl1SUw8w5WomO3/view?usp=sharing" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group p-8 bg-slate-50 rounded-3xl border-2 border-dashed border-[#B65A3A]/20 flex flex-col items-center justify-center text-center transition-all hover:bg-[#B65A3A]/5 hover:border-[#B65A3A] hover:shadow-inner cursor-pointer"
+                    >
+                      <div className="p-4 bg-white rounded-full shadow-sm mb-4 group-hover:scale-110 transition-transform">
+                        <FileText size={40} className="text-[#B65A3A]" />
+                      </div>
+                      <p className="text-[10px] font-black text-[#B65A3A] mb-1">CLIC PARA VER DOCUMENTO</p>
+                      <p className="text-[12px] font-black text-[#2B2B2B]">ACTA ASAMBLEA 2025.PDF</p>
+                      <ExternalLink size={14} className="mt-3 text-slate-400 group-hover:text-[#B65A3A]" />
+                    </a>
+
                   </div>
                 </Card>
+                
                 <Card title="Observaciones" icon={ClipboardCheck}>
                   <textarea 
                     className="w-full p-6 bg-slate-50 border-2 border-[#B65A3A]/10 rounded-2xl font-black uppercase text-[11px] h-48 focus:border-[#B65A3A] outline-none"
@@ -772,7 +792,6 @@ export default function App() {
                       {p: "DIAN", c: "Impuestos", d: "Retención en la Fuente e IVA."},
                       {p: "ALCALDIA DE PASTO", c: "Impuestos", d: "Retención de ICA."},
                       {p: "SEGUROS DEL ESTADO SA", c: "Seguros", d: "Cuotas póliza áreas comunes."},
-                      {p: "CAMPOS DE ARAGON", c: "Devoluciones", d: "Pago doble apto 401."},
                       {p: "DORIS CUARAN", c: "Imprevistos", d: "Ramo fúnebre."}
                     ]}
                   />
