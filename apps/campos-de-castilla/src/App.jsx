@@ -761,7 +761,7 @@ export default function App() {
                     >
                       <div className="flex-1">
                         <h4 className="text-xs font-black text-blue-800 uppercase tracking-widest">Proyección Modernización Total</h4>
-                        <p className="text-xs font-bold text-blue-600 mt-1">Estimada para 2 a 5 años (Costo aprox. $45M por equipo).</p>
+                        <p className="text-xs font-bold text-blue-600 mt-1">Estimada para 2 a 5 años (Costo aprox. $60M por equipo).</p>
                         
                         {/* Indicador visual de que es cliqueable */}
                         <div className="mt-4 inline-flex items-center gap-2 text-blue-700 bg-white/60 px-3 py-1.5 rounded-full border border-blue-200">
