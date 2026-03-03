@@ -7,8 +7,8 @@ import {
   AlertCircle, ChevronRight, Info, ShieldAlert, HeartPulse, Building2,
   Search, DollarSign, PieChart, Landmark, Gavel, 
   ArrowUpRight, Percent, Wallet, HardHat, Cog, Plus, UserCheck, Leaf, Scale,
-  // AÑADE ESTOS TRES:
-  X, ChevronLeft, Expand, ClipboardList
+  X, ChevronLeft, Expand, ClipboardList, 
+  Trees, Sparkles // <--- AGREGA ESTOS DOS
 } from 'lucide-react';
 
 // --- CONFIGURACIÓN DE IDENTIDAD VISUAL CAMPOS DE CASTILLA ---
@@ -882,13 +882,13 @@ export default function App() {
                                    
 
                   <InvestmentTable 
-                    title="D. ACTIVIDADES NAVIDEÑAS E INTEGRACIÓN"
+                    title="B. ACTIVIDADES NAVIDEÑAS E INTEGRACIÓN"
                     headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
                     icon={HeartPulse}
                     data={[
                       {p: "JOSE FRANCISCO JOJOA", o: "Iluminación", d: "Instalación luces en torres."},
                       {p: "JAVIER MAURICIO ROSERO", o: "Decoración", d: "Materiales decoración general."},
-                      {p: "JORGE ELIECER TORO", o: "Alimentación", d: "Porciones de hornado integración."},                      
+                      {p: "JORGE ELIECER TORO", o: "Refrigerio", d: "Porciones de hornado integración."},                      
                       {p: "ADMINISTRACIÓN", o: "Bonificaciones", d: "Bonos navidad personal edificio."},
                       {p: "ADMINISTRACIÓN", o: "Evento", d: "Misa y grupo musical."},
                       {p: "ADMINISTRACIÓN", o: "Novena", d: "Refrigerio buñuelos, natilla y fresas con crema."}
@@ -896,7 +896,7 @@ export default function App() {
                   />
 
                   <ManagementTable 
-                    title="E. IMPUESTOS, SEGUROS Y OTROS"
+                    title="C. IMPUESTOS, SEGUROS Y OTROS"
                     headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
                     icon={Scale}
                     data={[
@@ -995,103 +995,398 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 7: ESTADOS FINANCIEROS */}
+          {/* SECCIÓN 7: ESTADOS FINANCIEROS (DETALLADO SEGÚN INFORME 2025) */}
           {activeSection === 'financiero' && (
-            <div className="space-y-10 animate-in fade-in uppercase">
+            <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
               <SectionHeader 
-                title="7. Estados Financieros 2025" 
+                title="7. Informe de Gestión Financiera 2025" 
                 icon={BarChart3} 
                 agendaIndices={[6]} 
                 agendaStatus={agendaStatus} 
-                toggleAgendaItem={toggleAgendaItem} 
+                toggleAgendaIlltem={toggleAgendaItem} 
               />
 
-              <div className="max-w-6xl mx-auto space-y-12">
-                
-                {/* 1. BOTÓN PRINCIPAL AL DRIVE */}
+              {/* BOTÓN DRIVE AL PDF OFICIAL */}
+              <div className="max-w-5xl mx-auto">
                 <a 
                   href="https://drive.google.com/file/d/1np1EUGz1KuQRxmiGRNtHwGOdf4Z1HL-v/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-between p-10 bg-[#B65A3A] rounded-[40px] text-white shadow-2xl hover:scale-[1.02] transition-all duration-500"
+                  className="group flex items-center justify-between p-8 bg-[#B65A3A] rounded-[40px] text-white shadow-2xl hover:scale-[1.02] transition-all duration-500"
                 >
-                  <div className="flex items-center gap-8">
-                    <div className="bg-white/20 p-6 rounded-3xl group-hover:rotate-12 transition-transform">
-                      <FileText size={50} />
+                  <div className="flex items-center gap-6">
+                    <div className="bg-white/20 p-4 rounded-2xl">
+                      <FileText size={40} />
                     </div>
                     <div className="text-left">
-                      <h3 className="text-2xl font-black tracking-tighter">VER ESTADOS FINANCIEROS COMPLETOS</h3>
-                      <p className="text-white/70 font-bold text-sm tracking-widest mt-1">DOCUMENTO OFICIAL PDF - BALANCE GENERAL Y PYP</p>
+                      <h3 className="text-xl font-black tracking-tighter uppercase">Ver Estados Financieros Completos</h3>
+                      <p className="text-white/70 font-bold text-[10px] tracking-widest mt-1 uppercase">Balance General y P&P - Certificado por Contador</p>
                     </div>
                   </div>
-                  <ExternalLink size={40} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+                  <ExternalLink size={30} className="opacity-40 group-hover:opacity-100 transition-opacity" />
                 </a>
+              </div>
 
-                {/* 2. DASHBOARD DE INDICADORES (Extraído del Word) */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div className="bg-white p-8 rounded-[40px] border-2 border-slate-100 shadow-sm">
-                    <p className="text-[10px] font-black text-slate-400 tracking-widest mb-2">TOTAL INGRESOS</p>
-                    <p className="text-3xl font-black text-[#2B2B2B]">$446.519.386</p>
-                    <div className="w-full bg-slate-100 h-2 mt-4 rounded-full overflow-hidden">
-                      <div className="bg-green-500 h-full w-full"></div>
-                    </div>
+              {/* 1. RESUMEN DE RESULTADOS */}
+              <Card title="1. Resumen de Resultados (Enero - Diciembre 2025)" icon={Activity} highlight className="p-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="p-6 bg-slate-50 rounded-[32px] border border-slate-100 text-center">
+                    <p className="text-[10px] font-black text-slate-400 mb-2">TOTAL INGRESOS</p>
+                    <p className="text-2xl font-black text-[#2B2B2B]">$446.519.386</p>
                   </div>
-                  
-                  <div className="bg-white p-8 rounded-[40px] border-2 border-slate-100 shadow-sm">
-                    <p className="text-[10px] font-black text-slate-400 tracking-widest mb-2">EXCEDENTE FINAL</p>
-                    <p className="text-3xl font-black text-[#B65A3A]">$33.668.337</p>
-                    <p className="text-[9px] font-bold text-green-600 mt-2">↑ INCLUYE OTROS INGRESOS</p>
+                  <div className="p-6 bg-slate-50 rounded-[32px] border border-slate-100 text-center">
+                    <p className="text-[10px] font-black text-slate-400 mb-2">GASTOS ADMÓN</p>
+                    <p className="text-2xl font-black text-slate-600">$431.318.221</p>
                   </div>
-
-                  <div className="bg-white p-8 rounded-[40px] border-2 border-slate-100 shadow-sm">
-                    <p className="text-[10px] font-black text-slate-400 tracking-widest mb-2">GASTOS ADMÓN</p>
-                    <p className="text-3xl font-black text-slate-700">$431.318.221</p>
-                    <div className="w-full bg-slate-100 h-2 mt-4 rounded-full overflow-hidden">
-                      <div className="bg-[#B65A3A] h-full w-[96%]"></div>
-                    </div>
+                  <div className="p-6 bg-green-50 rounded-[32px] border border-green-100 text-center">
+                    <p className="text-[10px] font-black text-green-600 mb-2">EXCEDENTE OPER.</p>
+                    <p className="text-2xl font-black text-green-700">$15.201.164</p>
+                  </div>
+                  <div className="p-6 bg-[#B65A3A]/10 rounded-[32px] border border-[#B65A3A]/20 text-center">
+                    <p className="text-[10px] font-black text-[#B65A3A] mb-2">EXCEDENTE FINAL</p>
+                    <p className="text-2xl font-black text-[#B65A3A]">$33.668.337</p>
                   </div>
                 </div>
+                <div className="mt-8 p-6 bg-[#2B2B2B] rounded-[30px] text-white/90 text-[11px] font-bold leading-relaxed">
+                  <span className="text-[#B65A3A] font-black mr-2">NOTA:</span> El excedente final incluye $19.762.030 por aprovechamientos no operacionales. Los ingresos ordinarios sumaron $270.180.000 por cuotas de administración.
+                </div>
+              </Card>
 
-                {/* 3. RESUMEN DE EGRESOS PRINCIPALES */}
-                <div className="bg-[#2B2B2B] rounded-[60px] p-12 text-white shadow-2xl">
-                  <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-6">
-                    <TrendingUp className="text-[#B65A3A]" size={32} />
-                    <h4 className="text-xl font-black tracking-widest uppercase">Distribución de Gastos Clave</h4>
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
+              {/* 2. ANÁLISIS DE EGRESOS Y 3. SITUACIÓN FINANCIERA */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                {/* 2. ANÁLISIS DE EGRESOS */}
+                <div className="space-y-6">
+                  <h4 className="text-sm font-black text-[#B65A3A] px-6 tracking-[0.3em] uppercase">2. Análisis de Egresos (Rubros Clave)</h4>
+                  <div className="p-10 bg-white rounded-[50px] border-2 border-slate-100 shadow-sm space-y-8">
                     {[
-                      { label: "Vigilancia", val: "$222.525.967", perc: "51%" },
-                      { label: "Aseo", val: "$63.638.224", perc: "14%" },
-                      { label: "Energía Eléctrica", val: "$32.417.780", perc: "7%" },
-                      { label: "Mantenimiento Ascensores", val: "$21.118.819", perc: "5%" },
+                      { label: "Vigilancia", val: "$222.525.967", p: "w-[51%]" },
+                      { label: "Servicio de Aseo", val: "$63.638.224", p: "w-[14%]" },
+                      { label: "Energía Eléctrica", val: "$32.417.780", p: "w-[7%]" },
+                      { label: "Mantenimiento Ascensores", val: "$21.118.819", p: "w-[5%]" },
                     ].map((item, idx) => (
                       <div key={idx} className="space-y-2">
-                        <div className="flex justify-between text-[11px] font-black tracking-widest">
+                        <div className="flex justify-between text-[11px] font-black">
                           <span>{item.label}</span>
                           <span className="text-[#B65A3A]">{item.val}</span>
                         </div>
-                        <div className="w-full bg-white/10 h-3 rounded-full overflow-hidden">
-                          <div 
-                            className="bg-[#B65A3A] h-full rounded-full" 
-                            style={{ width: item.perc }}
-                          ></div>
+                        <div className="h-3 bg-slate-100 rounded-full overflow-hidden">
+                          <div className={`h-full bg-[#B65A3A] ${item.p}`}></div>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* 4. CIERRE (PRESENTADO POR) */}
-                <div className="bg-white rounded-[60px] p-12 border-4 border-[#B65A3A]/10 flex flex-col items-center text-center">
-                  <div className="p-6 bg-[#B65A3A]/5 rounded-full mb-6">
-                    <Landmark size={40} className="text-[#B65A3A]" />
+                {/* 3. SITUACIÓN FINANCIERA (TABLA) */}
+                <div className="space-y-6">
+                  <h4 className="text-sm font-black text-[#2B2B2B] px-6 tracking-[0.3em] uppercase">3. Situación Financiera (Corte Dic 31)</h4>
+                  <div className="overflow-hidden rounded-[50px] border-2 border-slate-100 bg-white shadow-sm">
+                    <table className="w-full text-[11px]">
+                      <thead className="bg-slate-50 border-b">
+                        <tr>
+                          <th className="px-6 py-4 font-black text-left">CUENTA</th>
+                          <th className="px-6 py-4 font-black text-left">VALOR</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100 font-bold">
+                        <tr><td className="px-6 py-4 text-slate-500 uppercase">Disponible (Bancos)</td><td className="px-6 py-4 font-black">$5.665.989</td></tr>
+                        <tr><td className="px-6 py-4 text-slate-500 uppercase">Deudores (Cartera)</td><td className="px-6 py-4 font-black text-red-600">$115.840.650</td></tr>
+                        <tr><td className="px-6 py-4 text-slate-500 uppercase">Activo Total</td><td className="px-6 py-4 font-black">$306.791.638</td></tr>
+                        <tr><td className="px-6 py-4 text-slate-500 uppercase">Pasivo Total</td><td className="px-6 py-4 font-black">$62.699.136</td></tr>
+                        <tr className="bg-slate-50"><td className="px-6 py-4 font-black uppercase">Patrimonio</td><td className="px-6 py-4 font-black text-[#B65A3A]">$244.092.502</td></tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <p className="text-[12px] font-black text-slate-400 tracking-[0.4em] mb-2">RESPONSABLE DE LA INFORMACIÓN:</p>
-                  <p className="text-2xl font-black text-[#2B2B2B]">LUIS FELIPE NARVAEZ - CONTADOR</p>
-                  <p className="text-sm font-bold text-slate-500 mt-2">MATRÍCULA PROFESIONAL VIGENTE</p>
                 </div>
+              </div>
 
+              {/* 4. CONCLUSIONES Y RECOMENDACIONES */}
+              <div className="bg-[#2B2B2B] p-12 rounded-[60px] text-white shadow-2xl relative overflow-hidden">
+                <div className="relative z-10">
+                  <h3 className="text-2xl font-black mb-8 border-b border-white/10 pb-4 uppercase tracking-tighter">4. Conclusiones y Recomendaciones</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div className="space-y-3 p-6 bg-white/5 rounded-3xl border border-white/10">
+                      <h5 className="text-[#B65A3A] font-black text-xs uppercase">Gestión de Cartera</h5>
+                      <p className="text-[10px] leading-relaxed opacity-80 uppercase">Concentración de recursos en deudores ($115.8M). Se recomienda cobro jurídico urgente.</p>
+                    </div>
+                    <div className="space-y-3 p-6 bg-white/5 rounded-3xl border border-white/10">
+                      <h5 className="text-[#B65A3A] font-black text-xs uppercase">Solidez Patrimonial</h5>
+                      <p className="text-[10px] leading-relaxed opacity-80 uppercase">Patrimonio robusto de $244M que garantiza el respaldo ante terceros.</p>
+                    </div>
+                    <div className="space-y-3 p-6 bg-white/5 rounded-3xl border border-white/10">
+                      <h5 className="text-[#B65A3A] font-black text-xs uppercase">Fondo Imprevistos</h5>
+                      <p className="text-[10px] leading-relaxed opacity-80 uppercase">Traslado cumplido de $1.291.857 según requerimiento legal.</p>
+                    </div>
+                  </div>
+                </div>
+                <Info size={120} className="absolute right-[-20px] bottom-[-20px] text-white opacity-5" />
+              </div>
+
+              {/* 5. CUADROS INDIVIDUALES (A, B, C, D, E) */}
+              <div className="space-y-12">
+                <h4 className="text-xl font-black text-center uppercase tracking-[0.2em] border-y py-4 border-slate-100">5. Ejecución Detallada por Actividades</h4>
+                
+                <div className="grid grid-cols-1 gap-12">
+                  {/* A. REPARACIONES Y SUMINISTROS LOCATIVOS - ACTUALIZADO */}
+                    <InvestmentTable 
+                      title="A. Reparaciones y Suministros Locativos / Eléctricos"
+                      headers={["PROVEEDOR", "DETALLE DE LA LABOR / SUMINISTRO", "INVERSIÓN"]}
+                      icon={Wrench}
+                      data={[
+                        {p: "Alex Mauricio Maigual", o: "Metalmecánica (Topes, soldadura, shut, balineras)", d: "$856.900"},
+                        {p: "Adriana Milena Barrera", o: "Insumos de Aseo (May, Oct, Dic)", d: "$1.969.244"},
+                        {p: "Chaves Leon", o: "Suministros Hidráulicos", d: "$727.365"},
+                        {p: "James Arturo Maigual", o: "Poda Extraordinaria (Cancha y Nogales)", d: "$747.200"},
+                        {p: "Jolmar Valdés Castaño", o: "Seguridad Industrial", d: "$370.798"},
+                        {p: "José Francisco Jojoa", o: "Instalaciones Eléctricas", d: "$200.000"},
+                        {p: "Oscar Males", o: "Mantenimiento de Vidrios", d: "$196.140"},
+                        {p: "Andrés Tobar", o: "Dotación de Seguridad", d: "$180.000"},
+                        {p: "Inversiones Electrónicas Y.", o: "Suministros Eléctricos varios", d: "$122.600"},
+                        {p: "Luis Humberto Barrera", o: "Suministros Eléctricos", d: "$45.300"}
+                      ]}
+                    />
+
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <ManagementTable 
+                      title="B. Ascensores y Planta"
+                      headers={["CONCEPTO", "VALOR"]}
+                      icon={Zap}
+                      data={[
+                        {p: "Ascensur (Reparación Mayor)", d: "$14.026.900"},
+                        {p: "Cummins (Mantenimiento Planta)", d: "$698.814"},
+                        {p: "Albeiro Bastidas (Emergencia)", d: "$120.000"}
+                      ]}
+                    />
+                    <ManagementTable 
+                      title="C. Seguridad y SGSST"
+                      headers={["CONCEPTO", "VALOR"]}
+                      icon={ShieldCheck}
+                      data={[
+                        {p: "Seguridad El Dorado (CCTV)", d: "$435.150"},
+                        {p: "Ricardo Fierro (SGSST)", d: "$1.002.430"}
+                      ]}
+                    />
+                  </div>
+
+                  <InvestmentTable 
+                    title="D. Actividades Navideñas e Integración"
+                    headers={["PROVEEDOR / RUBRO", "CONCEPTO", "VALOR"]}
+                    icon={HeartPulse}
+                    data={[
+                      {p: "Jorge Eliécer Toro", o: "Refrigerio", d: "$1.800.000"},
+                      {p: "Javier Mauricio Rosero", o: "Decoración", d: "$1.041.720"},
+                      {p: "José Francisco Jojoa", o: "Iluminación", d: "$1.000.000"},
+                      {p: "Administración", o: "Bonificaciones", d: "$1.050.000"}
+                    ]}
+                  />
+
+                  
+                </div>
+              </div>
+
+              {/* 6. RELACIÓN DE GASTOS CAJA MENOR */}
+              <Card title="6. Detalle de Gastos de Caja Menor" icon={Wallet} highlight className="p-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="space-y-6">
+                    <h5 className="text-[11px] font-black text-[#B65A3A] tracking-widest uppercase px-4">Gastos Operativos y Legales</h5>
+                    <div className="bg-white rounded-[40px] border border-slate-100 overflow-hidden shadow-sm">
+                      <table className="w-full text-[10px]">
+                        <tbody className="divide-y divide-slate-50">
+                          <tr className="hover:bg-slate-50 transition-colors">
+                            <td className="px-6 py-4 font-black uppercase">Impuestos Municipales (Rete ICA)</td>
+                            <td className="px-6 py-4 font-bold text-slate-500">$162.000</td>
+                          </tr>
+                          <tr className="hover:bg-slate-50 transition-colors">
+                            <td className="px-6 py-4 font-black uppercase">Gestión Administrativa (Base Datos)</td>
+                            <td className="px-6 py-4 font-bold text-slate-500">$50.000</td>
+                          </tr>
+                          <tr className="hover:bg-slate-50 transition-colors">
+                            <td className="px-6 py-4 font-black uppercase">Celebración Halloween (Dulces)</td>
+                            <td className="px-6 py-4 font-bold text-slate-500">$21.700</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    <h5 className="text-[11px] font-black text-[#B65A3A] tracking-widest uppercase px-4">Actividades Navideñas y Novenas</h5>
+                    <div className="bg-slate-900 rounded-[40px] p-8 text-white relative overflow-hidden">
+                      <div className="relative z-10 space-y-4">
+                        <div className="flex justify-between items-center border-b border-white/10 pb-2">
+                          <span className="text-[10px] font-bold opacity-60 uppercase">Música y Misa</span>
+                          <span className="text-sm font-black text-[#B65A3A]">$1.300.000</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-white/10 pb-2">
+                          <span className="text-[10px] font-bold opacity-60 uppercase">Alimentos (Natilla/Buñuelos/Fresas)</span>
+                          <span className="text-sm font-black text-[#B65A3A]">$430.799</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-[10px] font-bold opacity-60 uppercase">Logística y Pedestales</span>
+                          <span className="text-sm font-black text-[#B65A3A]">$144.000</span>
+                        </div>
+                      </div>
+                      <Sparkles size={80} className="absolute right-[-20px] top-[-20px] text-white opacity-5" />
+                    </div>
+                  </div>
+                </div>
+              </Card>
+
+              {/* 7. PROMEDIO GASTOS MENSUALES FIJOS */}
+              {/* 7. PROMEDIO DE GASTOS MENSUALES FIJOS - ACTUALIZADO CON CONTABILIDAD Y TELEFONÍA */}
+              <Card title="7. Promedio de Gastos Mensuales Fijos" icon={TrendingUp} className="p-10">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-[11px]">
+                    <thead className="bg-slate-50 border-b-2 border-slate-100">
+                      <tr>
+                        <th className="px-6 py-5 font-black uppercase tracking-widest">Concepto de Gasto</th>
+                        <th className="px-6 py-5 font-black uppercase tracking-widest">Proveedor / Responsable</th>
+                        <th className="px-6 py-5 font-black uppercase tracking-widest">Total Anual</th>
+                        <th className="px-6 py-5 font-black uppercase tracking-widest">Promedio Mensual</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-slate-100 font-bold text-slate-600">
+                      <tr>
+                        <td className="px-6 py-4 uppercase">Servicio de Energía</td>
+                        <td className="px-6 py-4 uppercase opacity-60 font-medium">Enertotal S.A. E.S.P.</td>
+                        <td className="px-6 py-4">$32.427.653</td>
+                        <td className="px-6 py-4 text-[#B65A3A] font-black bg-[#B65A3A]/5">$2.702.304</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 uppercase">Acueducto y Alcantarillado</td>
+                        <td className="px-6 py-4 uppercase opacity-60 font-medium">Empopasto S.A. E.S.P.</td>
+                        <td className="px-6 py-4">$2.316.480</td>
+                        <td className="px-6 py-4 text-[#B65A3A] font-black bg-[#B65A3A]/5">$193.040</td>
+                      </tr>
+                      <tr className="bg-slate-50/30">
+                        <td className="px-6 py-4 uppercase">Telefonía e Internet</td>
+                        <td className="px-6 py-4 uppercase opacity-60 font-medium">Comcel S.A. (Claro)</td>
+                        <td className="px-6 py-4">$949.323</td>
+                        <td className="px-6 py-4 text-[#B65A3A] font-black bg-[#B65A3A]/5">$79.110</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 uppercase">Honorarios Administración</td>
+                        <td className="px-6 py-4 uppercase opacity-60 font-medium">Ana Lucía Yépez</td>
+                        <td className="px-6 py-4">$20.279.136</td>
+                        <td className="px-6 py-4 text-[#B65A3A] font-black bg-[#B65A3A]/5">$1.689.928</td>
+                      </tr>
+                      <tr className="bg-slate-50/30">
+                        <td className="px-6 py-4 uppercase">Honorarios Contabilidad</td>
+                        <td className="px-6 py-4 uppercase opacity-60 font-medium">Luis Felipe Narváez</td>
+                        <td className="px-6 py-4">$7.464.200</td>
+                        <td className="px-6 py-4 text-[#B65A3A] font-black bg-[#B65A3A]/5">$622.017</td>
+                      </tr>
+                      <tr>
+                        <td className="px-6 py-4 uppercase">Servicio de Vigilancia</td>
+                        <td className="px-6 py-4 uppercase opacity-60 font-medium">Seguridad del Sur</td>
+                        <td className="px-6 py-4">$223.415.000</td>
+                        <td className="px-6 py-4 text-[#B65A3A] font-black bg-[#B65A3A]/5">$18.617.917</td>
+                      </tr>
+                      <tr className="bg-slate-50/50">
+                        <td className="px-6 py-4 uppercase">Servicio de Aseo</td>
+                        <td className="px-6 py-4 uppercase opacity-60 font-medium">Impecol SAS</td>
+                        <td className="px-6 py-4">$64.551.600</td>
+                        <td className="px-6 py-4 text-[#B65A3A] font-black bg-[#B65A3A]/5">$5.379.300</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                
+                <div className="mt-8 p-8 bg-blue-50 rounded-[40px] border-2 border-blue-100 flex items-start gap-6">
+                  <div className="p-3 bg-blue-600 rounded-2xl text-white shadow-lg shadow-blue-200">
+                    <Activity size={24} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black text-blue-800 uppercase tracking-[0.2em] mb-2">Análisis de Estabilidad Presupuestal</p>
+                    <p className="text-xs font-bold text-blue-900 leading-relaxed italic uppercase">
+                      "El control riguroso de la administración permitió mantener la estabilidad en los gastos fijos. Destaca la optimización en telecomunicaciones con un promedio de $79.110 y la constancia en los servicios tercerizados, garantizando la solvencia necesaria para imprevistos."
+                    </p>
+                  </div>
+                </div>
+              </Card>
+
+              {/* 8. GESTIÓN ÁREAS VERDES Y PAISAJISMO - OCUPA TODA LA FILA */}
+              <div className="mb-12">
+                <InvestmentTable 
+                  title="8. Áreas Verdes y Paisajismo"
+                  headers={["LABOR REALIZADA", "RESPONSABLE / PROVEEDOR", "INVERSIÓN TOTAL 2025"]}
+                  icon={Leaf}
+                  data={[
+                    {p: "Mantenimiento Mensual de Jardinería", o: "James Arturo Maigual", d: "$7.925.360"},
+                    {p: "Poda Extraordinaria (Cancha y Nogales)", o: "James Arturo Maigual", d: "$747.200"}
+                  ]}
+                />
+              </div>
+
+              {/* 9. OBLIGACIONES LEGALES Y DIAN - OCUPA TODA LA FILA */}
+              <div className="mb-12 space-y-6">
+                <h4 className="text-sm font-black text-[#2B2B2B] px-8 tracking-[0.3em] uppercase flex items-center gap-4">
+                  <div className="p-2 bg-[#B65A3A]/10 rounded-lg">
+                    <Scale size={20} className="text-[#B65A3A]" />
+                  </div>
+                  9. Obligaciones Tributarias y Legales (DIAN y Alcaldía)
+                </h4>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="p-8 bg-white rounded-[40px] border-2 border-slate-100 shadow-sm hover:border-[#B65A3A]/30 transition-all group">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 group-hover:text-[#B65A3A]">IVA (Ventas)</p>
+                    <p className="text-2xl font-black text-[#2B2B2B]">$13.096.000</p>
+                    <p className="text-[9px] font-bold text-slate-500 mt-2 uppercase">Pagos Cuatrimestrales (Sept 2024 - Ago 2025)</p>
+                  </div>
+
+                  <div className="p-8 bg-white rounded-[40px] border-2 border-slate-100 shadow-sm hover:border-[#B65A3A]/30 transition-all group">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 group-hover:text-[#B65A3A]">Retención Fuente</p>
+                    <p className="text-2xl font-black text-[#2B2B2B]">$1.134.000</p>
+                    <p className="text-[9px] font-bold text-slate-500 mt-2 uppercase">Periodos Mensuales (1 al 11 de 2025)</p>
+                  </div>
+
+                  <div className="p-8 bg-white rounded-[40px] border-2 border-slate-100 shadow-sm hover:border-[#B65A3A]/30 transition-all group">
+                    <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 group-hover:text-[#B65A3A]">Rete ICA (Pasto)</p>
+                    <p className="text-2xl font-black text-[#2B2B2B]">$70.000</p>
+                    <p className="text-[9px] font-bold text-slate-500 mt-2 uppercase">Bimestres 3 y 4 (Alcaldía de Pasto)</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* 10. OTROS SERVICIOS TÉCNICOS */}
+              <Card title="10. Otros Servicios Técnicos y Suministros" icon={Activity} highlight>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 p-4">
+                  <div className="p-6 border-l-4 border-[#B65A3A] bg-slate-50 rounded-r-3xl">
+                    <p className="text-[9px] font-black text-slate-400 uppercase">Suministro Gas</p>
+                    <p className="text-lg font-black text-[#2B2B2B]">$37.731.370</p>
+                    <p className="text-[9px] font-bold text-[#B65A3A] mt-1">PROMEDIO: $3.144.280</p>
+                  </div>
+                  <div className="p-6 border-l-4 border-[#B65A3A] bg-slate-50 rounded-r-3xl">
+                    <p className="text-[9px] font-black text-slate-400 uppercase">Ascensores Prev.</p>
+                    <p className="text-lg font-black text-[#2B2B2B]">$15.066.192</p>
+                    <p className="text-[9px] font-bold text-[#B65A3A] mt-1">FIJO: $1.255.516/MES</p>
+                  </div>
+                  <div className="p-6 border-l-4 border-[#B65A3A] bg-slate-50 rounded-r-3xl">
+                    <p className="text-[9px] font-black text-slate-400 uppercase">Sistema SGSST</p>
+                    <p className="text-lg font-black text-[#2B2B2B]">$1.002.430</p>
+                    <p className="text-[9px] font-bold text-[#B65A3A] mt-1">ING. RICARDO FIERRO</p>
+                  </div>
+                  <div className="p-6 border-l-4 border-[#B65A3A] bg-slate-50 rounded-r-3xl">
+                    <p className="text-[9px] font-black text-slate-400 uppercase">Insumos de Aseo</p>
+                    <p className="text-lg font-black text-[#2B2B2B]">$1.969.244</p>
+                    <p className="text-[9px] font-bold text-[#B65A3A] mt-1">ADRIANA M. BARRERA</p>
+                  </div>
+                </div>
+              </Card>
+
+              {/* CIERRE RESPONSABLE */}
+              <div className="flex flex-col items-center text-center p-16 bg-[#2B2B2B] rounded-[60px] shadow-2xl relative overflow-hidden">
+                <div className="relative z-10">
+                  <div className="p-6 bg-[#B65A3A] rounded-full mb-8 inline-block shadow-xl">
+                    <Landmark size={60} className="text-white" />
+                  </div>
+                  <p className="text-[11px] font-black text-white/40 tracking-[0.6em] mb-4 uppercase">Certificación de Cierre Financiero 2025</p>
+                  <div className="h-px w-64 bg-white/10 mx-auto mb-8"></div>
+                  <p className="text-5xl font-black text-white uppercase tracking-tighter">Luis Felipe Narváez</p>
+                  <p className="text-sm font-bold text-[#B65A3A] tracking-[0.3em] mt-3 uppercase">Contador Público - T.P. Vigente</p>
+                  <p className="text-[10px] font-bold text-white/30 mt-8 uppercase tracking-widest">Edificio Campos de Castilla - Propiedad Horizontal</p>
+                </div>
+                <ShieldCheck size={200} className="absolute left-[-50px] bottom-[-50px] text-white opacity-[0.03]" />
               </div>
             </div>
           )}
