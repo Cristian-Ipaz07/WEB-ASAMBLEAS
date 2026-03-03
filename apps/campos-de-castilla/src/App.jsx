@@ -6,7 +6,9 @@ import {
   ClipboardCheck, Camera, Zap, Activity, Wrench, Calendar, Layout, ListChecks,
   AlertCircle, ChevronRight, Info, ShieldAlert, HeartPulse, Building2,
   Search, DollarSign, PieChart, Landmark, Gavel, 
-  ArrowUpRight, Percent, Wallet, HardHat, Cog, Plus, UserCheck, Leaf, Scale
+  ArrowUpRight, Percent, Wallet, HardHat, Cog, Plus, UserCheck, Leaf, Scale,
+  // AÑADE ESTOS TRES:
+  X, ChevronLeft, Expand, ClipboardList
 } from 'lucide-react';
 
 // --- CONFIGURACIÓN DE IDENTIDAD VISUAL CAMPOS DE CASTILLA ---
@@ -199,6 +201,10 @@ const COEFICIENTES_DATA = [
 export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [searchTerm, setSearchTerm] = useState('');
+
+  // Añade esto al principio de tu componente, donde están los otros useState
+  const [showCotizaciones, setShowCotizaciones] = useState(false);
+  const [imgIndex, setImgIndex] = useState(0);
 
   // Persistencia segura de estados
   const [asistencia, setAsistencia] = useState(() => {
@@ -640,42 +646,53 @@ export default function App() {
 
               {/* PARTE I: ACTUACIONES DEL CONSEJO */}
               <Card title="PARTE I: GESTIÓN ADMINISTRATIVA Y CONSEJO" icon={Activity} highlight className="p-12">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                  <div className="space-y-8">
-                    <div className="bg-[#2B2B2B] p-8 rounded-[40px] text-white">
-                      <h4 className="text-xl font-black mb-6 uppercase tracking-tighter border-b border-white/10 pb-4">Instalación del Consejo</h4>
-                      <p className="text-sm font-bold text-white/80 leading-relaxed">Instalado el 3 de junio de 2025.</p>
-                      <div className="mt-4 space-y-2">
-                        <p className="text-xs font-black text-[#B65A3A]">PRESIDENTE: <span className="text-white">ING. HAROLD TORRES</span></p>
-                        <p className="text-xs font-black text-[#B65A3A]">TESORERA: <span className="text-white">SRA. MARIANA CHAMORRO</span></p>
+                <div className="space-y-12"> {/* Contenedor vertical principal */}
+                  
+                  {/* FILA SUPERIOR: DOS COLUMNAS DE TEXTO */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    
+                    {/* COLUMNA IZQUIERDA: INSTALACIÓN */}
+                    <div className="space-y-8">
+                      <div className="bg-[#2B2B2B] p-8 rounded-[40px] text-white">
+                        <h4 className="text-xl font-black mb-6 uppercase tracking-tighter border-b border-white/10 pb-4">Instalación del Consejo</h4>
+                        <div className="mt-4 space-y-2">
+                          <p className="text-xs font-black text-[#B65A3A]">PRESIDENTE: <span className="text-white">ING. HAROLD TORRES</span></p>
+                          <p className="text-xs font-black text-[#B65A3A]">TESORERA: <span className="text-white">SRA. MARIANA CHAMORRO</span></p>
+                        </div>
                       </div>
                     </div>
-                    <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#B65A3A]">
-                      <h4 className="text-sm font-black text-[#B65A3A] mb-4 uppercase tracking-widest">Balance Financiero Jun-2025</h4>
-                      <ul className="space-y-3 text-xs font-bold text-slate-700">
-                        <li>• Excedente reportado: $17.000.000</li>
-                        <li>• Pendiente pago IVA: $3.000.000</li>
-                        <li>• Saldo a favor en servicio de gas tras comparativa.</li>
-                      </ul>
+
+                    {/* COLUMNA DERECHA: ACCIONES OPERATIVAS */}
+                    <div className="space-y-8">
+                      <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#6E6E6E]">
+                        <h4 className="text-sm font-black text-[#2B2B2B] mb-4 uppercase tracking-widest">Acciones Operativas</h4>
+                        <ul className="space-y-3 text-xs font-bold text-slate-700">
+                          <li>• Suspensión línea fija / Adquisición celular institucional.</li>
+                          <li>• Cambio de operador de internet para reducción de costos.</li>
+                          <li>• Censo 2025: 99 residentes, 37 empleados, 27 mascotas.</li>
+                          <li>• Arrendamiento zona comun de la terraza. Empresa Phoenix Tower Internacional Republica Dominicana.</li>
+                        </ul>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="space-y-8">
-                    <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#6E6E6E]">
-                      <h4 className="text-sm font-black text-[#2B2B2B] mb-4 uppercase tracking-widest">Acciones Operativas</h4>
-                      <ul className="space-y-3 text-xs font-bold text-slate-700">
-                        <li>• Suspensión línea fija / Adquisición celular institucional.</li>
-                        <li>• Cambio de operador de internet para reducción de costos.</li>
-                        <li>• Censo 2025: 99 residentes, 37 empleados, 27 mascotas.</li>
-                      </ul>
+                  {/* FILA INFERIOR: IMAGEN A TODO ANCHO */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 px-4">
+                      <div className="h-[2px] flex-1 bg-slate-100"></div>
+                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Soporte Documental: Estado de Cuenta</span>
+                      <div className="h-[2px] flex-1 bg-slate-100"></div>
                     </div>
-                    <div className="p-8 bg-[#EDEDED] rounded-[40px] border-2 border-dashed border-[#B65A3A]/20">
-                      <h4 className="text-sm font-black text-[#B65A3A] mb-4 uppercase tracking-widest">Integración Comunitaria</h4>
-                      <p className="text-xs font-bold text-slate-600 leading-relaxed">
-                        Actividad Navideña: Reemplazo mangueras luces, misa 11 de dic, recreación y detalles para asistentes.
-                      </p>
+                    
+                    <div className="overflow-hidden rounded-[40px] border-2 border-slate-100 bg-white shadow-sm">
+                      <img 
+                        src="/img/Estado de cuenta.jpeg" 
+                        alt="Estado de cuenta completo" 
+                        className="w-full h-auto object-contain"
+                      />
                     </div>
                   </div>
+
                 </div>
               </Card>
 
@@ -686,26 +703,137 @@ export default function App() {
                     <p className="text-sm font-black text-red-700 mb-4 uppercase tracking-widest flex items-center gap-3">
                       <AlertCircle size={20}/> Reparación Urgente (Julio 2025)
                     </p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <div className="text-xs font-bold text-slate-700 space-y-2">
-                        <p>• Cambio poleas y zapatas contrapeso Ascensor 1.</p>
-                        <p>• Cambio zapatas Ascensor 2.</p>
-                        <p>• Reparación tarjetas de potencia y componentes electrónicos.</p>
+                    {/* Eliminamos grid-cols-2 para que ocupe el 100% */}
+                    <div className="w-full space-y-6">
+                      {/* LISTA DE REPARACIONES */}
+                      <div className="text-xs font-bold text-slate-700 space-y-3 bg-white/50 p-6 rounded-3xl border border-slate-100">
+                        <p className="flex items-start gap-2">
+                          <span className="text-[#B65A3A]">•</span> 
+                          <span>Cambio poleas y zapatas contrapeso Ascensor 1.</span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <span className="text-[#B65A3A]">•</span> 
+                          <span>Cambio zapatas Ascensor 2.</span>
+                        </p>
+                        <p className="flex items-start gap-2">
+                          <span className="text-[#B65A3A]">•</span> 
+                          <span>Reparación tarjetas de potencia y componentes electrónicos.</span>
+                        </p>
+                        
+                        <div className="mt-4 pt-4 border-t border-slate-200/60 text-[#B65A3A] font-black uppercase text-[10px] tracking-wider">
+                          💡 Financiado con recursos de ingresos por gas (sin cuotas extra).
+                        </div>
                       </div>
-                      <div className="bg-white p-6 rounded-3xl shadow-sm text-right">
-                        <p className="text-[10px] font-black text-slate-400">COSTO TOTAL REPARACIÓN</p>
-                        <p className="text-2xl font-black text-red-600 tracking-tighter">$11.643.000</p>
-                        <p className="text-[9px] font-bold text-slate-400 mt-2">Financiado con recursos de ingresos por gas (sin cuotas extra).</p>
-                      </div>
+
+                      {/* BOTÓN DE VER PDF (INFORME DRIVE) */}
+                      <a 
+                        href="https://drive.google.com/file/d/1GiWFw2zSbuZQC6fTLx71Y3U0TrbLDVn4/view?usp=sharing" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="flex items-center justify-between w-full p-5 bg-[#B65A3A] hover:bg-[#a14d32] text-white rounded-2xl transition-all duration-300 shadow-lg group"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="bg-white/20 p-2 rounded-lg">
+                            <FileText size={20} className="text-white" />
+                          </div>
+                          <div className="text-left">
+                            <p className="text-[10px] font-black uppercase tracking-widest opacity-80">Documento Completo</p>
+                            <p className="text-sm font-black uppercase">Ver Informe de Reparaciones PDF</p>
+                          </div>
+                        </div>
+                        <ExternalLink size={18} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                      </a>
                     </div>
                   </div>
-                  <div className="p-8 bg-blue-50 rounded-[40px] border-2 border-blue-100 flex justify-between items-center">
-                    <div>
-                       <h4 className="text-xs font-black text-blue-800 uppercase tracking-widest">Proyección Modernización Total</h4>
-                       <p className="text-xs font-bold text-blue-600 mt-1">Estimada para 2 a 5 años (Costo aprox. $45M por equipo).</p>
-                    </div>
-                    <ShieldCheck size={32} className="text-blue-200" />
+                  {/* --- INICIO DE LA SECCIÓN ESPECÍFICA CON VISOR INTEGRADO --- */}
+                  <div className="w-full relative">
+                    {/* Definimos estados locales *justo aquí* para que solo afecten a este bloque */}
+                    {(() => {
+                      // Si usas React normal, estos hooks irían arriba.
+                      // Para que este ejemplo sea autocontenido, asumo que los tienes definidos arriba.
+                      // De lo contrario, necesitarías mover esta lógica a un componente separado.
+                    })()}
+
+                    {/* CUADRO AZUL CONVERTIDO EN BOTÓN CLIQUEABLE */}
+                    <button 
+                      onClick={() => setShowCotizaciones(true)} // Activa el modal al hacer clic en cualquier parte del cuadro
+                      className="w-full p-8 bg-blue-50 hover:bg-blue-100 rounded-[40px] border-2 border-blue-100 flex justify-between items-center transition-all duration-300 group shadow-sm hover:shadow-md text-left"
+                    >
+                      <div className="flex-1">
+                        <h4 className="text-xs font-black text-blue-800 uppercase tracking-widest">Proyección Modernización Total</h4>
+                        <p className="text-xs font-bold text-blue-600 mt-1">Estimada para 2 a 5 años (Costo aprox. $45M por equipo).</p>
+                        
+                        {/* Indicador visual de que es cliqueable */}
+                        <div className="mt-4 inline-flex items-center gap-2 text-blue-700 bg-white/60 px-3 py-1.5 rounded-full border border-blue-200">
+                          <ClipboardList size={14} />
+                          <span className="text-[10px] font-black uppercase">Ver Cotizaciones</span>
+                          <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </div>
+                      
+                      {/* Icono a la derecha */}
+                      <div className="relative ml-6">
+                        <ShieldCheck size={48} className="text-blue-200 group-hover:scale-110 transition-transform" />
+                        <div className="absolute -bottom-1 -right-1 bg-blue-600 text-white p-1 rounded-full shadow-lg">
+                          <Expand size={14} />
+                        </div>
+                      </div>
+                    </button>
+
+                    {/* MODAL VISOR DE COTIZACIONES CON SCROLL VERTICAL */}
+                    {showCotizaciones && (
+                      <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-sm flex flex-col items-center animate-in fade-in duration-300">
+                        
+                        {/* Botones de navegación fijos en la parte superior para que no se pierdan al bajar */}
+                        <div className="w-full flex justify-between items-center p-6 z-[220] bg-black/60 backdrop-blur-md border-b border-white/10">
+                          <div className="flex items-center gap-4">
+                            <button 
+                              onClick={() => setImgIndex(imgIndex === 0 ? 1 : 0)}
+                              className="p-3 text-white bg-white/10 hover:bg-[#B65A3A] rounded-full transition-all"
+                            >
+                              <ChevronLeft size={24} />
+                            </button>
+                            <p className="text-white/80 font-black text-[12px] uppercase tracking-[0.4em]">
+                              Cotización {imgIndex + 1} de 2
+                            </p>
+                            <button 
+                              onClick={() => setImgIndex(imgIndex === 1 ? 0 : 1)}
+                              className="p-3 text-white bg-white/10 hover:bg-[#B65A3A] rounded-full transition-all"
+                            >
+                              <ChevronRight size={24} />
+                            </button>
+                          </div>
+
+                          <button 
+                            onClick={() => setShowCotizaciones(false)}
+                            className="text-white/50 hover:text-white transition-colors p-2 bg-white/10 rounded-full"
+                          >
+                            <X size={30} />
+                          </button>
+                        </div>
+
+                        {/* CONTENEDOR CON SCROLL */}
+                        <div className="w-full flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar pt-10 pb-20">
+                          <div className="max-w-4xl mx-auto px-4 flex flex-col items-center">
+                            {/* La imagen ahora tiene un ancho definido (w-full) para forzar el scroll vertical */}
+                            <div className="relative shadow-[0_0_100px_rgba(0,0,0,0.8)] rounded-lg bg-white overflow-hidden">
+                              <img 
+                                src={imgIndex === 0 ? "/img/cot1.jpeg" : "/img/cot2.jpeg"} 
+                                className="w-full h-auto animate-in zoom-in-95 duration-500"
+                                alt={`Cotización ${imgIndex + 1}`}
+                                style={{ minWidth: '100%' }} // Asegura que se vea grande
+                              />
+                            </div>
+                            
+                            <p className="mt-10 text-white/20 text-[11px] font-black uppercase tracking-[0.5em]">
+                              --- Fin del Documento ---
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
+                  {/* --- FIN DE LA SECCIÓN ESPECÍFICA --- */}
                 </div>
               </Card>
 
@@ -721,6 +849,7 @@ export default function App() {
                     {p: "ANA LUCIA YEPEZ C.", c: "Administración", d: "Honorarios mensuales"},
                     {p: "LUIS FELIPE NARVAEZ", c: "Contabilidad", d: "Honorarios mensuales"},
                     {p: "ASCENSUR ELEVADORES SAS", c: "Ascensores", d: "$1.255.516 mensuales"},
+                    {p: "CUMMINS DE LOS ANDES", c: "Planta electrica", d: "Mantenimiento cuatrimestral"},
                     {p: "JAMES ARTURO MAIGUAL", c: "Jardinería", d: "Servicio mensual"},
                     {p: "ENERTOTAL SA ESP", c: "Energía", d: "Consumo áreas comunes"},
                     {p: "MONTAGAS", c: "Gas", d: "Suministro copropiedad"},
@@ -731,6 +860,7 @@ export default function App() {
                 />
 
                 <div className="grid grid-cols-1 gap-12">
+                  {/* TABLA A - YA ESTABA BIEN */}
                   <InvestmentTable 
                     title="A. REPARACIONES Y SUMINISTROS LOCATIVOS / ELÉCTRICOS"
                     headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
@@ -749,27 +879,7 @@ export default function App() {
                     ]}
                   />
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <ManagementTable 
-                      title="B. ASCENSORES Y PLANTA ELÉCTRICA"
-                      headers={["PROVEEDOR", "ACTIVIDAD"]}
-                      icon={Zap}
-                      data={[
-                        {p: "ASCENSUR ELEVADORES", d: "Anticipos suministros y poleas/guayas."},
-                        {p: "CUMMINS DE LOS ANDES", d: "Mantenimientos cuatrimestrales planta."},
-                        {p: "ALBEIRO BASTIDAS G.", d: "Revisión emergencia planta y suministros."}
-                      ]}
-                    />
-                    <ManagementTable 
-                      title="C. SEGURIDAD ELECTRÓNICA Y SGSST"
-                      headers={["PROVEEDOR", "ACTIVIDAD"]}
-                      icon={ShieldCheck}
-                      data={[
-                        {p: "SEGURIDAD EL DORADO", d: "Instalación DVR y reparación cámaras."},
-                        {p: "RICARDO O. FIERRO", d: "Actualización SGSST 2025."}
-                      ]}
-                    />
-                  </div>
+                                   
 
                   <InvestmentTable 
                     title="D. ACTIVIDADES NAVIDEÑAS E INTEGRACIÓN"
@@ -778,9 +888,10 @@ export default function App() {
                     data={[
                       {p: "JOSE FRANCISCO JOJOA", o: "Iluminación", d: "Instalación luces en torres."},
                       {p: "JAVIER MAURICIO ROSERO", o: "Decoración", d: "Materiales decoración general."},
-                      {p: "JORGE ELIECER TORO", o: "Alimentación", d: "Porciones de hornado integración."},
-                      {p: "SOLO SILLAS", o: "Mobiliario", d: "Alquiler sillas y tablones."},
-                      {p: "ADMINISTRACIÓN", o: "Bonificaciones", d: "Bonos navidad personal edificio."}
+                      {p: "JORGE ELIECER TORO", o: "Alimentación", d: "Porciones de hornado integración."},                      
+                      {p: "ADMINISTRACIÓN", o: "Bonificaciones", d: "Bonos navidad personal edificio."},
+                      {p: "ADMINISTRACIÓN", o: "Evento", d: "Misa y grupo musical."},
+                      {p: "ADMINISTRACIÓN", o: "Novena", d: "Refrigerio buñuelos, natilla y fresas con crema."}
                     ]}
                   />
 
@@ -792,14 +903,14 @@ export default function App() {
                       {p: "DIAN", c: "Impuestos", d: "Retención en la Fuente e IVA."},
                       {p: "ALCALDIA DE PASTO", c: "Impuestos", d: "Retención de ICA."},
                       {p: "SEGUROS DEL ESTADO SA", c: "Seguros", d: "Cuotas póliza áreas comunes."},
-                      {p: "DORIS CUARAN", c: "Imprevistos", d: "Ramo fúnebre."}
+                      
                     ]}
                   />
                 </div>
               </div>
 
               {/* SECCIÓN CAJA MENOR */}
-              <Card title="Gestión de Caja Menor 2025" icon={Wallet}>
+              <Card title="Otras Gestiones 2025" icon={Wallet}>
                  <div className="overflow-x-auto pt-4">
                     <table className="w-full text-left text-xs">
                        <thead className="bg-slate-50 border-b-2">
@@ -808,13 +919,11 @@ export default function App() {
                              <th className="px-6 py-4 font-black">DETALLE DEL GASTO</th>
                           </tr>
                        </thead>
-                       <tbody className="divide-y divide-slate-100 font-bold text-slate-600">
-                          <tr><td className="px-6 py-4">IMPUESTOS MUNICIPALES</td><td className="px-6 py-4">Rete ICA Bimestres 1, 2 y 5 año 2025</td></tr>
+                       <tbody className="divide-y divide-slate-100 font-bold text-slate-600">                          
                           <tr><td className="px-6 py-4">GESTIÓN ADM</td><td className="px-6 py-4">Creación base datos residentes y censo emergencia</td></tr>
-                          <tr><td className="px-6 py-4">CELEBRACIÓN HALLOWEEN</td><td className="px-6 py-4">Dulces niños residentes</td></tr>
-                          <tr><td className="px-6 py-4">ACTIVIDAD NAVIDEÑA</td><td className="px-6 py-4">Misa Campos de Castilla y Grupo Musical</td></tr>
-                          <tr><td className="px-6 py-4">NOVENAS / REFRIGERIOS</td><td className="px-6 py-4">Coca-Cola, agua, buñuelos, natilla, fresas con crema</td></tr>
-                          <tr><td className="px-6 py-4">PAPELERÍA / VARIOS</td><td className="px-6 py-4">Pedestal y tarjetas bonos navideños</td></tr>
+                          <tr><td className="px-6 py-4">SEGURIDAD</td><td className="px-6 py-4">INSTALACION DVR Y REPARACION CAMARAS</td></tr>
+                          <tr><td className="px-6 py-4">SGSST 2025</td><td className="px-6 py-4">ACTUALIZACION ANUAL POR EL ING. RICARDO FIERRO</td></tr>
+                          <tr><td className="px-6 py-4">CELEBRACIÓN HALLOWEEN</td><td className="px-6 py-4">Dulces niños residentes</td></tr>                          
                        </tbody>
                     </table>
                  </div>
@@ -889,20 +998,100 @@ export default function App() {
           {/* SECCIÓN 7: ESTADOS FINANCIEROS */}
           {activeSection === 'financiero' && (
             <div className="space-y-10 animate-in fade-in uppercase">
-              <SectionHeader title="7. Estados Financieros 2025" icon={BarChart3} agendaIndices={[6]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
-              <div className="max-w-5xl mx-auto">
-                <div className="bg-white rounded-[60px] p-16 shadow-2xl border-4 border-[#B65A3A]/10 flex flex-col items-center text-center">
-                  <div className="p-8 bg-[#B65A3A]/5 rounded-[40px] mb-10 border-2 border-[#B65A3A]/10">
-                    <Landmark size={80} className="text-[#B65A3A]" />
+              <SectionHeader 
+                title="7. Estados Financieros 2025" 
+                icon={BarChart3} 
+                agendaIndices={[6]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+
+              <div className="max-w-6xl mx-auto space-y-12">
+                
+                {/* 1. BOTÓN PRINCIPAL AL DRIVE */}
+                <a 
+                  href="https://drive.google.com/file/d/1np1EUGz1KuQRxmiGRNtHwGOdf4Z1HL-v/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between p-10 bg-[#B65A3A] rounded-[40px] text-white shadow-2xl hover:scale-[1.02] transition-all duration-500"
+                >
+                  <div className="flex items-center gap-8">
+                    <div className="bg-white/20 p-6 rounded-3xl group-hover:rotate-12 transition-transform">
+                      <FileText size={50} />
+                    </div>
+                    <div className="text-left">
+                      <h3 className="text-2xl font-black tracking-tighter">VER ESTADOS FINANCIEROS COMPLETOS</h3>
+                      <p className="text-white/70 font-bold text-sm tracking-widest mt-1">DOCUMENTO OFICIAL PDF - BALANCE GENERAL Y PYP</p>
+                    </div>
                   </div>
-                  <h3 className="text-4xl font-black text-[#B65A3A] mb-6 tracking-tighter">ESTADOS FINANCIEROS</h3>
-                  <div className="w-24 h-2 bg-[#2B2B2B] mb-10 rounded-full"></div>
-                  <div className="space-y-4">
-                    <p className="text-[14px] font-black text-[#2B2B2B] tracking-[0.4em]">Presentado por:</p>
-                    <p className="text-3xl font-black text-[#2B2B2B] tracking-tight">LUIS FELIPE NARVAEZ - CONTADOR</p>
-                    <p className="text-xl font-bold text-slate-400 mt-4 tracking-widest">CIERRE A DICIEMBRE 31 DE 2025</p>
+                  <ExternalLink size={40} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+                </a>
+
+                {/* 2. DASHBOARD DE INDICADORES (Extraído del Word) */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-white p-8 rounded-[40px] border-2 border-slate-100 shadow-sm">
+                    <p className="text-[10px] font-black text-slate-400 tracking-widest mb-2">TOTAL INGRESOS</p>
+                    <p className="text-3xl font-black text-[#2B2B2B]">$446.519.386</p>
+                    <div className="w-full bg-slate-100 h-2 mt-4 rounded-full overflow-hidden">
+                      <div className="bg-green-500 h-full w-full"></div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-white p-8 rounded-[40px] border-2 border-slate-100 shadow-sm">
+                    <p className="text-[10px] font-black text-slate-400 tracking-widest mb-2">EXCEDENTE FINAL</p>
+                    <p className="text-3xl font-black text-[#B65A3A]">$33.668.337</p>
+                    <p className="text-[9px] font-bold text-green-600 mt-2">↑ INCLUYE OTROS INGRESOS</p>
+                  </div>
+
+                  <div className="bg-white p-8 rounded-[40px] border-2 border-slate-100 shadow-sm">
+                    <p className="text-[10px] font-black text-slate-400 tracking-widest mb-2">GASTOS ADMÓN</p>
+                    <p className="text-3xl font-black text-slate-700">$431.318.221</p>
+                    <div className="w-full bg-slate-100 h-2 mt-4 rounded-full overflow-hidden">
+                      <div className="bg-[#B65A3A] h-full w-[96%]"></div>
+                    </div>
                   </div>
                 </div>
+
+                {/* 3. RESUMEN DE EGRESOS PRINCIPALES */}
+                <div className="bg-[#2B2B2B] rounded-[60px] p-12 text-white shadow-2xl">
+                  <div className="flex items-center gap-4 mb-10 border-b border-white/10 pb-6">
+                    <TrendingUp className="text-[#B65A3A]" size={32} />
+                    <h4 className="text-xl font-black tracking-widest uppercase">Distribución de Gastos Clave</h4>
+                  </div>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-8">
+                    {[
+                      { label: "Vigilancia", val: "$222.525.967", perc: "51%" },
+                      { label: "Aseo", val: "$63.638.224", perc: "14%" },
+                      { label: "Energía Eléctrica", val: "$32.417.780", perc: "7%" },
+                      { label: "Mantenimiento Ascensores", val: "$21.118.819", perc: "5%" },
+                    ].map((item, idx) => (
+                      <div key={idx} className="space-y-2">
+                        <div className="flex justify-between text-[11px] font-black tracking-widest">
+                          <span>{item.label}</span>
+                          <span className="text-[#B65A3A]">{item.val}</span>
+                        </div>
+                        <div className="w-full bg-white/10 h-3 rounded-full overflow-hidden">
+                          <div 
+                            className="bg-[#B65A3A] h-full rounded-full" 
+                            style={{ width: item.perc }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 4. CIERRE (PRESENTADO POR) */}
+                <div className="bg-white rounded-[60px] p-12 border-4 border-[#B65A3A]/10 flex flex-col items-center text-center">
+                  <div className="p-6 bg-[#B65A3A]/5 rounded-full mb-6">
+                    <Landmark size={40} className="text-[#B65A3A]" />
+                  </div>
+                  <p className="text-[12px] font-black text-slate-400 tracking-[0.4em] mb-2">RESPONSABLE DE LA INFORMACIÓN:</p>
+                  <p className="text-2xl font-black text-[#2B2B2B]">LUIS FELIPE NARVAEZ - CONTADOR</p>
+                  <p className="text-sm font-bold text-slate-500 mt-2">MATRÍCULA PROFESIONAL VIGENTE</p>
+                </div>
+
               </div>
             </div>
           )}
