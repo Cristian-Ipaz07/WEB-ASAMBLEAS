@@ -229,63 +229,81 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('inicio');
   const [searchTerm, setSearchTerm] = useState('');
 
-  
-
-  // Persistencia segura de estados
+  // 1. TODOS LOS ESTADOS (Agrupados arriba para evitar errores)
   const [asistencia, setAsistencia] = useState(() => {
     try {
       const saved = localStorage.getItem('asistencia_concasa_2026');
       return saved ? JSON.parse(saved) : COEFICIENTES_DATA.map(c => ({ ...c, presente: false }));
-    } catch (e) {
-      return COEFICIENTES_DATA.map(c => ({ ...c, presente: false }));
-    }
+    } catch (e) { return COEFICIENTES_DATA.map(c => ({ ...c, presente: false })); }
   });
   
   const [agendaStatus, setAgendaStatus] = useState(() => {
     try {
       const saved = localStorage.getItem('agenda_concasa_2026');
       return saved ? JSON.parse(saved) : new Array(ORDEN_DIA.length).fill(false);
-    } catch (e) {
-      return new Array(ORDEN_DIA.length).fill(false);
-    }
+    } catch (e) { return new Array(ORDEN_DIA.length).fill(false); }
   });
 
   const [dignatarios, setDignatarios] = useState(() => {
     try {
       const saved = localStorage.getItem('dignatarios_concasa_2026');
       return saved ? JSON.parse(saved) : { presidente: '', secretario: '', comision: '' };
-    } catch (e) {
-      return { presidente: '', secretario: '', comision: '' };
-    }
+    } catch (e) { return { presidente: '', secretario: '', comision: '' }; }
   });
 
   const [proposiciones, setProposiciones] = useState(() => {
     try {
       const saved = localStorage.getItem('proposiciones_concasa_2026');
       return saved ? JSON.parse(saved) : [];
-    } catch (e) {
-      return [];
-    }
+    } catch (e) { return []; }
   });
 
   const [tempProp, setTempProp] = useState({ proponente: '', texto: '' });
-  const [postuladosConsejo, setPostuladosConsejo] = useState([]);
 
+  const [postuladosConsejo, setPostuladosConsejo] = useState(() => {
+    try {
+      const saved = localStorage.getItem('postulados_consejo_concasa_2026');
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) { return []; }
+  });
+
+  // MOVIMOS ESTE ARRIBA PARA QUE EL useEffect LO RECONOZCA
+  const [revisorElegido, setRevisorElegido] = useState(() => {
+    try {
+      const saved = localStorage.getItem('revisor_elegido_concasa_2026');
+      return saved ? JSON.parse(saved) : "";
+    } catch (e) { return ""; }
+  });
+
+  // 2. EFECTOS (Van después de los estados)
   useEffect(() => {
     try {
       localStorage.setItem('asistencia_concasa_2026', JSON.stringify(asistencia));
       localStorage.setItem('agenda_concasa_2026', JSON.stringify(agendaStatus));
       localStorage.setItem('dignatarios_concasa_2026', JSON.stringify(dignatarios));
       localStorage.setItem('proposiciones_concasa_2026', JSON.stringify(proposiciones));
-    } catch (e) {}
-  }, [asistencia, agendaStatus, dignatarios, proposiciones]);
+      localStorage.setItem('postulados_consejo_concasa_2026', JSON.stringify(postuladosConsejo));
+      localStorage.setItem('revisor_elegido_concasa_2026', JSON.stringify(revisorElegido));
+    } catch (e) {
+      console.error("Error guardando en localStorage", e);
+    }
+  }, [asistencia, agendaStatus, dignatarios, proposiciones, postuladosConsejo, revisorElegido]);
+
+  // 3. FUNCIONES Y MEMOS
+  const togglePostulacion = (nombre, tipo) => {
+    if (tipo === 'consejo') {
+      setPostuladosConsejo(prev => 
+        prev.includes(nombre) 
+          ? prev.filter(p => p !== nombre) 
+          : [...prev, nombre]
+      );
+    }
+  };
 
   const totalQuorum = useMemo(() => {
     const total = asistencia
       .filter(a => a.presente)
       .reduce((acc, curr) => acc + (Number(curr.coeficiente) || 0), 0);
-    
-    // Usamos toFixed(5) para que coincida con la precisión del PDF
     return parseFloat(total.toFixed(5));
   }, [asistencia]);
 
@@ -301,6 +319,7 @@ export default function App() {
   const toggleAsistencia = (id) => {
     setAsistencia(prev => prev.map(a => a.id === id ? { ...a, presente: !a.presente } : a));
   };
+
   const seleccionarTodo = () => {
     setAsistencia(prev => prev.map(a => ({ ...a, presente: true })));
   };
@@ -327,6 +346,8 @@ export default function App() {
 
   const handlePrint = () => window.print();
 
+  // Continúa el return...
+
   return (
     <div className="flex min-h-screen bg-[#F5EFE3] font-sans text-[#2F2F2F] print:bg-white overflow-x-hidden">
       
@@ -350,7 +371,8 @@ export default function App() {
             { id: 'quorum', label: '1. Quórum', icon: Users },
             { id: 'orden', label: '2. Orden del Día', icon: ListChecks },
             { id: 'dignatarios', label: '3. Dignatarios', icon: UserPlus },
-            { id: 'gestion', label: '4-5. Informe Gestión', icon: TrendingUp },
+            { id: 'acta-anterior', label: '4. Acta Anterior', icon: FileText },
+            { id: 'gestion', label: '5. Informe Gestión', icon: TrendingUp },
             { id: 'financiero', label: '6-7. Financiero', icon: BarChart3 },
             { id: 'presupuesto', label: '8. Presupuesto', icon: PieChart },
             { id: 'elecciones', label: '9-10. Elecciones', icon: Gavel },
@@ -397,7 +419,7 @@ export default function App() {
                  <div className="h-3 w-48 bg-slate-100 rounded-full overflow-hidden border border-[#E85A1A]/5 shadow-inner">
                     <div className="h-full bg-[#E85A1A] transition-all duration-1000 ease-out" style={{width: `${progress}%`}}></div>
                  </div>
-                 <span className="text-sm font-black text-[#E85A1A]">{Math.round(progress)}%</span>
+                 <span className="text-sm font-black text-[#E85A1A]">{Math.floor(progress)}%</span>
               </div>
             </div>
           </div>
@@ -499,7 +521,9 @@ export default function App() {
                 <div className="flex items-center gap-6 bg-white px-10 py-6 rounded-[32px] shadow-sm border border-[#D9B56B]/10 min-w-[320px]">
                   <div className="text-right">
                       <p className="text-[10px] font-black text-[#2F2F2F] uppercase tracking-widest">QUÓRUM TOTAL</p>
-                      <p className="text-3xl font-black text-[#E85A1A]">{totalQuorum}%</p>
+                      <p className="text-3xl font-black text-[#E85A1A]">
+                        {Math.round(totalQuorum)}%
+                      </p>
                       <p className="text-[10px] font-bold text-slate-400">{asistencia.filter(a => a.presente).length} UNIDADES</p>
                   </div>
                   <Percent className="text-[#E85A1A]" size={40} />
@@ -612,6 +636,60 @@ export default function App() {
                       value={dignatarios.comision} 
                       onChange={(e) => setDignatarios({...dignatarios, comision: e.target.value})}
                     ></textarea>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          )}
+
+          {/* SECCIÓN: LECTURA Y APROBACIÓN DEL ACTA ANTERIOR */}
+          {activeSection === 'acta-anterior' && (
+            <div className="space-y-10 animate-in fade-in uppercase">
+              <SectionHeader 
+                title="3. Lectura y Aprobación del Acta Anterior" 
+                icon={FileText} 
+                agendaIndices={[3]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <Card title="VERIFICACIÓN Y CONSULTA" icon={ShieldCheck} highlight>
+                  <div className="space-y-6 pt-4">
+                    <p className="text-[11px] font-bold text-slate-600 leading-loose">
+                      EL ACTA DE LA ASAMBLEA GENERAL ORDINARIA DE COPROPIETARIOS DEL AÑO ANTERIOR SE ENCUENTRA DISPONIBLE PARA REVISIÓN DE LA COMISIÓN DESIGNADA Y ASAMBLEÍSTAS.
+                    </p>
+                    
+                    {/* BOTÓN INTERACTIVO PARA ABRIR EL ACTA DE CONCASA */}
+                    <a 
+                      href="https://drive.google.com/file/d/1v2VzjRk2HgmdzDnxkKJjfVOsPJQOV6r-/view?usp=sharing" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="group p-8 bg-slate-50 rounded-[40px] border-2 border-dashed border-[#E85A1A]/20 flex flex-col items-center justify-center text-center transition-all hover:bg-[#E85A1A]/5 hover:border-[#E85A1A] hover:shadow-xl cursor-pointer"
+                    >
+                      <div className="p-5 bg-white rounded-full shadow-md mb-4 group-hover:scale-110 transition-transform">
+                        <FileText size={45} className="text-[#E85A1A]" />
+                      </div>
+                      <p className="text-[10px] font-black text-[#E85A1A] mb-1 tracking-[0.2em]">CLIC PARA CONSULTAR</p>
+                      <p className="text-[13px] font-black text-[#2F2F2F]">ACTA ASAMBLEA ANTERIOR.PDF</p>
+                      <div className="flex items-center gap-2 mt-4 text-[9px] font-bold text-slate-400">
+                        <ExternalLink size={14} />
+                        <span>ABRIR EN GOOGLE DRIVE</span>
+                      </div>
+                    </a>
+                  </div>
+                </Card>
+                
+                <Card title="OBSERVACIONES AL TEXTO" icon={ClipboardCheck}>
+                  <div className="space-y-4 pt-2">
+                    <p className="text-[10px] font-black text-slate-400 mb-2">ESPACIO PARA REGISTRO DE CORRECCIONES O ACLARACIONES:</p>
+                    <textarea 
+                      className="w-full p-6 bg-slate-50 border-2 border-slate-100 rounded-[30px] font-bold uppercase text-[11px] h-56 focus:border-[#E85A1A] focus:bg-white outline-none transition-all resize-none shadow-inner"
+                      placeholder="ESCRIBA AQUÍ LAS OBSERVACIONES DE LA ASAMBLEA..."
+                    ></textarea>
+                    <div className="flex justify-end">
+                      <span className="text-[9px] font-black text-slate-300 italic">SISTEMA DE REGISTRO CONCASA 2025</span>
+                    </div>
                   </div>
                 </Card>
               </div>
@@ -886,6 +964,8 @@ export default function App() {
             </div>
           )}
 
+          
+
           {/* SECCIÓN 6-7: FINANCIERO */}
           {activeSection === 'financiero' && (
             <div className="space-y-10 animate-in fade-in uppercase">
@@ -930,7 +1010,7 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 9-10: ELECCIONES */}
+          {/* SECCIÓN 9-10: ELECCIONES PERÍODO 2026-2027 */}
           {activeSection === 'elecciones' && (
             <div className="space-y-10 animate-in fade-in duration-500 uppercase">
               <SectionHeader 
@@ -940,34 +1020,85 @@ export default function App() {
                 agendaStatus={agendaStatus} 
                 toggleAgendaItem={toggleAgendaItem} 
               />
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-                <Card title="Consejo de Administración" icon={Users} highlight>
-                  <div className="space-y-6">
-                    <p className="text-xs font-bold text-slate-400">POSTULACIONES ABIERTAS PARA EL PERÍODO 2026-2027</p>
-                    <div className="min-h-[100px] p-6 bg-slate-50 rounded-[24px] border-2 border-dashed border-[#E85A1A]/20">
+
+              {/* VALIDACIÓN DE ASISTENCIA (Alerta si no hay nadie presente) */}
+              {asistencia.filter(a => a.presente).length === 0 && (
+                <div className="bg-orange-50 border-2 border-orange-200 p-8 rounded-[30px] text-orange-700 font-black text-center flex items-center justify-center gap-4 animate-bounce">
+                  <AlertCircle size={24}/>
+                  DEBE REGISTRAR LA ASISTENCIA (PUNTO 1) PARA PODER POSTULAR PROPIETARIOS
+                </div>
+              )}
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                
+                {/* PUNTO 9: CONSEJO DE ADMINISTRACIÓN */}
+                <Card title="Nombramiento Consejo 2026-2027" icon={Users} highlight>
+                  <div className="space-y-6 pt-2">
+                    {/* ÁREA DE ELEGIDOS (BADGES) */}
+                    <div className="min-h-[60px] p-4 bg-slate-50 rounded-[24px] border-2 border-dashed border-[#E85A1A]/20 flex flex-wrap gap-2">
                       {postuladosConsejo.length === 0 ? (
-                        <p className="text-[9px] text-slate-400 font-black text-center py-6">ESPERANDO POSTULACIONES...</p>
+                        <p className="text-[9px] text-slate-400 font-black py-2 w-full text-center">ESPERANDO POSTULACIONES...</p>
                       ) : (
-                        <div className="flex flex-wrap gap-2">
-                          {postuladosConsejo.map(p => (
-                            <span key={p} className="bg-[#E85A1A] text-white px-3 py-1.5 rounded-lg text-[9px] font-black">
-                              {p}
-                            </span>
-                          ))}
-                        </div>
+                        postuladosConsejo.map(p => (
+                          <span key={p} className="bg-[#E85A1A] text-white px-3 py-1.5 rounded-xl text-[9px] font-black flex items-center gap-2 animate-in zoom-in">
+                            {p} 
+                            <button onClick={() => togglePostulacion(p, 'consejo')} className="hover:text-black">
+                              <Trash2 size={12} />
+                            </button>
+                          </span>
+                        ))
                       )}
+                    </div>
+
+                    {/* LISTADO DE PROPIETARIOS PRESENTES PARA ELEGIR */}
+                    <div className="max-h-[300px] overflow-y-auto pr-2 space-y-2 custom-scrollbar">
+                      <p className="text-[10px] font-black text-slate-400 mb-2 sticky top-0 bg-white py-1">PROPIETARIOS PRESENTES:</p>
+                      {asistencia.filter(a => a.presente).map(r => (
+                        <div key={r.id} className="flex justify-between items-center p-3 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
+                          <div className="flex flex-col">
+                            <span className="text-[11px] font-black text-slate-700">{r.propietario}</span>
+                            <span className="text-[9px] font-bold text-[#E85A1A]">APTO {r.apto}</span>
+                          </div>
+                          <button 
+                            onClick={() => togglePostulacion(r.propietario, 'consejo')} 
+                            className={`px-4 py-2 rounded-xl text-[9px] font-black transition-all ${
+                              postuladosConsejo.includes(r.propietario) 
+                                ? 'bg-slate-900 text-white shadow-lg scale-95' 
+                                : 'bg-slate-100 text-[#E85A1A] hover:bg-[#E85A1A] hover:text-white'
+                            }`}
+                          >
+                            {postuladosConsejo.includes(r.propietario) ? 'POSTULADO' : 'POSTULAR'}
+                          </button>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </Card>
-                <Card title="Revisoría Fiscal" icon={ShieldCheck}>
-                   <div className="space-y-6 text-center py-10">
-                      <p className="text-xl font-black text-[#2F2F2F]">ELECCIÓN REVISOR FISCAL</p>
-                      <p className="text-[10px] font-black text-slate-400 tracking-widest uppercase">VIGENCIA 2026-2027</p>
-                      <div className="p-8 border-2 border-[#D9B56B]/20 rounded-3xl">
-                        <p className="text-xs font-bold italic">Se procederá con la lectura y votación de las propuestas allegadas a la administración.</p>
-                      </div>
-                   </div>
+
+                {/* PUNTO 10: REVISORÍA FISCAL */}
+                <Card title="Elección Revisoría Fiscal" icon={ShieldCheck}>
+                  <div className="space-y-6 pt-2">
+                    <div className="bg-slate-900 p-8 rounded-[40px] text-white text-center relative overflow-hidden">
+                      <p className="text-[10px] font-black text-[#E85A1A] tracking-widest mb-2 uppercase">Vigencia 2026-2027</p>
+                      <h4 className="text-2xl font-black mb-4">POSTULACIONES EXTERNAS</h4>
+                      <p className="text-[11px] font-bold text-slate-400 leading-relaxed italic">
+                        SE PROCEDERÁ CON LA LECTURA DE LAS PROPUESTAS PRESENTADAS POR LOS CONTADORES PÚBLICOS ASPIRANTES. LA VOTACIÓN SE REALIZARÁ POR COEFICIENTE.
+                      </p>
+                      <ShieldCheck size={100} className="text-white/5 absolute -right-4 -bottom-4" />
+                    </div>
+
+                    <div className="p-6 border-2 border-dashed border-slate-200 rounded-[30px] space-y-4">
+                      <p className="text-[10px] font-black text-slate-500 text-center">REGISTRO DE ASPIRANTES:</p>
+                      {/* Aquí puedes repetir la lógica de botones si tienes una lista de aspirantes a revisoría, 
+                          o dejar un campo de texto para el ganador */}
+                      <textarea 
+                          className="w-full p-4 bg-slate-50 border-none rounded-2xl text-[11px] font-bold uppercase outline-none focus:ring-2 focus:ring-[#E85A1A] h-24"
+                          placeholder="NOMBRE DEL REVISOR FISCAL ELEGIDO Y VALOR DE HONORARIOS..."
+                      ></textarea>
+                    </div>
+                  </div>
                 </Card>
+
               </div>
             </div>
           )}
