@@ -175,26 +175,24 @@ const ORDEN_DIA = [
     { id: 50, unidad: "1102, 1104, 1105", propietario: "MALLIESA SAS / FRACER", coeficiente: 3.47808609, presente: false },
     { id: 51, unidad: "1201, 1202, 1203, 1204, 1205, 1206", propietario: "NORCO / DAVIVIENDA - ALVARO VILLOTA", coeficiente: 7.636175142, presente: false },
     { id: 52, unidad: "602, 603", propietario: "TATIANA JARAMILLO", coeficiente: 2.998656497, presente: false },
-    { id: 53, unidad: "701, 702, 703, 704, 705, 706", propietario: "COOPERATIVA COOPROFESORES Pasto", coeficiente: 11.23307528, presente: false },
+    { id: 53, unidad: "701, 702, 703, 704, 705, 706", propietario: "GREEN SAS", coeficiente: 7.781315787, presente: false },
     
     // CORRECCIÓN PISO 8: Separado Mónica Ibarra y SEN SAS
-    { id: 54, unidad: "801, 802, 803, 804", propietario: "MONICA IBARRA", coeficiente: 7.488716853, presente: false },
-    { id: 55, unidad: "805, 806", propietario: "SEN SAS", coeficiente: 3.744358427, presente: false },
+    { id: 54, unidad: "801, 802, 803, 804", propietario: "MONICA IBARRA", coeficiente: 3.941435961, presente: false },
+    { id: 55, unidad: "805, 806", propietario: "SEN SAS", coeficiente: 2.744766156, presente: false },
     
-    { id: 56, unidad: "903, 904", propietario: "DISREDES / OMAR ERASO", coeficiente: 2.391647008, presente: false },
+    { id: 56, unidad: "903, 904", propietario: "DISREDES / OMAR ERASO", coeficiente: 2.124004274, presente: false },
     // --- DEPÓSITOS (6 UNIDADES) ---
-    { id: 61, unidad: "DEPÓSITO 1", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.082715974, presente: false },
-    { id: 62, unidad: "DEPÓSITO 2", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.082715974, presente: false },
-    { id: 63, unidad: "DEPÓSITO 3", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.082715974, presente: false },
-    { id: 64, unidad: "DEPÓSITO 4", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.082715974, presente: false },
-    { id: 65, unidad: "DEPÓSITO 5", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.082715974, presente: false },
-    { id: 66, unidad: "DEPÓSITO 6", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.082715974, presente: false },
-
-    // --- LOCALES COMERCIALES (4 UNIDADES) ---
-    { id: 57, unidad: "LOCAL COMERCIAL 101", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.822606547, presente: false },
-    { id: 58, unidad: "LOCAL COMERCIAL 102", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.933391204, presente: false },
-    { id: 59, unidad: "LOCAL COMERCIAL 103", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.470481267, presente: false },
-    { id: 60, unidad: "LOCAL COMERCIAL 104", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.528416625, presente: false },
+    { id: 57, unidad: "Depósito 1", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.176876937 },
+    { id: 58, unidad: "Depósito 2", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.099440383 },
+    { id: 59, unidad: "Depósito 3", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.107057094 },
+    { id: 60, unidad: "Depósito 4", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.171587555 },
+    { id: 61, unidad: "Depósito 5", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.128849348 },
+    { id: 62, unidad: "Depósito 6", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 0.128849348 },
+    { id: 63, unidad: "Local 1", propietario: "RODRIGO DIAZ / ANGELA ACOSTA", coeficiente: 1.962149182 },
+    { id: 64, unidad: "Local 2", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 1.979921506 },
+    { id: 65, unidad: "Local 3", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 1.414592347 },
+    { id: 66, unidad: "Local 4", propietario: "PROYECTOS URBANOS HITO SAS", coeficiente: 3.516804367 },
   ];
   
 
