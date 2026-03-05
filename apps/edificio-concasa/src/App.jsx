@@ -954,7 +954,7 @@ export default function App() {
                     
                     <div className="bg-white text-[#E85A1A] p-6 rounded-[35px] text-center shadow-xl border-4 border-[#E85A1A]/20">
                       <p className="text-[10px] font-black opacity-60 uppercase">Total Pagado Anual</p>
-                      <p className="text-3xl font-black">$13.434.662</p>
+                      <p className="text-3xl font-black">$13.314.912</p>
                     </div>
                   </div>
 
@@ -962,11 +962,11 @@ export default function App() {
                   <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-sm">
                       <p className="text-[9px] font-black opacity-60">PRIMA NETA</p>
-                      <p className="text-lg font-black">$11.289.632</p>
+                      <p className="text-lg font-black">$11.189.002</p>
                     </div>
                     <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-sm">
                       <p className="text-[9px] font-black opacity-60">IVA (19%)</p>
-                      <p className="text-lg font-black">$2.145.030</p>
+                      <p className="text-lg font-black">$2.125.910</p>
                     </div>
                     <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-sm">
                       <p className="text-[9px] font-black opacity-60">GASTOS EXP.</p>
@@ -986,7 +986,7 @@ export default function App() {
                 <div className="space-y-3 pt-2">
                   <div className="flex justify-between items-center border-b border-slate-100 pb-2">
                     <span className="text-[9px] font-bold text-slate-500 uppercase">Áreas Comunes</span>
-                    <span className="text-[11px] font-black text-slate-900">$6.755.500.000</span>
+                    <span className="text-[11px] font-black text-slate-900">$6.756.000.000</span>
                   </div>
                   <div className="flex justify-between items-center border-b border-slate-100 pb-2">
                     <span className="text-[9px] font-bold text-slate-500 uppercase">Áreas Privadas</span>
@@ -996,8 +996,16 @@ export default function App() {
                     <span className="text-[9px] font-bold text-slate-500 uppercase">Maquinaria</span>
                     <span className="text-[11px] font-black text-slate-900">$196.600.000</span>
                   </div>
+                  <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                    <span className="text-[9px] font-bold text-slate-500 uppercase">Muebles y enceres</span>
+                    <span className="text-[11px] font-black text-slate-900">$700.000</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                    <span className="text-[9px] font-bold text-slate-500 uppercase">equipo electrico y electronico</span>
+                    <span className="text-[11px] font-black text-slate-900">$27.400.000</span>
+                  </div>
                   <div className="p-3 bg-slate-900 rounded-2xl mt-4">
-                    <p className="text-[8px] font-black text-[#E85A1A] uppercase tracking-widest">Total Incendio/Terremoto</p>
+                    <p className="text-[8px] font-black text-[#E85A1A] uppercase tracking-widest">Total Asegurado</p>
                     <p className="text-lg font-black text-white">$9.557.174.002</p>
                   </div>
                 </div>
