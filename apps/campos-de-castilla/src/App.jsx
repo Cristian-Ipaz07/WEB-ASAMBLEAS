@@ -639,362 +639,163 @@ export default function App() {
             </div>
           )}
 
-          {/* SECCIÓN 6: INFORME DE GESTIÓN (COMPLETO) */}
+          {/* SECCIÓN 6: INFORME DE GESTIÓN INTEGRAL (RÉPLICA EXACTA DEL WORD) */}
           {activeSection === 'gestion' && (
             <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
-              <SectionHeader title="6. Informe Integral de Gestión 2025" icon={TrendingUp} agendaIndices={[5]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              <SectionHeader 
+                title="5. Informe de Gestión Administrativa 2025" 
+                icon={TrendingUp} 
+                agendaIndices={[4]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
 
-              {/* PARTE I: ACTUACIONES DEL CONSEJO */}
-              <Card title="PARTE I: GESTIÓN ADMINISTRATIVA Y CONSEJO" icon={Activity} highlight className="p-12">
-                <div className="space-y-12"> {/* Contenedor vertical principal */}
-                  
-                  {/* FILA SUPERIOR: DOS COLUMNAS DE TEXTO */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    
-                    {/* COLUMNA IZQUIERDA: INSTALACIÓN */}
-                    <div className="space-y-8">
-                      <div className="bg-[#2B2B2B] p-8 rounded-[40px] text-white">
-                        <h4 className="text-xl font-black mb-6 uppercase tracking-tighter border-b border-white/10 pb-4">Instalación del Consejo</h4>
-                        <div className="mt-4 space-y-2">
-                          <p className="text-xs font-black text-[#B65A3A]">PRESIDENTE: <span className="text-white">ING. HAROLD TORRES</span></p>
-                          <p className="text-xs font-black text-[#B65A3A]">TESORERA: <span className="text-white">SRA. MARIANA CHAMORRO</span></p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* COLUMNA DERECHA: ACCIONES OPERATIVAS */}
-                    <div className="space-y-8">
-                      <div className="p-8 bg-slate-50 rounded-[40px] border-l-[12px] border-[#6E6E6E]">
-                        <h4 className="text-sm font-black text-[#2B2B2B] mb-4 uppercase tracking-widest">Acciones Operativas</h4>
-                        <ul className="space-y-3 text-xs font-bold text-slate-700">
-                          <li>• Suspensión línea fija / Adquisición celular institucional.</li>
-                          <li>• Cambio de operador de internet para reducción de costos.</li>
-                          <li>• Censo 2025: 99 residentes, 37 empleados, 27 mascotas.</li>
-                          <li>• Arrendamiento zona comun de la terraza. Empresa Phoenix Tower Internacional Republica Dominicana.</li>
-                        </ul>
+              {/* BLOQUE 1: CONSEJO Y CARTERA */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <Card title="CONSEJO DE ADMINISTRACIÓN 2025" highlight icon={UserCheck}>
+                  <div className="space-y-4 pt-2">
+                    <p className="text-xl font-black text-[#E85A1A]">DRA. JANETH DELGADO</p>
+                    <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">PRESIDENTA DEL CONSEJO</p>
+                    <div className="pt-4 border-t border-slate-100">
+                      <p className="text-[11px] font-bold text-slate-600 mb-4 tracking-tighter text-justify">
+                        INSTALADO EL 7 DE ABRIL DE 2025. SESIONES REALIZADAS EL TERCER MIÉRCOLES DE CADA MES PARA SEGUIMIENTO DE CARTERA Y MANTENIMIENTO.
+                      </p>
+                      <div className="grid grid-cols-2 gap-2 text-[11px] font-black">
+                        <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#E85A1A] rounded-full"/> ARQ. GUSTAVO CERÓN</div>
+                        <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#E85A1A] rounded-full"/> DR. PEDRO RODRÍGUEZ</div>
+                        <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#E85A1A] rounded-full"/> DRA. JANETH PAZ</div>
+                        <div className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-[#E85A1A] rounded-full"/> DR. SILVIO CHAVES</div>
                       </div>
                     </div>
                   </div>
+                </Card>
 
-                  {/* FILA INFERIOR: IMAGEN A TODO ANCHO */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 px-4">
-                      <div className="h-[2px] flex-1 bg-slate-100"></div>
-                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em]">Soporte Documental: Estado de Cuenta</span>
-                      <div className="h-[2px] flex-1 bg-slate-100"></div>
-                    </div>
-                    
-                    <div className="overflow-hidden rounded-[40px] border-2 border-slate-100 bg-white shadow-sm">
-                      <img 
-                        src="/img/Estado de cuenta.jpeg" 
-                        alt="Estado de cuenta completo" 
-                        className="w-full h-auto object-contain"
-                      />
-                    </div>
-                  </div>
-
-                </div>
-              </Card>
-
-              {/* ASENSORES */}
-              <Card title="Modernización y Mantenimiento de Ascensores" icon={Zap} className="p-10">
-                <div className="flex flex-col gap-6">
-                  <div className="p-8 bg-red-50 rounded-[40px] border-2 border-red-100">
-                    <p className="text-sm font-black text-red-700 mb-4 uppercase tracking-widest flex items-center gap-3">
-                      <AlertCircle size={20}/> Reparación Urgente (Julio 2025)
-                    </p>
-                    {/* Eliminamos grid-cols-2 para que ocupe el 100% */}
-                    <div className="w-full space-y-6">
-                      {/* LISTA DE REPARACIONES */}
-                      <div className="text-xs font-bold text-slate-700 space-y-3 bg-white/50 p-6 rounded-3xl border border-slate-100">
-                        <p className="flex items-start gap-2">
-                          <span className="text-[#B65A3A]">•</span> 
-                          <span>Cambio poleas y zapatas contrapeso Ascensor 1.</span>
-                        </p>
-                        <p className="flex items-start gap-2">
-                          <span className="text-[#B65A3A]">•</span> 
-                          <span>Cambio zapatas Ascensor 2.</span>
-                        </p>
-                        <p className="flex items-start gap-2">
-                          <span className="text-[#B65A3A]">•</span> 
-                          <span>Reparación tarjetas de potencia y componentes electrónicos.</span>
-                        </p>
-                        
-                        <div className="mt-4 pt-4 border-t border-slate-200/60 text-[#B65A3A] font-black uppercase text-[10px] tracking-wider">
-                          💡 Financiado con recursos de ingresos por gas (sin cuotas extra).
-                        </div>
+                <Card title="GESTIÓN DE CARTERA (MOROSIDAD)" icon={DollarSign}>
+                  <div className="space-y-4 pt-2">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p className="text-[9px] font-black text-slate-400">ABRIL 2025</p>
+                        <p className="text-lg font-black text-slate-700">$137.380.664</p>
                       </div>
-
-                      {/* BOTÓN DE VER PDF (INFORME DRIVE) */}
-                      <a 
-                        href="https://drive.google.com/file/d/1GiWFw2zSbuZQC6fTLx71Y3U0TrbLDVn4/view?usp=sharing" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-between w-full p-5 bg-[#B65A3A] hover:bg-[#a14d32] text-white rounded-2xl transition-all duration-300 shadow-lg group"
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className="bg-white/20 p-2 rounded-lg">
-                            <FileText size={20} className="text-white" />
-                          </div>
-                          <div className="text-left">
-                            <p className="text-[10px] font-black uppercase tracking-widest opacity-80">Documento Completo</p>
-                            <p className="text-sm font-black uppercase">Ver Informe de Reparaciones PDF</p>
-                          </div>
-                        </div>
-                        <ExternalLink size={18} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                      </a>
+                      <div className="p-4 bg-[#E85A1A]/5 rounded-2xl border border-[#E85A1A]/10">
+                        <p className="text-[9px] font-black text-[#E85A1A]">JUNIO 2025</p>
+                        <p className="text-lg font-black text-[#E85A1A]">$145.444.851</p>
+                      </div>
+                    </div>
+                    <div className="p-4 bg-slate-900 rounded-2xl">
+                      <p className="text-[10px] font-black text-white/50 mb-1">POLÍTICA DE COBRO</p>
+                      <p className="text-[11px] font-bold text-white leading-tight">
+                        A PARTIR DE LA 4ta CUOTA DE MORA SE INICIA COBRO JUDICIAL. APOYO LEGAL: DRA. CLAUDIA ARCINIEGAS.
+                      </p>
                     </div>
                   </div>
-                  {/* --- INICIO DE LA SECCIÓN ESPECÍFICA CON VISOR INTEGRADO --- */}
-                  <div className="w-full relative">
-                    {/* Definimos estados locales *justo aquí* para que solo afecten a este bloque */}
-                    {(() => {
-                      // Si usas React normal, estos hooks irían arriba.
-                      // Para que este ejemplo sea autocontenido, asumo que los tienes definidos arriba.
-                      // De lo contrario, necesitarías mover esta lógica a un componente separado.
-                    })()}
-
-                    {/* CUADRO AZUL CONVERTIDO EN BOTÓN CLIQUEABLE */}
-                    <button 
-                      onClick={() => setShowCotizaciones(true)} // Activa el modal al hacer clic en cualquier parte del cuadro
-                      className="w-full p-8 bg-blue-50 hover:bg-blue-100 rounded-[40px] border-2 border-blue-100 flex justify-between items-center transition-all duration-300 group shadow-sm hover:shadow-md text-left"
-                    >
-                      <div className="flex-1">
-                        <h4 className="text-xs font-black text-blue-800 uppercase tracking-widest">Proyección Modernización Total</h4>
-                        <p className="text-xs font-bold text-blue-600 mt-1">Estimada para 2 a 5 años (Costo aprox. $60M por equipo).</p>
-                        
-                        {/* Indicador visual de que es cliqueable */}
-                        <div className="mt-4 inline-flex items-center gap-2 text-blue-700 bg-white/60 px-3 py-1.5 rounded-full border border-blue-200">
-                          <ClipboardList size={14} />
-                          <span className="text-[10px] font-black uppercase">Ver Cotizaciones</span>
-                          <ChevronRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                        </div>
-                      </div>
-                      
-                      {/* Icono a la derecha */}
-                      <div className="relative ml-6">
-                        <ShieldCheck size={48} className="text-blue-200 group-hover:scale-110 transition-transform" />
-                        <div className="absolute -bottom-1 -right-1 bg-blue-600 text-white p-1 rounded-full shadow-lg">
-                          <Expand size={14} />
-                        </div>
-                      </div>
-                    </button>
-
-                    {/* MODAL VISOR DE COTIZACIONES CON SCROLL VERTICAL */}
-                    {showCotizaciones && (
-                      <div className="fixed inset-0 z-[200] bg-black/95 backdrop-blur-sm flex flex-col items-center animate-in fade-in duration-300">
-                        
-                        {/* Botones de navegación fijos en la parte superior para que no se pierdan al bajar */}
-                        <div className="w-full flex justify-between items-center p-6 z-[220] bg-black/60 backdrop-blur-md border-b border-white/10">
-                          <div className="flex items-center gap-4">
-                            <button 
-                              onClick={() => setImgIndex(imgIndex === 0 ? 1 : 0)}
-                              className="p-3 text-white bg-white/10 hover:bg-[#B65A3A] rounded-full transition-all"
-                            >
-                              <ChevronLeft size={24} />
-                            </button>
-                            <p className="text-white/80 font-black text-[12px] uppercase tracking-[0.4em]">
-                              Cotización {imgIndex + 1} de 2
-                            </p>
-                            <button 
-                              onClick={() => setImgIndex(imgIndex === 1 ? 0 : 1)}
-                              className="p-3 text-white bg-white/10 hover:bg-[#B65A3A] rounded-full transition-all"
-                            >
-                              <ChevronRight size={24} />
-                            </button>
-                          </div>
-
-                          <button 
-                            onClick={() => setShowCotizaciones(false)}
-                            className="text-white/50 hover:text-white transition-colors p-2 bg-white/10 rounded-full"
-                          >
-                            <X size={30} />
-                          </button>
-                        </div>
-
-                        {/* CONTENEDOR CON SCROLL */}
-                        <div className="w-full flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar pt-10 pb-20">
-                          <div className="max-w-4xl mx-auto px-4 flex flex-col items-center">
-                            {/* La imagen ahora tiene un ancho definido (w-full) para forzar el scroll vertical */}
-                            <div className="relative shadow-[0_0_100px_rgba(0,0,0,0.8)] rounded-lg bg-white overflow-hidden">
-                              <img 
-                                src={imgIndex === 0 ? "/img/cot1.jpeg" : "/img/cot2.jpeg"} 
-                                className="w-full h-auto animate-in zoom-in-95 duration-500"
-                                alt={`Cotización ${imgIndex + 1}`}
-                                style={{ minWidth: '100%' }} // Asegura que se vea grande
-                              />
-                            </div>
-                            
-                            <p className="mt-10 text-white/20 text-[11px] font-black uppercase tracking-[0.5em]">
-                              --- Fin del Documento ---
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  {/* --- FIN DE LA SECCIÓN ESPECÍFICA --- */}
-                </div>
-              </Card>
-
-              {/* TABLAS DE GASTOS */}
-              <div className="space-y-12">
-                <ManagementTable 
-                  title="1. GASTOS MENSUALES FIJOS (RECURRENTES)"
-                  headers={["PROVEEDOR / CONTRATISTA", "CONCEPTO", "DETALLE"]}
-                  icon={Activity}
-                  data={[
-                    {p: "SEGURIDAD DEL SUR LTDA", c: "Vigilancia", d: "Promedio mensual $18.5M - $19.3M"},
-                    {p: "IMPECOL SAS", c: "Aseo", d: "$5.379.300 mensuales"},
-                    {p: "ANA LUCIA YEPEZ C.", c: "Administración", d: "Honorarios mensuales"},
-                    {p: "LUIS FELIPE NARVAEZ", c: "Contabilidad", d: "Honorarios mensuales"},
-                    {p: "ASCENSUR ELEVADORES SAS", c: "Ascensores", d: "$1.255.516 mensuales"},
-                    {p: "CUMMINS DE LOS ANDES", c: "Planta electrica", d: "Mantenimiento cuatrimestral"},
-                    {p: "JAMES ARTURO MAIGUAL", c: "Jardinería", d: "Servicio mensual"},
-                    {p: "ENERTOTAL SA ESP", c: "Energía", d: "Consumo áreas comunes"},
-                    {p: "MONTAGAS", c: "Gas", d: "Suministro copropiedad"},
-                    {p: "EMPOPASTO SA ESP", c: "Acueducto", d: "Servicio de agua"},
-                    {p: "COMCEL SA (CLARO)", c: "Telecom.", d: "Telefonía e internet Admin"},
-                    {p: "MOVISTAR", c: "Telecom.", d: "Servicios de internet"}
-                  ]}
-                />
-
-                <div className="grid grid-cols-1 gap-12">
-                  {/* TABLA A - YA ESTABA BIEN */}
-                  <InvestmentTable 
-                    title="A. REPARACIONES Y SUMINISTROS LOCATIVOS / ELÉCTRICOS"
-                    headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
-                    icon={Wrench}
-                    data={[
-                      {p: "ALEX MAURICIO MAIGUAL", o: "Metalmecánica", d: "Topes puerta vehicular, shut basuras, balineras."},
-                      {p: "OSCAR MALES", o: "Vidrios", d: "Ajuste puerta vidrio templado."},
-                      {p: "CHAVES LEON", o: "Hidráulicos", d: "Válvula reductora, manómetro, adaptador."},
-                      {p: "LUIS HUMBERTO BARRERA", o: "Eléctricos", d: "Suministros varios."},
-                      {p: "INVERSIONES ELECTRONICAS", o: "Eléctricos", d: "Amarras y cinta aislante."},
-                      {p: "JOSE FRANCISCO JOJOA", o: "Instalaciones", d: "Kickles, cinta LED y sensores."},
-                      {p: "JAMES ARTURO MAIGUAL", o: "Poda", d: "Poda extraordinaria árboles y cancha."},
-                      {p: "JOLMAR VALDES CASTAÑO", o: "Seguridad", d: "Recarga de extintores."},
-                      {p: "ANDRES TOBAR", o: "Dotación", d: "2 conos de señalización."},
-                      {p: "ADRIANA MILENA BARRERA", o: "Insumos Aseo", d: "Materiales de limpieza Edificio."}
-                    ]}
-                  />
-
-                                   
-
-                  <InvestmentTable 
-                    title="B. ACTIVIDADES NAVIDEÑAS E INTEGRACIÓN"
-                    headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
-                    icon={HeartPulse}
-                    data={[
-                      {p: "JOSE FRANCISCO JOJOA", o: "Iluminación", d: "Instalación luces en torres."},
-                      {p: "JAVIER MAURICIO ROSERO", o: "Decoración", d: "Materiales decoración general."},
-                      {p: "JORGE ELIECER TORO", o: "Refrigerio", d: "Porciones de hornado integración."},                      
-                      {p: "ADMINISTRACIÓN", o: "Bonificaciones", d: "Bonos navidad personal edificio."},
-                      {p: "ADMINISTRACIÓN", o: "Evento", d: "Misa y grupo musical."},
-                      {p: "ADMINISTRACIÓN", o: "Novena", d: "Refrigerio buñuelos, natilla y fresas con crema."}
-                    ]}
-                  />
-
-                  <ManagementTable 
-                    title="C. IMPUESTOS, SEGUROS Y OTROS"
-                    headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
-                    icon={Scale}
-                    data={[
-                      {p: "DIAN", c: "Impuestos", d: "Retención en la Fuente e IVA."},
-                      {p: "ALCALDIA DE PASTO", c: "Impuestos", d: "Retención de ICA."},
-                      {p: "SEGUROS DEL ESTADO SA", c: "Seguros", d: "Cuotas póliza áreas comunes."},
-                      
-                    ]}
-                  />
-                </div>
+                </Card>
               </div>
 
-              {/* SECCIÓN CAJA MENOR */}
-              <Card title="Otras Gestiones 2025" icon={Wallet}>
-                 <div className="overflow-x-auto pt-4">
-                    <table className="w-full text-left text-xs">
-                       <thead className="bg-slate-50 border-b-2">
-                          <tr>
-                             <th className="px-6 py-4 font-black">CONCEPTO</th>
-                             <th className="px-6 py-4 font-black">DETALLE DEL GASTO</th>
-                          </tr>
-                       </thead>
-                       <tbody className="divide-y divide-slate-100 font-bold text-slate-600">                          
-                          <tr><td className="px-6 py-4">GESTIÓN ADM</td><td className="px-6 py-4">Creación base datos residentes y censo emergencia</td></tr>
-                          <tr><td className="px-6 py-4">SEGURIDAD</td><td className="px-6 py-4">INSTALACION DVR Y REPARACION CAMARAS</td></tr>
-                          <tr><td className="px-6 py-4">SGSST 2025</td><td className="px-6 py-4">ACTUALIZACION ANUAL POR EL ING. RICARDO FIERRO</td></tr>
-                          <tr><td className="px-6 py-4">CELEBRACIÓN HALLOWEEN</td><td className="px-6 py-4">Dulces niños residentes</td></tr>                          
-                       </tbody>
-                    </table>
-                 </div>
-              </Card>
-
-              {/* PARTE III: SEGUROS */}
-              <div className="space-y-12">
-                <div className="bg-[#B65A3A] p-16 rounded-[60px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
-                  <div className="z-10 text-center md:text-left">
-                    <h3 className="text-6xl font-black uppercase tracking-tighter mb-2">Póliza de Seguros</h3>
-                    <p className="text-white/80 font-bold text-2xl uppercase tracking-[0.1em]">Seguros del Estado | Gestión 2025-2026</p>
-                  </div>
-                  <ShieldCheck size={160} className="text-white opacity-10 absolute right-[-20px] top-[-20px]" />
-                </div>
-
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                  <Card title="Póliza 1: Integral Copropiedades" icon={ShieldCheck} highlight>
-                    <div className="space-y-6">
-                      <div className="bg-[#EDEDED] p-8 rounded-[40px] text-center">
-                        <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">VALOR ASEGURADO TOTAL</p>
-                        <p className="text-4xl font-black text-[#B65A3A]">$23.559.207.000</p>
-                      </div>
-                      <div className="grid grid-cols-2 gap-4 text-[10px] font-black uppercase">
-                        <div className="p-4 bg-slate-50 rounded-2xl">Bienes Comunes: $18.582M</div>
-                        <div className="p-4 bg-slate-50 rounded-2xl">Bienes Privados: $4.645M</div>
-                        <div className="p-4 bg-slate-50 rounded-2xl">Maquinaria: $309M</div>
-                        <div className="p-4 bg-slate-50 rounded-2xl">Eq. Electrónico: $21M</div>
-                      </div>
-                      <div className="bg-[#2B2B2B] p-6 rounded-[32px] flex justify-between items-center text-white">
-                        <span className="text-[10px] font-black">PRIMA ANUAL (IVA INC)</span>
-                        <span className="text-xl font-black">$25.005.277</span>
-                      </div>
-                    </div>
-                  </Card>
-
-                  <Card title="Póliza 2: D&O (Directores)" icon={UserCheck}>
-                    <div className="space-y-6">
-                       <p className="text-xs font-bold text-slate-500 italic leading-relaxed">Protección del patrimonio de directores y administradores ante reclamaciones por actos incorrectos en sus funciones.</p>
-                       <div className="space-y-2">
-                          {[
-                            "Gastos de representación legal.",
-                            "Reembolso a la copropiedad.",
-                            "Gastos de publicidad restitución imagen.",
-                            "Responsabilidad prácticas laborales."
-                          ].map((item, i) => (
-                            <div key={i} className="flex items-center gap-3 text-[10px] font-black text-slate-600">
-                               <div className="w-1.5 h-1.5 bg-[#B65A3A] rounded-full"></div> {item.toUpperCase()}
-                            </div>
-                          ))}
-                       </div>
-                       <div className="bg-white border-2 border-[#B65A3A] p-6 rounded-[32px] flex justify-between items-center text-[#B65A3A]">
-                        <span className="text-[10px] font-black">PRIMA D&O</span>
-                        <span className="text-xl font-black">$499.800</span>
-                      </div>
-                    </div>
-                  </Card>
-                </div>
+              {/* BLOQUE 2: MANTENIMIENTOS Y ADECUACIONES */}
+              <div className="space-y-8">
+                <h3 className="text-2xl font-black text-slate-800 flex items-center gap-4">
+                  <Wrench className="text-[#E85A1A]" /> 
+                  MANTENIMIENTOS Y MEJORAS 2025
+                </h3>
                 
-                <div className="bg-[#2B2B2B] p-10 rounded-[48px] text-white flex justify-between items-center shadow-2xl">
-                   <div className="flex items-center gap-8">
-                      <div className="p-6 bg-[#B65A3A] rounded-3xl"><DollarSign size={40}/></div>
-                      <div>
-                         <p className="text-[11px] font-black text-white/50 tracking-widest uppercase">VALOR TOTAL PAGADO PÓLIZAS</p>
-                         <p className="text-5xl font-black text-white">$25.505.077</p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[
+                    { t: "FACHADA", d: "LIMPIEZA, SILICONADO Y LAVADO HIDROLAVADORA", v: "$28.605.646", p: "BELLAVISTA JT" },
+                    { t: "SEGURIDAD", d: "9 CÁMARAS NUEVAS Y DVR 32 CANALES", v: "EJECUTADO", p: "J. SEBASTIAN CERÓN" },
+                    { t: "ASCENSORES", d: "REPARACIÓN MÁQUINA PRINCIPAL", v: "PREVENTIVO", p: "EUROLIFT SAS" },
+                    { t: "CUBIERTA", d: "IMPERMEABILIZACIÓN VIGA CANAL Y CAMBIO TEJAS", v: "OBRA CIVIL", p: "CASTEIR MORENO" },
+                    { t: "ZONAS COMUNES", d: "PINTURA ÁREAS SOCIALES Y PASILLOS", v: "ESTÉTICA", p: "INTERNO" },
+                    { t: "BOMBAS", d: "MANTENIMIENTO EQUIPO PRESIÓN Y EYECTOR", v: "MENSUAL", p: "TECNIBOMBAS" },
+                  ].map((item, i) => (
+                    <div key={i} className="bg-white p-6 rounded-[35px] border-2 border-slate-50 shadow-sm hover:border-[#E85A1A]/20 transition-all">
+                      <h5 className="text-[11px] font-black text-[#E85A1A] mb-2">{item.t}</h5>
+                      <p className="text-[10px] font-bold text-slate-600 mb-4 h-8 leading-tight">{item.d}</p>
+                      <div className="flex justify-between items-center pt-4 border-t border-slate-50">
+                        <span className="text-[9px] font-black text-slate-400">{item.p}</span>
+                        <span className="text-xs font-black text-slate-900">{item.v}</span>
                       </div>
-                   </div>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              {/* BLOQUE 3: SEGUROS - DATA REAL DEL WORD */}
+              <div className="space-y-8">
+                <div className="bg-[#E85A1A] p-12 rounded-[60px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
+                  <div className="z-10 text-center md:text-left">
+                    <span className="bg-white/20 px-6 py-2 rounded-full text-[10px] font-black tracking-[0.3em] mb-4 inline-block">LA PREVISORA S.A.</span>
+                    <h3 className="text-5xl font-black uppercase tracking-tighter mb-2">Seguro de Áreas Comunes</h3>
+                    <p className="text-white/80 font-bold text-xl uppercase italic">Vigencia: 23 Marzo 2025 - 23 Marzo 2026</p>
+                    <div className="flex items-center gap-4 mt-6 text-white font-black text-xl">
+                      <div className="p-3 bg-white/20 rounded-2xl"><ShieldCheck size={24} /></div>
+                      PRIMA ANUAL TOTAL: $13.434.662
+                    </div>
+                  </div>
+                  <ShieldCheck size={180} className="text-white opacity-10 absolute right-[-20px] top-[-20px]" />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <Card title="SUMAS ASEGURADAS (TERREMOTO/INCENDIO)" highlight>
+                    <ul className="divide-y divide-slate-100">
+                      {[
+                        { l: "ÁREAS COMUNES", v: "$6.756.000.000" },
+                        { l: "ÁREAS PRIVADAS", v: "$2.576.474.002" },
+                        { l: "EQUIPOS ELÉCTRICOS", v: "$27.400.000" },
+                        { l: "MAQUINARIA Y EQUIPOS", v: "$196.600.000" },
+                        { l: "SUMA TOTAL ASEGURADA", v: "$9.557.174.002", bold: true },
+                      ].map((row, i) => (
+                        <li key={i} className={`py-4 flex justify-between items-center ${row.bold ? 'bg-slate-50 px-4 rounded-xl' : ''}`}>
+                          <span className="text-[10px] font-black text-slate-500">{row.l}</span>
+                          <span className={`text-sm font-black ${row.bold ? 'text-[#E85A1A]' : 'text-slate-800'}`}>{row.v}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </Card>
+
+                  <Card title="COBERTURAS DESTACADAS">
+                    <div className="space-y-3 pt-2">
+                      {[
+                        { t: "R.C. EXTRACONTRACTUAL", v: "$500.000.000", i: Gavel },
+                        { t: "TERREMOTO / ERUPCIÓN", v: "100% VALOR TOTAL", i: Activity },
+                        { t: "SUSTRACCIÓN CON VIOLENCIA", v: "CONTENIDOS Y PARTES", i: ShieldAlert },
+                        { t: "ROTURA DE MAQUINARIA", v: "EQUIPOS FIJOS", i: Zap },
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                          <div className="p-2 bg-white rounded-lg shadow-sm">
+                            <item.i size={16} className="text-[#E85A1A]" />
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-black text-slate-800 tracking-tight">{item.t}</p>
+                            <p className="text-[9px] font-bold text-slate-400">{item.v}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </Card>
+                </div>
+              </div>
+
+              {/* BLOQUE 4: PROVEEDORES FIJOS */}
+              <ManagementTable 
+                title="RELACIÓN DE CONTRATISTAS Y PROVEEDORES"
+                headers={["CONCEPTO", "EMPRESA / RESPONSABLE", "ALCANCE"]}
+                data={[
+                  { c: "VIGILANCIA", p: "SEGURIDAD JUAN B. SOLARTE", a: "SEGURIDAD FÍSICA 24/7" },
+                  { c: "ASEO", p: "LÍNEAS SURAMERICANAS SAS", a: "MANTENIMIENTO ZONAS COMUNES" },
+                  { c: "ASCENSORES", p: "EUROLIFT SAS", a: "MANTENIMIENTO PREVENTIVO MENSUAL" },
+                  { c: "SERVICIOS", p: "ENERTOTAL / EMPOPASTO", a: "SUMINISTRO ENERGÍA Y AGUA" },
+                  { c: "ADMINISTRACIÓN", p: "ANA LUCÍA YÉPEZ CÓRDOBA", a: "GESTIÓN REPRESENTACIÓN LEGAL" },
+                  { c: "CONTABILIDAD", p: "LUZ JANETH LÓPEZ VELA", a: "REPORTE Y ESTADOS FINANCIEROS" },
+                ].map(i => ({
+                  c: <span className="font-black text-slate-700">{i.c}</span>,
+                  p: <span className="text-[#E85A1A] font-black">{i.p}</span>,
+                  a: <span className="italic text-slate-500">{i.a}</span>
+                }))}
+                icon={Activity}
+              />
             </div>
           )}
-
           {/* SECCIÓN 7: ESTADOS FINANCIEROS (DETALLADO SEGÚN INFORME 2025) */}
           {activeSection === 'financiero' && (
             <div className="space-y-16 animate-in slide-in-from-bottom-10 uppercase">
