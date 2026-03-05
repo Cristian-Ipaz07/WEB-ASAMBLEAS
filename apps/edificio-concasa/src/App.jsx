@@ -867,7 +867,7 @@ export default function App() {
                     { p: "OSCAR MALES", r: "CERRAJERÍA", a: "ARREGLO PUERTA DEL PARQUEADERO" },
                     { p: "JAVIER BOTINA", r: "CERRAJERÍA", a: "ELABORACIÓN DE LLAVES CHAPA PRINCIPAL" },
                     { p: "RAY LLAVES", r: "CERRAJERÍA", a: "ELABORACIÓN DE LLAVES" },
-                    { p: "JOLMAR VALDES CASTAÑO", r: "MANTENIMIENTO", a: "TRABAJOS VARIOS DE MANTENIMIENTO" },
+                    { p: "JOLMAR VALDES CASTAÑO", r: "MANTENIMIENTO", a: "RECARGA DE EXTINTORES" },
                     { p: "RICARDO FIERRO", r: "SGSST", a: "ACTUALIZACIÓN E IMPLEMENTACIÓN SISTEMA 2025" },
                     { p: "ALCALDÍA / DIAN", r: "IMPUESTOS", a: "IVA, RETEFUENTE, RENTA Y RETE ICA BIMESTRAL" },
                     { p: "OFICINA DE ADMINISTRACION", r: "ARRIENDO", a: "PAGO SALDO ARRENDAMIENTO OFICINA 106A" },
