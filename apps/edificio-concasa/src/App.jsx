@@ -708,9 +708,9 @@ export default function App() {
               />
 
               {/* PARTE 1: CONSEJO Y CARTERA */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1  gap-8">
 
-                <Card title="1. CONSEJO DE ADMINISTRACIÓN (INSTALADO 07/ABR/2025)" highlight icon={UserCheck}>
+                <Card title="1. CONSEJO DE ADMINISTRACIÓN" highlight icon={UserCheck}>
                   <div className="space-y-4 pt-2">
 
                     <p className="text-xl font-black text-[#E85A1A]">
@@ -748,28 +748,47 @@ export default function App() {
                 <Card title="2. GESTIÓN DE CARTERA Y COBRO" icon={DollarSign}>
                   <div className="space-y-4">
 
-                    <div className="grid grid-cols-2 gap-2 text-center">
+                    {/* BADGE DE RESPONSABLE LEGAL */}
+                    <div className="flex items-center gap-4 p-4 bg-slate-50 rounded-2xl border-l-4 border-[#E85A1A]">
+                      <div className="p-2 bg-white rounded-full shadow-sm">
+                        <ShieldCheck size={20} className="text-[#E85A1A]" />
+                      </div>
+                      <div>
+                        <p className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Profesional a Cargo</p>
+                        <p className="text-[12px] font-black text-slate-900 uppercase">Dra. Claudia Arciniegas</p>
+                      </div>
+                    </div>  
 
-                      <div className="p-3 bg-slate-50 rounded-2xl border border-slate-100">
-                        <p className="text-[9px] font-black text-slate-400 uppercase">ABRIL 2025</p>
-                        <p className="text-sm font-black text-slate-700">$137.380.664</p>
+                    {/* CONTENEDOR DE INDICADORES EN DOS COLUMNAS */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 flex justify-between items-center transition-all hover:bg-white hover:shadow-sm">
+                        <div className="flex items-center gap-3">
+                          <div className="h-2 w-2 rounded-full bg-slate-300"></div>
+                          <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Administración</p>
+                        </div>
                       </div>
 
-                      <div className="p-3 bg-[#E85A1A]/5 rounded-2xl border border-[#E85A1A]/10">
-                        <p className="text-[9px] font-black text-[#E85A1A] uppercase">JUNIO 2025</p>
-                        <p className="text-sm font-black text-[#E85A1A]">$145.444.851</p>
+                      <div className="p-4 bg-[#E85A1A]/5 rounded-2xl border border-[#E85A1A]/10 flex justify-between items-center transition-all hover:bg-[#E85A1A]/10">
+                        <div className="flex items-center gap-3">
+                          <div className="h-2 w-2 rounded-full bg-[#E85A1A]"></div>
+                          <p className="text-[10px] font-black text-[#E85A1A] uppercase tracking-widest">Consejo de Administración</p>
+                        </div>
                       </div>
-
                     </div>
 
-                    <div className="bg-slate-900 p-4 rounded-2xl text-white">
-                      <p className="text-[10px] font-black text-[#E85A1A] mb-1">
-                        RECUPERACIÓN TOTAL 2023-2025
-                      </p>
-                      <p className="text-2xl font-black">$132.073.365</p>
-                      <p className="text-[9px] text-white/50 mt-1 font-bold">
-                        SALDO PENDIENTE OCT: ~$86.000.000
-                      </p>
+                    {/* CUADRO OSCURO CON TEXTO ACTUALIZADO Y DISEÑO PULIDO */}
+                    <div className="bg-slate-900 p-6 rounded-[32px] text-white border-b-4 border-[#E85A1A] relative overflow-hidden group">
+                      {/* Decoración sutil de fondo */}
+                      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <TrendingUp size={40} className="text-white" />
+                      </div>
+
+                      <div className="relative z-10">
+                        <p className="text-[10px] font-black text-[#E85A1A] mb-3 tracking-[0.2em] uppercase">Gestión de Cartera</p>
+                        <p className="text-[12px] font-medium leading-relaxed text-slate-200">
+                          DURANTE EL AÑO SE REALIZÓ SEGUIMIENTO A LA CARTERA, EFECTUANDO LOS RESPECTIVOS COBROS JURÍDICOS Y ACCIONES PARA RECUPERAR LAS OBLIGACIONES EN MORA; SIN EMBARGO, ALGUNOS CANCELAN LA DEUDA Y POSTERIORMENTE VUELVEN A QUEDAR EN MORA CON LA ADMINISTRACIÓN DE SUS OFICINAS.
+                        </p>
+                      </div>
                     </div>
 
                   </div>
@@ -813,7 +832,7 @@ export default function App() {
                     { p: "CEDENAR SA ESP", c: "ENERGÍA OFICINA 106A", d: "PAGO MENSUAL OFICINA" },
                     { p: "EMPOPASTO SA ESP", c: "ACUEDUCTO Y ALCANTAR.", d: "PAGO MENSUAL AGUA" },
                     { p: "EMAS SA ESP", c: "ASEO URBANO", d: "RECOLECCIÓN BASURAS" },
-                    { p: "SEGURIDAD SOLARTE", c: "VIGILANCIA PRIVADA", d: "VIGILANCIA FÍSICA" },
+                    { p: "SEGURIDAD JUAN B. SOLARTE", c: "VIGILANCIA PRIVADA", d: "VIGILANCIA FÍSICA" },
                     { p: "LINEAS SURAMERICANAS", c: "SERVICIOS GENERALES", d: "ASEO Y MANTTO BÁSICO" },
                     { p: "EUROLIFT SAS", c: "MANTTO ASCENSORES", d: "CONTRATO PREVENTIVO" },
                     { p: "COLOMBIA TELECOMUNICACIONES", c: "INTERNET Y TELEFONÍA", d: "SERVICIO ADMINISTRACIÓN" },
@@ -851,7 +870,7 @@ export default function App() {
                     { p: "JOLMAR VALDES CASTAÑO", r: "MANTENIMIENTO", a: "TRABAJOS VARIOS DE MANTENIMIENTO" },
                     { p: "RICARDO FIERRO", r: "SGSST", a: "ACTUALIZACIÓN E IMPLEMENTACIÓN SISTEMA 2025" },
                     { p: "ALCALDÍA / DIAN", r: "IMPUESTOS", a: "IVA, RETEFUENTE, RENTA Y RETE ICA BIMESTRAL" },
-                    { p: "JANETH DELGADO", r: "ARRIENDO", a: "PAGO SALDO ARRENDAMIENTO OFICINA 106A" },
+                    { p: "OFICINA DE ADMINISTRACION", r: "ARRIENDO", a: "PAGO SALDO ARRENDAMIENTO OFICINA 106A" },
 
                   ]}
 
@@ -873,9 +892,7 @@ export default function App() {
                     SILICONADO EXTERIOR Y LAVADO DE FACHADA.
                   </p>
 
-                  <p className="text-sm font-black text-[#E85A1A] mt-3">
-                    $28.605.646
-                  </p>
+                  
                 </Card>
 
                 <Card
@@ -918,47 +935,124 @@ export default function App() {
 
               </div>
 
-              {/* POLIZA */}
-
-              <div className="bg-[#E85A1A] p-12 rounded-[60px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
-
-                <div className="z-10 text-center md:text-left">
-
-                  <span className="bg-white/20 px-6 py-2 rounded-full text-[10px] font-black tracking-[0.3em] mb-4 inline-block">
-                    LA PREVISORA S.A.
-                  </span>
-
-                  <h3 className="text-5xl font-black uppercase tracking-tighter mb-2">
-                    Póliza de Copropiedad
-                  </h3>
-
-                  <p className="text-white/80 font-bold text-xl">
-                    VIGENCIA: 15 MAR 2025 - 15 MAR 2026
-                  </p>
-
-                  <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-
-                    <div className="bg-white/10 p-4 rounded-3xl">
-                      <p className="text-[9px] font-black opacity-60">PRIMA NETA</p>
-                      <p className="text-xl font-black">$11.289.632</p>
+              {/* CABECERA PRINCIPAL DE PÓLIZA */}
+              <div className="bg-[#E85A1A] p-10 rounded-[50px] text-white shadow-2xl relative overflow-hidden">
+                <div className="relative z-10">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div>
+                      <span className="bg-white/20 px-4 py-1.5 rounded-full text-[10px] font-black tracking-[0.3em] mb-4 inline-block uppercase">
+                        Aseguradora: La Previsora S.A.
+                      </span>
+                      <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-2">
+                        Póliza de Copropiedad
+                      </h3>
+                      <p className="text-white/80 font-bold text-lg flex items-center gap-2">
+                        <Calendar size={18} />
+                        VIGENCIA: 15 MAR 2025 - 15 MAR 2026
+                      </p>
                     </div>
-
-                    <div className="bg-white/10 p-4 rounded-3xl">
-                      <p className="text-[9px] font-black opacity-60">IVA</p>
-                      <p className="text-xl font-black">$2.145.030</p>
+                    
+                    <div className="bg-white text-[#E85A1A] p-6 rounded-[35px] text-center shadow-xl border-4 border-[#E85A1A]/20">
+                      <p className="text-[10px] font-black opacity-60 uppercase">Total Pagado Anual</p>
+                      <p className="text-3xl font-black">$13.434.662</p>
                     </div>
-
-                    <div className="bg-white/30 p-4 rounded-3xl border-2 border-white/50">
-                      <p className="text-[9px] font-black">TOTAL PAGADO</p>
-                      <p className="text-xl font-black">$13.434.662</p>
-                    </div>
-
                   </div>
 
+                  {/* DESGLOSE RÁPIDO DE COSTOS */}
+                  <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-sm">
+                      <p className="text-[9px] font-black opacity-60">PRIMA NETA</p>
+                      <p className="text-lg font-black">$11.289.632</p>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-sm">
+                      <p className="text-[9px] font-black opacity-60">IVA (19%)</p>
+                      <p className="text-lg font-black">$2.145.030</p>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-sm">
+                      <p className="text-[9px] font-black opacity-60">GASTOS EXP.</p>
+                      <p className="text-lg font-black">$0.00</p>
+                    </div>
+                    <div className="bg-white/10 p-4 rounded-3xl backdrop-blur-sm">
+                      <p className="text-[9px] font-black opacity-60">ESTADO</p>
+                      <p className="text-lg font-black uppercase">VIGENTE</p>
+                    </div>
+                  </div>
                 </div>
+                <ShieldCheck size={280} className="text-white opacity-5 absolute right-[-40px] bottom-[-40px]" />
+              </div>
 
-                <ShieldCheck size={200} className="text-white opacity-10 absolute right-[-20px] top-[-20px]" />
+              {/* COLUMNA 1: SUMAS ASEGURADAS */}
+              <Card title="Sumas Aseguradas" icon={DollarSign} highlight>
+                <div className="space-y-3 pt-2">
+                  <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                    <span className="text-[9px] font-bold text-slate-500 uppercase">Áreas Comunes</span>
+                    <span className="text-[11px] font-black text-slate-900">$6.755.500.000</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                    <span className="text-[9px] font-bold text-slate-500 uppercase">Áreas Privadas</span>
+                    <span className="text-[11px] font-black text-slate-900">$2.576.474.002</span>
+                  </div>
+                  <div className="flex justify-between items-center border-b border-slate-100 pb-2">
+                    <span className="text-[9px] font-bold text-slate-500 uppercase">Maquinaria</span>
+                    <span className="text-[11px] font-black text-slate-900">$196.600.000</span>
+                  </div>
+                  <div className="p-3 bg-slate-900 rounded-2xl mt-4">
+                    <p className="text-[8px] font-black text-[#E85A1A] uppercase tracking-widest">Total Incendio/Terremoto</p>
+                    <p className="text-lg font-black text-white">$9.557.174.002</p>
+                  </div>
+                </div>
+              </Card>
 
+              {/* COLUMNA 2: COBERTURAS */}
+              <Card title="Amparos Adicionales" icon={ShieldCheck}>
+                <div className="grid grid-cols-1 gap-2 pt-2">
+                  {[
+                    "Terremoto y Erupción (100%)",
+                    "Daños por Agua y Anegación",
+                    "Vientos Fuertes y Granizo",
+                    "Sustracción con Violencia",
+                    "Rotura de Maquinaria",
+                    "Equipo Eléctrico / Electrónico"
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 p-2 bg-slate-50 rounded-xl">
+                      <CheckCircle2 size={12} className="text-[#E85A1A]" />
+                      <span className="text-[10px] font-bold uppercase text-slate-700">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </Card>
+
+              {/* FILA COMPLETA ABAJO: RESPONSABILIDAD CIVIL */}
+              <div className="md:col-span-2">
+                <Card title="Responsabilidad Civil Extracontractual (R.C.E)" icon={Gavel}>
+                  <div className="flex flex-col md:flex-row items-center gap-8 pt-2">
+                    {/* Límite Destacado */}
+                    <div className="text-center md:text-left min-w-[200px]">
+                      <p className="text-[9px] font-black text-slate-400 uppercase mb-1">Límite Asegurado</p>
+                      <p className="text-4xl font-black text-slate-900">$500.000.000</p>
+                      <div className="mt-2 inline-block px-3 py-1 bg-[#E85A1A] text-white text-[9px] font-black rounded-full uppercase">
+                        Amparo Integral
+                      </div>
+                    </div>
+
+                    {/* Sublímites en formato de lista horizontal */}
+                    <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+                      <div className="p-4 bg-slate-50 rounded-2xl border-l-4 border-[#E85A1A]">
+                        <p className="text-[9px] font-black text-slate-400 uppercase">Sublímite Suelos/Terrenos</p>
+                        <p className="text-[13px] font-black text-slate-900">$4.666.237.001</p>
+                      </div>
+                      <div className="p-4 bg-slate-50 rounded-2xl border-l-4 border-slate-300">
+                        <p className="text-[9px] font-black text-slate-400 uppercase">Sublímite Cimientos</p>
+                        <p className="text-[13px] font-black text-slate-900">$1.351.200.000</p>
+                      </div>
+                      <div className="sm:col-span-2 p-3 bg-slate-50 rounded-xl">
+                        <p className="text-[10px] font-medium text-slate-500 italic">
+                          "Cubre predios, labores y operaciones del Edificio Concasa frente a reclamos de terceros."
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
               </div>
 
             </div>
