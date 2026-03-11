@@ -566,7 +566,13 @@ export default function App() {
           {/* SECCIÓN 5: ACTA ANTERIOR */}
           {activeSection === 'acta-anterior' && (
             <div className="space-y-10 animate-in fade-in duration-500 uppercase">
-              <SectionHeader title="5. Acta Asamblea Anterior" icon={FileText} agendaIndices={[4]} agendaStatus={agendaStatus} toggleAgendaItem={toggleAgendaItem} />
+              <SectionHeader 
+                title="5. Acta Asamblea Anterior" 
+                icon={FileText} 
+                agendaIndices={[4]} 
+                agendaStatus={agendaStatus} 
+                toggleAgendaItem={toggleAgendaItem} 
+              />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <Card title="Validación del Acta Anterior" icon={ShieldCheck} highlight>
                   <div className="space-y-6 pt-4">
@@ -574,13 +580,23 @@ export default function App() {
                       Verificación del texto final del acta de la Asamblea General Ordinaria anterior por parte de la comisión designada.
                     </p>
                     <div className="p-8 bg-slate-50 rounded-3xl border-2 border-dashed border-[#C96F45]/20 flex flex-col items-center justify-center text-center">
-                        <FileText size={40} className="text-[#C96F45] mb-4 opacity-40" />
-                        <p className="text-[10px] font-black text-slate-400">DOCUMENTO DISPONIBLE PARA CONSULTA EN SECRETARÍA</p>
+                      <FileText size={40} className="text-[#C96F45] mb-4 opacity-40" />
+                      <a 
+                        href="https://drive.google.com/file/d/1ZJFLKcjB-9tthRGcVnpw7uoetUHatarK/view?usp=sharing" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="bg-[#C96F45] text-white px-8 py-3 rounded-full font-black text-[11px] hover:bg-[#b85e36] transition-all transform hover:scale-105 flex items-center gap-2 shadow-lg shadow-[#C96F45]/20"
+                      >
+                        VER DOCUMENTO
+                      </a>
                     </div>
                   </div>
                 </Card>
                 <Card title="Observaciones" icon={ClipboardCheck}>
-                  <textarea className="w-full p-6 bg-slate-50 border-2 border-[#C96F45]/10 rounded-2xl font-black uppercase text-[11px] h-40 focus:border-[#C96F45]" placeholder="REGISTRE OBSERVACIONES AL ACTA ANTERIOR..."></textarea>
+                  <textarea 
+                    className="w-full p-6 bg-slate-50 border-2 border-[#C96F45]/10 rounded-2xl font-black uppercase text-[11px] h-40 focus:border-[#C96F45] outline-none transition-colors" 
+                    placeholder="REGISTRE OBSERVACIONES AL ACTA ANTERIOR..."
+                  ></textarea>
                 </Card>
               </div>
             </div>
@@ -598,7 +614,7 @@ export default function App() {
                       <div className="bg-[#333333] p-10 rounded-[40px] text-white">
                          <h4 className="text-xl font-black mb-6 border-b border-white/10 pb-4">Consejo de Administración 2025</h4>
                          <ul className="grid grid-cols-1 gap-4 text-xs font-bold text-white/80">
-                            {["Nidia Arcos", "Sandra Ibarra", "Ana Lucia Mora", "Fabian Betancourt", "Ricardo Moncayo", "Marianela Arturo", "Janeth Rosero"].map(n => (
+                            {["Nidia Arcos", "Sandra Ibarra", "Ana Lucia Mora", "Fabian Betancourt", "Ricardo Moncayo", "Marianela Arturo", "Janeth Rosero", "Natalia Erazo", "Blanca Bernal"].map(n => (
                               <li key={n} className="flex items-center gap-3">
                                  <div className="w-2 h-2 bg-[#E5A07B] rounded-full"></div> {n}
                               </li>
