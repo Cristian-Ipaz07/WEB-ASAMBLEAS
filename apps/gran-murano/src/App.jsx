@@ -715,7 +715,7 @@ export default function App() {
                       <tbody className="divide-y-2 divide-white">
                         <tr className="bg-slate-50/50">
                           <td className="px-10 py-6 text-lg font-black text-slate-600">Edificio / Áreas Comunes</td>
-                          <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$5.000.000.000</td>
+                          <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$5.250.000.000</td>
                         </tr>
                         <tr>
                           <td className="px-10 py-6 text-lg font-black text-slate-600">R.C. Extracontractual</td>
@@ -728,6 +728,10 @@ export default function App() {
                         <tr>
                           <td className="px-10 py-6 text-lg font-black text-slate-600">Equipo Eléctrico / Electrónico</td>
                           <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$10.000.000</td>
+                        </tr>
+                        <tr>
+                          <td className="px-10 py-6 text-lg font-black text-slate-600">Manejo Global</td>
+                          <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$5.000.000</td>
                         </tr>
                       </tbody>
                     </table>
@@ -821,7 +825,7 @@ export default function App() {
                         </div>
                         <div className="p-8 bg-[#1A1A1A] rounded-3xl text-white">
                             <p className="text-[10px] font-black text-white/50 mb-2">VALOR ASEGURADO TOTAL</p>
-                            <p className="text-2xl font-black">$5.815.000.000</p>
+                            <p className="text-2xl font-black">$5.250.000.000</p>
                         </div>
                     </div>
                 </Card>
