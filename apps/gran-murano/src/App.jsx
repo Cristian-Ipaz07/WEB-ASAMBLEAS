@@ -161,7 +161,7 @@ const COEFICIENTES_DATA = [
   { id: 11, unidad: '304', propietario: 'ANDREA PAOLA MARTINEZ', coeficiente: 3.80 },
   { id: 12, unidad: '401', propietario: 'MARIELA ENRIQUEZ ZARAMA', coeficiente: 5.60 },
   { id: 13, unidad: '402', propietario: 'GLORIA DE GUZMAN', coeficiente: 4.87 },
-  { id: 14, unidad: '403', propietario: 'OFELIA GUZMAN GUZMAN', coeficiente: 4.53 },
+  { id: 14, unidad: '403', propietario: 'OFELIA GUZMAN GUZMAN', coeficiente: 4.54 },
   { id: 15, unidad: '404', propietario: 'AMANDA ARELLANO HERNANDEZ', coeficiente: 3.92 },
   { id: 16, unidad: '501', propietario: 'CLARA TORRES DE MARTINZ', coeficiente: 6.42 },
   { id: 17, unidad: '502', propietario: 'AMADO SANTACRUZ', coeficiente: 5.67 },
@@ -582,12 +582,12 @@ export default function App() {
                  <h3 className="text-2xl font-black text-[#833C0C] border-l-8 border-[#833C0C] pl-6 py-2">Ejes de Acción 2025</h3>
                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {[
-                      { t: "FINANZAS", c: "Incremento cuota 23.36% para cubrir déficit 2024. Cuota extraordinaria de $17.136.562 aprobada.", i: Calculator },
+                      { t: "FINANZAS", c: "Incremento cuota 23.36% para cubrir déficit 2024. Cuota extraordinaria de $17.136.562 aprobada para cubrir deficit 2023 y motor puerta vehicular.", i: Calculator },
                       { t: "SEGURIDAD", c: "Transición a esquema por monitoreo con Seguridad del Sur. Acuerdo de pago de $5.000.000 mensuales.", i: Shield },
                       { t: "MANTENIMIENTO", c: "Intervención en cubierta, impermeabilización de canales y terraza. Cambio de baterías planta eléctrica.", i: Wrench },
                       { t: "AUTOMATIZACIÓN", c: "Reposición de motores de la puerta vehicular del sótano (Motores Accesmatic).", i: Zap },
-                      { t: "TALENTO HUMANO", c: "Cambio de operaria de limpieza por perfil de 'todero' para optimizar mantenimiento.", i: UserCheck },
-                      { t: "CONVIVENCIA", c: "Control conjunto de firmas bancarias entre Presidente de Consejo y Administradora.", i: Handshake }
+                      { t: "TALENTO HUMANO", c: "Cambio de operaria de limpieza por perfil de 'todero' para optimizar mantenimiento.", i: UserCheck }
+                      
                     ].map((item, idx) => (
                       <div key={idx} className="bg-white p-8 rounded-[32px] border-2 border-[#B4AAA8]/20 shadow-sm">
                         <item.i className="text-[#833C0C] mb-4" size={32} />
@@ -608,7 +608,7 @@ export default function App() {
                     {p: "Ana Lucia Yepez Cordoba", c: "Honorarios Administración", d: "Pagos por servicios"},
                     {p: "Luz Janeth Lopez Vela", c: "Honorarios Contabilidad", d: "Pagos por servicios"},
                     {p: "Qualis Soluciones Integrales", c: "Servicio de Aseo", d: "Servicio mensual limpieza"},
-                    {p: "Seguridad del Sur Ltda", c: "Servicio de Vigilancia", d: "Seguridad operativa"},
+                    {p: "Seguridad del Sur Ltda", c: "Servicio de Vigilancia", d: "Seguridad operativa de monitoreo"},
                     {p: "Cedenar SA ESP", c: "Servicio de Energía", d: "Áreas comunes"},
                     {p: "Empopasto SA ESP", c: "Acueducto", d: "Consumo áreas comunes"},
                     {p: "La Previsora SA", c: "Póliza Copropiedad", d: "Seguro obligatorio"},
@@ -622,7 +622,7 @@ export default function App() {
                   title="PROYECTO 1: MANTENIMIENTO DE TECHOS Y LOCATIVOS"
                   headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
                   data={[
-                    {p: "Casteir Moreno Mosquera", c: "Infraestructura", d: "Mantenimiento techo, cambio panel, pintura muros, reparación canal Apto 702."}
+                    {p: "Casteir Moreno Mosquera", c: "Infraestructura", d: "Mantenimiento techo, cambio panel, pintura muros, reparación canal."}
                   ]}
                   icon={Building2}
                 />
@@ -653,23 +653,18 @@ export default function App() {
                     icon={Zap}
                     data={[{p: "Albeiro Bastidas Guerrero", d: "Mantenimiento general de la planta eléctrica."}]}
                   />
-                  <ManagementTable 
-                    title="OBRA 5: FACHADAS Y JARDINERAS"
-                    headers={["PROVEEDOR", "ACTIVIDAD"]}
-                    icon={Leaf}
-                    data={[{p: "Jaime Hernando Guzman", d: "Lavado de ladrillo de las jardineras."}]}
-                  />
+                 
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <ManagementTable 
-                    title="OBRA 6: SEGURIDAD INDUSTRIAL"
+                    title="OBRA 5: SEGURIDAD INDUSTRIAL"
                     headers={["PROVEEDOR", "ACTIVIDAD"]}
                     icon={ShieldAlert}
                     data={[{p: "Andres Tobar Gomez", d: "Recarga de 4 extintores del edificio."}]}
                   />
                   <ManagementTable 
-                    title="OBRA 7: GESTIÓN DE CARTERA"
+                    title="OBRA 6: GESTIÓN DE CARTERA"
                     headers={["PROVEEDOR", "ACTIVIDAD"]}
                     icon={Scale}
                     data={[{p: "Stefania Muñoz", d: "Cobro y requerimientos de cartera a deudores morosos."}]}
@@ -688,116 +683,94 @@ export default function App() {
                   data={[
                     {c: "Suministros de Aseo", d: "Compras recurrentes (Blanqueador, ambientador, silicona)."},
                     {c: "Gastos Operativos", d: "Compra de ACPM y Gasolina para planta eléctrica."},
-                    {c: "Refrigerios", d: "Pago de 26 pasteles de queso para reuniones."},
                     {c: "Suministros Eléctricos", d: "Bombillos 9W y materiales menores."},
                     {c: "Herramientas", d: "Compra de escalera tipo tijera (Mercado Libre)."}
                   ]}
                   icon={Plus}
                 />
-                {/* BANNER PRINCIPAL: ASEGURADORA ELEGIDA */}
-                <div className="bg-[#833C0C] p-10 md:p-14 rounded-[60px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-2xl relative overflow-hidden">
-                  <div className="z-10 text-center md:text-left">
-                    <span className="bg-white/20 px-6 py-2 rounded-full text-[10px] font-black tracking-[0.3em] mb-4 inline-block uppercase">
-                      Aseguradora Elegida
-                    </span>
-                    <h3 className="text-5xl md:text-6xl font-black uppercase tracking-tighter mb-2">
-                      La Previsora S.A.
-                    </h3>
-                    <p className="text-white/80 font-bold text-xl uppercase italic">
-                      Vigencia: 14 Sept 2025 — 14 Sept 2026
-                    </p>
-                    
-                    <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 mt-8">
-                      <div className="flex items-center gap-3 bg-white/10 px-6 py-4 rounded-3xl backdrop-blur-sm border border-white/10">
-                        <div className="p-2 bg-white/20 rounded-lg"><ShieldCheck size={24} /></div>
-                        <div>
-                          <p className="text-[10px] font-black opacity-60 leading-none mb-1">PRIMA ANUAL TOTAL</p>
-                          <p className="text-2xl font-black">$6.617.697</p>
-                        </div>
-                      </div>
+                <div className="flex flex-col gap-12 uppercase">
+  
+                {/* SECCIÓN 1: PÓLIZA ÁREAS COMUNES - FONDO SUTIL PARA DIFERENCIAR */}
+                <Card title="Póliza Todo Riesgo Áreas Comunes" icon={ShieldCheck} badge="No. 1000462" highlight className="p-10 border-t-8 border-t-[#833C0C]">
+                  <div className="mb-10 text-center md:text-left">
+                    <h3 className="text-4xl font-black text-[#833C0C] tracking-tighter mb-1">LA PREVISORA S.A.</h3>
+                    <p className="text-lg font-bold text-slate-400 italic">Vigencia: 14 Sept 2025 — 14 Sept 2026</p>
+                  </div>
+
+                  {/* VALORES MASIVOS */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <div className="p-10 bg-[#833C0C]/5 rounded-[48px] border-2 border-[#833C0C]/20 flex flex-col items-center justify-center shadow-sm">
+                      <p className="text-xs font-black text-slate-500 mb-2 tracking-[0.2em]">Valor Asegurado Total</p>
+                      <p className="text-4xl lg:text-5xl xl:text-6xl font-black text-[#833C0C] tracking-tighter leading-none">$5.815.000.000</p>
+                    </div>
+                    <div className="p-10 bg-slate-50 rounded-[48px] border-2 border-slate-100 flex flex-col items-center justify-center shadow-sm">
+                      <p className="text-xs font-black text-slate-500 mb-2 tracking-[0.2em]">Prima Total Anual (IVA Inc.)</p>
+                      <p className="text-4xl lg:text-5xl xl:text-6xl font-black text-slate-700 tracking-tighter leading-none">$4.795.224</p>
                     </div>
                   </div>
                   
-                  {/* Icono de fondo decorativo */}
-                  <ShieldCheck size={220} className="text-white opacity-10 absolute right-[-40px] bottom-[-40px] rotate-12" />
-                </div>
-
-                {/* BLOQUE DE SEGUROS REDISEÑADO: HORIZONTAL PARA EVITAR DESBORDES */}
-                <div className="space-y-8">
-                  
-                  {/* 1. BANNER DE VALOR ASEGURADO (A lo ancho para que el número quepa perfecto) */}
-                  <div className="bg-[#833C0C] rounded-[50px] p-8 md:p-12 text-white shadow-2xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-                    {/* Decoración de fondo */}
-                    <ShieldCheck size={250} className="absolute -right-10 -top-10 text-white opacity-10 rotate-12 pointer-events-none" />
-                    
-                    <div className="z-10">
-                      <p className="text-[12px] font-black opacity-60 uppercase tracking-[0.4em] mb-2 text-center md:text-left">
-                        Valor Asegurado Global
-                      </p>
-                      {/* Aquí el número tiene espacio de sobra, usamos un tamaño grande pero seguro */}
-                      <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tighter leading-none">
-                        $5.815.000.000
-                      </h2>
-                    </div>
-
-                    <div className="z-10 flex flex-col items-center md:items-end gap-3">
-                      <div className="flex items-center gap-3 bg-white/10 px-6 py-3 rounded-2xl border border-white/20 backdrop-blur-md">
-                        <Activity size={24} className="text-white animate-pulse" />
-                        <span className="font-black text-sm uppercase tracking-widest">Cobertura 100% HM</span>
-                      </div>
-                      <p className="text-[10px] font-bold opacity-50 uppercase tracking-widest">Protección Integral Gran Murano</p>
-                    </div>
-                  </div>
-
-                  {/* 2. COMPARATIVO DE COTIZACIONES (Ahora ocupa el 100% de ancho para mejor lectura) */}
-                  <div className="w-full">
-                    <ManagementTable 
-                      title="COMPARATIVO DE COTIZACIONES"
-                      headers={["ASEGURADORA", "PRIMA TOTAL"]}
-                      icon={BarChart3}
-                      data={[
-                        {p: "MAPFRE", v: "$10.149.628"},
-                        {p: "AXA COLPATRIA", v: "$7.839.934"},
-                        {p: "LA EQUIDAD", v: "$6.986.277"},
-                        {p: "SEGUROS DEL ESTADO", v: "$6.936.867"},
-                        {p: "LA PREVISORA S.A.", v: "$6.617.697", bold: true}
-                      ]}
-                    />
-                  </div>
-                </div>
-
-                {/* TABLA DETALLADA DE AMPAROS */}
-                <Card title="Desglose de Amparos y Coberturas" icon={Zap}>
-                  <div className="overflow-hidden rounded-[35px] border border-slate-100">
+                  {/* DESGLOSE DE AMPAROS - BIENES COMUNES */}
+                  <div className="overflow-x-auto rounded-[35px] border-2 border-slate-50">
                     <table className="w-full text-left">
-                      <thead className="bg-slate-50 border-b border-slate-100">
-                        <tr>
-                          <th className="px-8 py-5 text-[10px] font-black uppercase text-slate-500 tracking-[0.2em]">Sección / Amparo</th>
-                          <th className="px-8 py-5 text-[10px] font-black uppercase text-slate-500 tracking-[0.2em] text-right">Valor Asegurado</th>
-                          <th className="px-8 py-5 text-[10px] font-black uppercase text-slate-500 tracking-[0.2em] text-right">Prima Neta</th>
+                      <tbody className="divide-y-2 divide-white">
+                        <tr className="bg-slate-50/50">
+                          <td className="px-10 py-6 text-lg font-black text-slate-600">Edificio / Áreas Comunes</td>
+                          <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$5.000.000.000</td>
                         </tr>
-                      </thead>
-                      <tbody className="divide-y divide-slate-50">
-                        {[
-                          { a: "Todo Riesgo Daños Materiales", v: "$5.815.000.000", p: "$4.795.224", main: true },
-                          { a: "Edificio (Incendio y Aliadas)", v: "$5.000.000.000", p: "$650.000", sub: true },
-                          { a: "Terremoto / Erupción Volcánica", v: "$5.000.000.000", p: "$2.550.000", sub: true },
-                          { a: "Maquinaria y Equipo (Fijos)", v: "$250.000.000", p: "$32.500", sub: true },
-                          { a: "R.C. Extracontractual", v: "$300.000.000", p: "$270.000", sub: true },
-                          { a: "Responsabilidad Civil D&O", v: "$100.000.000", p: "$178.500", main: true, highlight: true },
-                        ].map((row, i) => (
-                          <tr key={i} className={`hover:bg-slate-50/50 transition-colors ${row.highlight ? 'bg-[#833C0C]/5' : ''}`}>
-                            <td className={`px-8 py-4 text-sm ${row.main ? 'font-black text-slate-800' : 'pl-12 text-slate-500 font-medium'}`}>
-                              {row.sub && "• "} {row.a}
-                            </td>
-                            <td className="px-8 py-4 text-right font-bold text-slate-700 text-sm">{row.v}</td>
-                            <td className={`px-8 py-4 text-right font-black text-sm ${row.highlight ? 'text-[#833C0C]' : 'text-slate-800'}`}>{row.p}</td>
-                          </tr>
-                        ))}
+                        <tr>
+                          <td className="px-10 py-6 text-lg font-black text-slate-600">R.C. Extracontractual</td>
+                          <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$300.000.000</td>
+                        </tr>
+                        <tr className="bg-slate-50/50">
+                          <td className="px-10 py-6 text-lg font-black text-slate-600">Maquinaria y Equipos</td>
+                          <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$250.000.000</td>
+                        </tr>
+                        <tr>
+                          <td className="px-10 py-6 text-lg font-black text-slate-600">Equipo Eléctrico / Electrónico</td>
+                          <td className="px-10 py-6 text-3xl font-black text-[#833C0C] text-right">$10.000.000</td>
+                        </tr>
                       </tbody>
                     </table>
                   </div>
                 </Card>
+
+                {/* SECCIÓN 2: PÓLIZA D&O - CAMBIO DE COLOR DE ACENTO PARA DIFERENCIAR SECCIÓN */}
+                <Card title="Póliza Responsabilidad Civil D&O" icon={Scale} badge="No. 1005727" highlight className="p-10 border-l-8 border-l-slate-800 bg-slate-50/30">
+                  <div className="flex flex-col lg:flex-row gap-10 items-center">
+                    <div className="flex-1 text-center lg:text-left space-y-4">
+                      <p className="text-lg font-black text-[#833C0C] tracking-[0.3em]">Directores y Administradores</p>
+                      <p className="text-6xl md:text-7xl lg:text-8xl font-black text-slate-800 tracking-tighter leading-none">$100.000.000</p>
+                      <div className="p-6 bg-white rounded-3xl border-l-8 border-[#833C0C] shadow-sm">
+                        <p className="text-lg font-bold text-slate-500 leading-tight italic">
+                          Protección para el patrimonio de los miembros del Consejo y Administración ante reclamaciones por su gestión.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {/* COSTO D&O */}
+                    <div className="bg-white p-10 rounded-[50px] border-2 border-slate-100 text-center shrink-0 shadow-lg min-w-[280px]">
+                      <p className="text-xs font-black text-slate-400 mb-2 tracking-widest uppercase">Inversión Póliza D&O</p>
+                      <p className="text-5xl font-black text-[#833C0C] tracking-tighter">$178.500</p>
+                      <p className="text-[10px] font-bold text-slate-400 mt-2">PAGO ÚNICO ANUAL</p>
+                    </div>
+                  </div>
+                </Card>
+
+                {/* SECCIÓN 3: TOTAL DE LA OPERACIÓN (RESUMEN FINAL) */}
+                <div className="bg-slate-900 rounded-[50px] p-10 text-white flex flex-col md:flex-row justify-between items-center gap-6 shadow-2xl border-b-8 border-b-[#833C0C]">
+                  <div>
+                    <p className="text-xs font-black opacity-50 tracking-[0.4em] mb-1">INVERSIÓN TOTAL SEGUROS 2025</p>
+                    <h3 className="text-5xl font-black tracking-tighter">$4.973.724</h3>
+                  </div>
+                  <div className="flex flex-col items-center md:items-end">
+                    <div className="bg-white/10 px-6 py-2 rounded-full border border-white/20 mb-2 text-[10px] font-black tracking-widest">
+                      PREVISORA + D&O
+                    </div>
+                    <p className="text-sm font-bold opacity-60 italic text-center md:text-right">Ahorro detectado frente a ofertas de mercado</p>
+                  </div>
+                </div>
+              </div>
+              
 
               </div>
             </div>
