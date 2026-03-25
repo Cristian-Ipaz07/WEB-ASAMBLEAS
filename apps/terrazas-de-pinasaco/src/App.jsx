@@ -557,9 +557,69 @@ export default function App() {
                     "/img/SEGURIDAD10.png"
                   ]}
                 />
-                <EvidenceSlider title="2. REFUERZO CERRAMIENTO PERIMETRAL" color="#5E8C2A" content="Intervención en puntos críticos del cerramiento exterior para garantizar la seguridad campestre." />
-                <EvidenceSlider title="3. ILUMINACIÓN" content="Cambio a luminarias LED de alta eficiencia y mayor cobertura en vías internas." />
-                <EvidenceSlider title="4. ZONAS COMUNES" color="#5E8C2A" content="MEJORAMIENTO DE ASEO Y CONSERVACION DE LAS ZONAS COMUNES." />
+                <EvidenceSlider 
+                  title="2. REFUERZO CERRAMIENTO PERIMETRAL" 
+                  color="#5E8C2A" 
+                  content="Intervención en puntos críticos del cerramiento exterior para garantizar la seguridad campestre." 
+                  images={[
+                    "/img/peri1.png",
+                    "/img/peri2.png",
+                    "/img/peri3.png",
+                    "/img/peri4.png",
+                    "/img/peri5.png",
+                    "/img/peri6.png",
+                    "/img/peri7.png",
+                    "/img/peri8.png",
+                    "/img/peri9.png",
+                    "/img/peri10.png",
+                    "/img/peri11.png"
+                  ]}
+                />
+                <EvidenceSlider 
+                  title="3. ILUMINACIÓN" 
+                  content="Cambio a luminarias LED de alta eficiencia y mayor cobertura en vías internas." 
+                  images={[
+                    "/img/ilu1.png", "/img/ilu2.png", "/img/ilu3.png", "/img/ilu4.png", 
+                    "/img/ilu5.png", "/img/ilu6.png", "/img/ilu7.png", "/img/ilu8.png", 
+                    "/img/ilu9.png", "/img/ilu10.png", "/img/ilu11.png", "/img/ilu12.png", 
+                    "/img/ilu13.png", "/img/ilu14.png", "/img/ilu15.png", "/img/ilu16.png", 
+                    "/img/ilu17.png", "/img/ilu18.png"
+                  ]} 
+                />
+
+                {/* --- SECCIÓN 4: ZONAS COMUNES --- */}
+                <EvidenceSlider 
+                  title="4. ZONAS COMUNES" 
+                  color="#5E8C2A" 
+                  content="MEJORAMIENTO DE ASEO Y CONSERVACION DE LAS ZONAS COMUNES." 
+                  images={[
+                    "/img/as1.png", "/img/as2.png", "/img/as3.png", "/img/as4.png", 
+                    "/img/as5.png", "/img/as6.png", "/img/as7.png", "/img/as8.png", 
+                    "/img/as9.png", "/img/as10.png", "/img/as11.png", "/img/as12.png", 
+                    "/img/as13.png", "/img/as14.png", "/img/as15.png", "/img/as16.png"
+                  ]} 
+                />
+
+                {/* --- SECCIÓN 5: VIDEO VIGILANCIA --- */}
+                <EvidenceSlider 
+                  title="5. MEJORAMIENTO SISTEMA DE VIDEO VIGILANCIA" 
+                  content="Fortalecimiento de la cobertura y calidad de cámaras para mayor seguridad del condominio. (Sistema de video y vigilancia)." 
+                  images={[
+                    "/img/vig1.png", "/img/vig2.png", "/img/vig3.png", "/img/vig4.png", 
+                    "/img/vig5.png", "/img/vig6.png", "/img/vig7.png"
+                  ]} 
+                />
+
+                {/* --- SECCIÓN 6: CONVIVENCIA --- */}
+                <EvidenceSlider 
+                  title="6. CONVIVENCIA Y ACTIVIDADES" 
+                  color="#5E8C2A" 
+                  content="Iniciativas para promover la armonía y la participación de los copropietarios en eventos. (Mascotas, arreglos fúnebres, Halloween y Navidad)." 
+                  images={[
+                    "/img/arr1.png", "/img/arr2.png", "/img/arr3.png", "/img/arr4.png", 
+                    "/img/arr5.png", "/img/arr6.png", "/img/arr7.png", "/img/arr8.png"
+                  ]} 
+                />
                 
               </div>
             </div>
