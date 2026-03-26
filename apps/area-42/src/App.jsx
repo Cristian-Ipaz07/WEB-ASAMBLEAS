@@ -39,8 +39,8 @@ const COEFICIENTES_DATA = [
   { id: 2, unidad: 'A.Estudio 02', propietario: 'EDGAR IBARRA MORILLO', coeficiente: 3.11165 },
   { id: 3, unidad: 'A.Estudio 03', propietario: 'AURA ALVAREZ', coeficiente: 3.24173 },
   { id: 4, unidad: 'A.Estudio 04', propietario: 'JAIME ARTEAGA-ANDRES ARROYO', coeficiente: 4.17557 },
-  { id: 5, unidad: 'A.Estudio 05', propietario: 'MAURICIO TUTALCHA', coeficiente: 5.09045 },
-  { id: 6, unidad: 'APTO. 101', propietario: 'ANDRES YEPEZ', coeficiente: 7.50775 },
+  { id: 5, unidad: 'A.Estudio 05', propietario: 'EDUAR YAIR GOMEZ', coeficiente: 5.09045 },
+  { id: 6, unidad: 'APTO. 101', propietario: 'MARIA MERCEDES ROSERO', coeficiente: 7.50775 },
   { id: 7, unidad: 'APTO. 201', propietario: 'MARTHA KAISER', coeficiente: 9.67435 },
   { id: 8, unidad: 'A.Estudio 202', propietario: 'JHON TOVAR', coeficiente: 2.74724 },
   { id: 9, unidad: 'A.Estudio 203', propietario: 'MAURICIO ORDOÑEZ', coeficiente: 3.83873 },
@@ -50,8 +50,8 @@ const COEFICIENTES_DATA = [
   { id: 13, unidad: 'APTO. 402', propietario: 'JOSE VILLOTA', coeficiente: 6.24569 },
   { id: 14, unidad: 'APTO. 501', propietario: 'CRISTINA MONCAYO', coeficiente: 9.61751 },
   { id: 15, unidad: 'APTO. 502', propietario: 'NANCY MARQUEZ', coeficiente: 14.21606 },
-  { id: 16, unidad: 'Deposito 1', propietario: 'MAURICIO TUTALCHA', coeficiente: 0.21278 },
-  { id: 17, unidad: 'Deposito 2', propietario: 'MAURICIO TUTALCHA', coeficiente: 0.19814 },
+  { id: 16, unidad: 'Deposito 1', propietario: 'EDUAR YAIR GOMEZ', coeficiente: 0.21278 },
+  { id: 17, unidad: 'Deposito 2', propietario: 'EDUAR YAIR GOMEZ', coeficiente: 0.19814 },
   { id: 18, unidad: 'Deposito 3', propietario: 'ANA LUCIA TORRES DAZA', coeficiente: 0.20589 },
   { id: 19, unidad: 'Deposito 4', propietario: 'ANA LUCIA TORRES DAZA', coeficiente: 0.33253 },
   { id: 20, unidad: 'Deposito 5', propietario: 'ANA LUCIA TORRES DAZA', coeficiente: 0.24294 },
@@ -671,7 +671,7 @@ export default function App() {
                    <div className="p-8 bg-[#EFEFEF] rounded-[40px] border-4 border-[#B85C38]/10 h-full flex flex-col justify-center">
                       <p className="text-sm font-black text-[#B85C38] mb-4 tracking-widest">Intervención Pedagógica</p>
                       <p className="text-sm font-bold text-[#6A6A6A] leading-loose italic">
-                        "SE TRABAJÓ CON EL APTO 03 SOBRE EL CIERRE AUTOMÁTICO DE PUERTAS PEATONALES, LOGRANDO ACUERDOS SIN NECESIDAD DE SANCIONES."
+                        "SE TRABAJÓ CON ALGUNOS APARTAMENTOS SOBRE EL CIERRE AUTOMÁTICO DE PUERTAS PEATONALES, LOGRANDO ACUERDOS SIN NECESIDAD DE SANCIONES."
                       </p>
                    </div>
                 </Card>
@@ -698,22 +698,22 @@ export default function App() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                    <ManagementTable 
-                      title="2. SISTEMA DE SEGURIDAD (CÁMARAS)"
-                      headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
+                      title="2. SISTEMA DE SEGURIDAD (CÁMARAS) - Juan Sebastia Ceron"
+                      headers={["ACTIVIDAD"]}
                       data={[
-                        {p: "JUAN SEBASTIAN CERON", c: "OBRA CIVIL Y REDES", d: "TRABAJOS DE DUCTERÍA PARA CÁMARAS."},
-                        {p: "JUAN SEBASTIAN CERON", c: "SUMINISTRO E INSTALACIÓN", d: "CÁMARAS EN PISOS 3, 4 Y 8."},
-                        {p: "JUAN SEBASTIAN CERON", c: "SUMINISTRO E INSTALACIÓN", d: "CÁMARAS EN PISOS 5, 6 Y 7."}
+                        {d: "TRABAJOS DE DUCTERÍA PARA CÁMARAS."},
+                        {d: "CÁMARAS EN PISOS 3, 4 Y 8."},
+                        {d: "CÁMARAS EN PISOS 5, 6 Y 7."}
                       ]}
                       icon={ShieldCheck}
                    />
                    <ManagementTable 
                       title="3. MANTENIMIENTO DE PUERTAS"
-                      headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
+                      headers={["PROVEEDOR", "ACTIVIDAD"]}
                       data={[
-                        {p: "OSCAR MALES", c: "MANTENIMIENTO Y SUMINISTRO", d: "4 PUERTAS VEHICULARES Y GATO CIERRA PUERTAS."},
-                        {p: "GUSTAVO QUELAL", c: "AUTOMATIZACIÓN", d: "INSTALACIÓN MOTOR Y MANTENIMIENTO."},
-                        {p: "MANUEL GUSTAVO QUELAL", c: "MANTENIMIENTO", d: "MANTENIMIENTO PUERTAS VEHICULARES."}
+                        {p: "OSCAR MALES", d: "4 PUERTAS VEHICULARES Y GATO CIERRA PUERTAS."},
+                        {p: "GUSTAVO QUELAL", d: "INSTALACIÓN MOTOR Y MANTENIMIENTO."},
+                        {p: "MANUEL GUSTAVO QUELAL", d: "MANTENIMIENTO PUERTAS PEATONALES Y VEHICULARES."}
                       ]}
                       icon={Wrench}
                    />
@@ -746,7 +746,7 @@ export default function App() {
                   headers={["PROVEEDOR", "CONCEPTO", "ACTIVIDAD"]}
                   data={[
                     {p: "JHON FRANCO CUATIN", c: "LIMPIEZA", d: "LAVADO DE TANQUE DE RESERVA."},
-                    {p: "EUROLIFT SAS", c: "REPUESTOS", d: "COMPRA DE IMPULSOR SIGARRO."},
+                    {p: "EUROLIFT SAS", c: "REPUESTOS", d: "COMPRA DE IMPULSOR CIGARRO."},
                     {p: "HERNANDO TOBAR", c: "SEGURIDAD", d: "RECARGA DE 3 EXTINTORES 10 LBS ABC."},
                     {p: "ADRIANA BARRERA", c: "SUMINISTROS", d: "SUMINISTROS GENERALES DE ASEO."},
                     {p: "ANA LUCIA YEPEZ", c: "SUMINISTROS", d: "COMPRA DE COMBUSTIBLE (ACPM)."},
@@ -796,7 +796,7 @@ export default function App() {
                               { label: "Maquinaria y Equipo (Rotura/Sustracción)", val: "$160.450.000" },
                               { label: "Equipo Eléctrico y Electrónico Fijo", val: "$15.750.000" },
                               { label: "RC Extracontractual", val: "$300.000.000" },
-                              { label: "Alojamiento Temporal", val: "$12.209.168" },
+                              
                             ].map((item, i) => (
                               <tr key={i} className="hover:bg-slate-50 transition-colors">
                                 <td className="px-8 py-5 text-[11px] font-black text-slate-600">{item.label}</td>
@@ -816,10 +816,7 @@ export default function App() {
                           <p className="text-5xl font-black text-[#B85C38] tracking-tighter">
                              $3.602.054
                           </p>
-                          <div className="mt-8 p-6 bg-[#EFEFEF] rounded-3xl border-2 border-dashed border-[#B85C38]/20">
-                             <p className="text-[10px] font-black text-[#B85C38] mb-2 uppercase">Estado de Pago</p>
-                             <p className="text-xs font-bold leading-relaxed">CUBIERTO SEGÚN RELACIÓN DE GASTOS EXTRAORDINARIOS 2025.</p>
-                          </div>
+                          
                        </div>
                     </Card>
                   </div>
