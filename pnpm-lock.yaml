@@ -57,9 +57,29 @@ importers:
 
   apps/campos-de-aragon: {}
 
+  apps/campos-de-castilla: {}
+
+  apps/conjunto-las-margaritas: {}
+
+  apps/edificio-concasa: {}
+
+  apps/edificio-hito: {}
+
   apps/esquina-real: {}
 
+  apps/figueres-2: {}
+
+  apps/gran-murano: {}
+
   apps/jardines-morasurco: {}
+
+  apps/loyola-32: {}
+
+  apps/rincon-valle-de-atriz: {}
+
+  apps/rosales-de-anganoy: {}
+
+  apps/terrazas-de-pinasaco: {}
 
   apps/valle-de-atriz: {}
 
