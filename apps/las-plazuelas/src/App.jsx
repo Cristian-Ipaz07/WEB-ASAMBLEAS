@@ -40,8 +40,8 @@ const SectionHeader = ({ title, icon: Icon, agendaIndices = [], agendaStatus, to
     <button
       onClick={() => toggleAgendaItem(agendaIndices)}
       className={`flex items-center gap-3 px-8 py-4 rounded-2xl font-black text-[12px] uppercase tracking-widest transition-all border-2 shadow-md ${agendaIndices.every(idx => agendaStatus[idx])
-          ? 'bg-[#2B2B2B] border-[#2B2B2B] text-white'
-          : 'bg-white border-[#2E5E3B]/20 text-[#2E5E3B] hover:bg-[#2E5E3B] hover:text-white'
+        ? 'bg-[#2B2B2B] border-[#2B2B2B] text-white'
+        : 'bg-white border-[#2E5E3B]/20 text-[#2E5E3B] hover:bg-[#2E5E3B] hover:text-white'
         }`}
     >
       <CheckCircle2 size={20} />
@@ -764,92 +764,7 @@ export default function App() {
                   </div>
                 </Card>
 
-                {/* NUEVA SECCIÓN: SEGUROS Y PÓLIZAS */}
-                <Card title="Seguros y Pólizas de Copropiedad" icon={ShieldAlert} highlight className="p-10">
-                  <div className="space-y-12 pt-4">
-                    <div className="bg-[#2E5E3B] p-10 rounded-[48px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-xl relative overflow-hidden">
-                      <div className="z-10 text-center md:text-left">
-                        <span className="bg-white/20 px-4 py-1 rounded-full text-[9px] font-black tracking-widest mb-4 inline-block uppercase">Pólizas Vigentes 2025-2026</span>
-                        <h4 className="text-4xl font-black mb-2 uppercase tracking-tighter">Seguros del Estado SA</h4>
-                        <div className="flex items-center gap-3 text-[#A9C5AE] font-bold text-xs">
-                          <Calendar size={16} />
-                          <span>VIGENCIA: 16 DE JULIO 2025 AL 16 DE JULIO 2026</span>
-                        </div>
-                      </div>
-                      <ShieldCheck size={120} className="text-white opacity-10 absolute right-[-10px] top-[-10px]" />
-                    </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                      {/* Póliza 1 */}
-                      <div className="p-8 bg-[#F2F2F2] rounded-[40px] border-l-[12px] border-[#2E5E3B]">
-                        <p className="text-[10px] font-black text-[#2E5E3B] mb-2 uppercase tracking-widest">1. PÓLIZA DE SEGURO COPROPIEDADES</p>
-                        <h5 className="font-black text-lg mb-4 text-[#2B2B2B]">TODO RIESGO DAÑOS MATERIALES</h5>
-                        <p className="text-[11px] font-bold text-slate-500 mb-6 italic uppercase leading-relaxed">
-                          Ampara bienes comunes frente a daños materiales y responsabilidad civil frente a terceros.
-                        </p>
-                        <div className="space-y-4">
-                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
-                            <span className="text-[10px] font-black text-slate-400 uppercase">Póliza No.</span>
-                            <span className="text-sm font-black text-[#2B2B2B]">41-22-101000587</span>
-                          </div>
-                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
-                            <span className="text-[10px] font-black text-slate-400 uppercase">Valor Asegurado</span>
-                            <span className="text-sm font-black text-[#2E5E3B]">$4.052.750.000</span>
-                          </div>
-                        </div>
-                        <div className="mt-6 pt-4 border-t-2 border-white">
-                          <p className="text-[9px] font-black text-slate-400 mb-2 uppercase tracking-widest">Coberturas</p>
-                          <ul className="grid grid-cols-2 gap-2">
-                            {["Edificio ($3.500M)", "RC Extracontractual ($300M)", "Maquinaria ($50M)", "Eq. Electrónico ($20M)"].map((c, i) => (
-                              <li key={i} className="text-[10px] font-bold text-slate-600 flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 bg-[#2E5E3B] rounded-full"></div> {c}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-
-                      {/* Póliza 2 */}
-                      <div className="p-8 bg-[#F2F2F2] rounded-[40px] border-l-[12px] border-[#3F7A4F]">
-                        <p className="text-[10px] font-black text-[#3F7A4F] mb-2 uppercase tracking-widest">2. PÓLIZA RESPONSABILIDAD CIVIL (D&O)</p>
-                        <h5 className="font-black text-lg mb-4 text-[#2B2B2B]">DIRECTORES Y ADMINISTRADORES</h5>
-                        <p className="text-[11px] font-bold text-slate-500 mb-6 italic uppercase leading-relaxed">
-                          Protege el patrimonio frente a presuntos errores u omisiones en el ejercicio del cargo.
-                        </p>
-                        <div className="space-y-4">
-                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
-                            <span className="text-[10px] font-black text-slate-400 uppercase">Póliza No.</span>
-                            <span className="text-sm font-black text-[#2B2B2B]">41-01-101000584</span>
-                          </div>
-                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
-                            <span className="text-[10px] font-black text-slate-400 uppercase">Valor Asegurado</span>
-                            <span className="text-sm font-black text-[#3F7A4F]">$100.000.000</span>
-                          </div>
-                          <div className="flex justify-between items-center">
-                            <span className="text-[10px] font-black text-slate-400 uppercase">Deducible</span>
-                            <span className="text-sm font-black text-red-600">$4.000.000</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <ManagementTable
-                      title="RESUMEN EJECUTIVO DE COSTOS - PÓLIZAS 2025"
-                      headers={["TIPO DE PÓLIZA", "VALOR ASEGURADO", "PRIMA (NETA)", "TOTAL (CON IVA)"]}
-                      data={[
-                        { t: "Copropiedades (Áreas Comunes)", v: "$4.052.750.000", p: "$3.338.992", i: "$3.973.401" },
-                        { t: "D&O (Administradores)", v: "$100.000.000", p: "$140.000", i: "$166.600" },
-                        { t: <span className="font-black">TOTAL GENERAL</span>, v: "$4.152.750.000", p: "$3.478.992", i: <span className="text-[#2E5E3B] text-xl font-black">$4.140.001</span> },
-                      ]}
-                      icon={DollarSign}
-                    />
-
-                    <EvidenceSection
-                      title="DOCUMENTACIÓN SEGUROS"
-                      content="CARPETA DE PÓLIZAS DISPONIBLE PARA CONSULTA EN EL DESPACHO DE ADMINISTRACIÓN."
-                    />
-                  </div>
-                </Card>
 
                 {/* IV. GESTIÓN DE CUIDADO, CONSERVACIÓN Y DISPOSICIÓN */}
                 <Card title="IV. Mantenimientos y Mejoras Locativas" icon={Wrench} className="p-10">
@@ -946,6 +861,93 @@ export default function App() {
                     </div>
                   </Card>
                 </div>
+
+                {/* NUEVA SECCIÓN: SEGUROS Y PÓLIZAS */}
+                <Card title="Seguros y Pólizas de Copropiedad" icon={ShieldAlert} highlight className="p-10">
+                  <div className="space-y-12 pt-4">
+                    <div className="bg-[#2E5E3B] p-10 rounded-[48px] text-white flex flex-col md:flex-row justify-between items-center gap-8 shadow-xl relative overflow-hidden">
+                      <div className="z-10 text-center md:text-left">
+                        <span className="bg-white/20 px-4 py-1 rounded-full text-[9px] font-black tracking-widest mb-4 inline-block uppercase">Pólizas Vigentes 2025-2026</span>
+                        <h4 className="text-4xl font-black mb-2 uppercase tracking-tighter">Seguros del Estado SA</h4>
+                        <div className="flex items-center gap-3 text-[#A9C5AE] font-bold text-xs">
+                          <Calendar size={16} />
+                          <span>VIGENCIA: 16 DE JULIO 2025 AL 16 DE JULIO 2026</span>
+                        </div>
+                      </div>
+                      <ShieldCheck size={120} className="text-white opacity-10 absolute right-[-10px] top-[-10px]" />
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      {/* Póliza 1 */}
+                      <div className="p-8 bg-[#F2F2F2] rounded-[40px] border-l-[12px] border-[#2E5E3B]">
+                        <p className="text-[10px] font-black text-[#2E5E3B] mb-2 uppercase tracking-widest">1. PÓLIZA DE SEGURO COPROPIEDADES</p>
+                        <h5 className="font-black text-lg mb-4 text-[#2B2B2B]">TODO RIESGO DAÑOS MATERIALES</h5>
+                        <p className="text-[11px] font-bold text-slate-500 mb-6 italic uppercase leading-relaxed">
+                          Ampara bienes comunes frente a daños materiales y responsabilidad civil frente a terceros.
+                        </p>
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <span className="text-[10px] font-black text-slate-400 uppercase">Póliza No.</span>
+                            <span className="text-sm font-black text-[#2B2B2B]">41-22-101000587</span>
+                          </div>
+                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <span className="text-[10px] font-black text-slate-400 uppercase">Valor Asegurado</span>
+                            <span className="text-sm font-black text-[#2E5E3B]">$4.052.750.000</span>
+                          </div>
+                        </div>
+                        <div className="mt-6 pt-4 border-t-2 border-white">
+                          <p className="text-[9px] font-black text-slate-400 mb-2 uppercase tracking-widest">Coberturas</p>
+                          <ul className="grid grid-cols-2 gap-2">
+                            {["Edificio ($3.500M)", "RC Extracontractual ($300M)", "Maquinaria ($50M)", "Eq. Electrónico ($20M)"].map((c, i) => (
+                              <li key={i} className="text-[10px] font-bold text-slate-600 flex items-center gap-2">
+                                <div className="w-1.5 h-1.5 bg-[#2E5E3B] rounded-full"></div> {c}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+
+                      {/* Póliza 2 */}
+                      <div className="p-8 bg-[#F2F2F2] rounded-[40px] border-l-[12px] border-[#3F7A4F]">
+                        <p className="text-[10px] font-black text-[#3F7A4F] mb-2 uppercase tracking-widest">2. PÓLIZA RESPONSABILIDAD CIVIL (D&O)</p>
+                        <h5 className="font-black text-lg mb-4 text-[#2B2B2B]">DIRECTORES Y ADMINISTRADORES</h5>
+                        <p className="text-[11px] font-bold text-slate-500 mb-6 italic uppercase leading-relaxed">
+                          Protege el patrimonio frente a presuntos errores u omisiones en el ejercicio del cargo.
+                        </p>
+                        <div className="space-y-4">
+                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <span className="text-[10px] font-black text-slate-400 uppercase">Póliza No.</span>
+                            <span className="text-sm font-black text-[#2B2B2B]">41-01-101000584</span>
+                          </div>
+                          <div className="flex justify-between items-center border-b border-slate-200 pb-2">
+                            <span className="text-[10px] font-black text-slate-400 uppercase">Valor Asegurado</span>
+                            <span className="text-sm font-black text-[#3F7A4F]">$100.000.000</span>
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <span className="text-[10px] font-black text-slate-400 uppercase">Deducible</span>
+                            <span className="text-sm font-black text-red-600">$4.000.000</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <ManagementTable
+                      title="RESUMEN EJECUTIVO DE COSTOS - PÓLIZAS 2025"
+                      headers={["TIPO DE PÓLIZA", "VALOR ASEGURADO", "PRIMA (NETA)", "TOTAL (CON IVA)"]}
+                      data={[
+                        { t: "Copropiedades (Áreas Comunes)", v: "$4.052.750.000", p: "$3.338.992", i: "$3.973.401" },
+                        { t: "D&O (Administradores)", v: "$100.000.000", p: "$140.000", i: "$166.600" },
+                        { t: <span className="font-black">TOTAL GENERAL</span>, v: "$4.152.750.000", p: "$3.478.992", i: <span className="text-[#2E5E3B] text-xl font-black">$4.140.001</span> },
+                      ]}
+                      icon={DollarSign}
+                    />
+
+                    <EvidenceSection
+                      title="DOCUMENTACIÓN SEGUROS"
+                      content="CARPETA DE PÓLIZAS DISPONIBLE PARA CONSULTA EN EL DESPACHO DE ADMINISTRACIÓN."
+                    />
+                  </div>
+                </Card>
 
                 <div className="p-12 bg-white rounded-[56px] border-4 border-[#2E5E3B]/10 text-center shadow-xl">
                   <p className="text-xs font-black text-[#2E5E3B] uppercase tracking-[0.4em] mb-4">Finalización del Informe</p>
