@@ -708,7 +708,7 @@ export default function App() {
                     <EvidenceSection
                       title="4. Preparación de Cuentas"
                       color="#3F7A4F"
-                      content="EL CARGO SE ENTREGA EL 27 DE FEBRERO DE 2026, PRESENTANDO ESTADOS FINANCIEROS, BALANCE, FLUJOS DE CAJA Y EJECUCIÓN PRESUPUESTAL AL CONSEJO PREVIO A ESTA ASAMBLEA."
+                      content="EL CARGO SE ENTREGA EL 27 DE MARZO DE 2026, PRESENTANDO ESTADOS FINANCIEROS, BALANCE, FLUJOS DE CAJA Y EJECUCIÓN PRESUPUESTAL PREVIO A ESTA ASAMBLEA."
                     />
                   </div>
                 </Card>
@@ -736,13 +736,10 @@ export default function App() {
                 {/* III. ASPECTOS DE ACTOS LEGALES Y ADMINISTRATIVOS */}
                 <Card title="III. Actos Legales y Administrativos" icon={ShieldCheck} highlight className="p-10">
                   <div className="space-y-8 pt-4">
-                    <EvidenceSection
-                      title="6. Administración de Bienes Comunes"
-                      content="NO SE PRESENTARON BIENES COMUNES NO ESENCIALES DESAFECTADOS PARA OTROS FINES DURANTE EL PERIODO DE ESTUDIO."
-                    />
+
 
                     <EvidenceSection
-                      title="7. Vigilancia y Gestión Financiera"
+                      title="6. Vigilancia y Gestión Financiera"
                       color="#3F7A4F"
                       content={
                         <ul className="space-y-4">
@@ -772,32 +769,40 @@ export default function App() {
                     <EvidenceSection
                       title="IMPERMEABILIZACIÓN TERRAZA"
                       content="EJECUTADA CON LA CUOTA EXTRAORDINARIA APROBADA EN EL AÑO 2024."
-                      photos={["https://placehold.co/800x600/2E5E3B/ffffff?text=ANTES+IMPERMEABILIZACION", "https://placehold.co/800x600/3F7A4F/ffffff?text=DESPUES+IMPERMEABILIZACION"]}
+
                     />
                     <EvidenceSection
                       title="PINTURA ZONAS COMUNES"
                       color="#3F7A4F"
                       content="PINTURA INTEGRAL DE PASILLOS, PORTONES ELÉCTRICOS Y GABINETES DE MEDIDORES."
-                      photos={["https://placehold.co/800x600/2E5E3B/ffffff?text=PINTURA+PASILLOS", "https://placehold.co/800x600/3F7A4F/ffffff?text=PINTURA+PORTONES"]}
+
                     />
                     <EvidenceSection
                       title="PORTÓN ELÉCTRICO PRINCIPAL"
                       content="ARREGLO DE LAS DOS NAVES: CAMBIO DE RESORTE, GUAYAS ROTAS, SOLDADURA Y CALIBRACIÓN DE CONTROLES."
-                      photos={["https://placehold.co/800x600/2E5E3B/ffffff?text=REPUESTOS+PORTON", "https://placehold.co/800x600/3F7A4F/ffffff?text=TRABAJO+PORTON"]}
+
                     />
                     <EvidenceSection
                       title="MEJORAS Y JARDINERÍA"
                       color="#3F7A4F"
                       content="LIMPIEZA DE ZONAS COMUNES, MANTENIMIENTO DE JARDINERÍA Y REEMPLAZO VÁLVULAS DE GAS (PISO 1)."
-                      photos={["https://placehold.co/800x600/2E5E3B/ffffff?text=MANTENIMIENTO+GAS", "https://placehold.co/800x600/3F7A4F/ffffff?text=JARDINERIA"]}
+
                     />
-                    <div className="md:col-span-2">
-                      <EvidenceSection
-                        title="ESTÉTICA Y TEMPORADA"
-                        content="RESTAURACIÓN PESEBRE DE NAVIDAD DE FACHADA Y DECORACIÓN INTEGRAL NAVIDEÑA."
-                        photos={["https://placehold.co/800x600/2E5E3B/ffffff?text=PESEBRE+FACHADA", "https://placehold.co/800x600/3F7A4F/ffffff?text=DECORACION+NAVIDAD"]}
-                      />
-                    </div>
+                    <EvidenceSection
+                      title="ESTÉTICA Y TEMPORADA"
+                      content="RESTAURACIÓN PESEBRE DE NAVIDAD DE FACHADA Y DECORACIÓN INTEGRAL NAVIDEÑA."
+
+
+                    />
+                    <EvidenceSection
+                      title="OTROS"
+                      content={
+                        <>
+                          • MANTENIMIENTO GENERAL TANQUE DE RESERVA <br />
+                          • MANTENIMIENTO CIRCUITO CERRADO DE TV
+                        </>
+                      }
+                    />
                   </div>
                 </Card>
 
@@ -808,27 +813,6 @@ export default function App() {
                       EL PROCESO INICIÓ CON CIRCULARIZACIÓN DE CARTERA Y CONCILIACIÓN. SE APLICAN INTERESES MORATORIOS SEGÚN LEY 675 ART. 30. SE LOGRÓ ACUERDO CON EL APTO 501 Y 106.
                     </p>
 
-                    <ManagementTable
-                      title="RELACIÓN SALDOS EN CARTERA - DICIEMBRE 31 DE 2025"
-                      headers={["INMUEBLE", "SALDO A DICIEMBRE 2025"]}
-                      data={[
-                        { i: "101", s: "302.200" },
-                        { i: "106", s: "3.120.169" },
-                        { i: "201", s: "559.800" },
-                        { i: "203", s: "22.000" },
-                        { i: "204", s: "71.200" },
-                        { i: "301", s: "545.000" },
-                        { i: "304", s: "500.814" },
-                        { i: "305", s: "8.400" },
-                        { i: "306", s: "266.384" },
-                        { i: "402", s: "9.982" },
-                        { i: "405", s: "213.400" },
-                        { i: "406", s: "5.578.822" },
-                        { i: "501", s: "451.200" },
-                        { i: "505", s: "13.800" },
-                        { i: "TOTAL GENERAL", s: <span className="text-[#2E5E3B] text-2xl font-black">$11.663.171</span> },
-                      ]}
-                    />
 
                     <div className="bg-[#2B2B2B] text-white p-12 rounded-[48px] relative overflow-hidden border-b-8 border-[#2E5E3B]">
                       <Gavel className="absolute right-[-10px] top-[-10px] text-white/5" size={180} />
